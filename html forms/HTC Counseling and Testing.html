@@ -1,0 +1,127 @@
+<htmlform>
+    <macros>
+        @PATIENT_IDENTIFIER@=VCT NUMBER
+        @PARTNER_COUNSELING_CONSTRUCT@=9d3be98f-9885-420c-84b0-270327fde564
+        @CLIENT_COUNSELING_CONSTRUCT@=faf086cb-e708-48b0-9efe-02c8bddda7dd
+        @TYPE_OF_COUNSELING@=d58a9dbf-650d-44d9-914d-bc5f65e84910
+        @COUPLE@=5397f161-a7c1-4924-9d09-cd66dfdff99a
+        @INDIVIDUAL@=b4a3b6b4-16a8-4059-ad23-c36339585494
+        @WHY_DID_YOU_GET_TESTED_FOR_HIV@=3ce37a7e-26fe-102b-80cb-0017a47871b2
+        @PROGRAM_THAT_ORDERED_TEST@=3ce1e0e2-26fe-102b-80cb-0017a47871b2
+        @Clinican_notes@=6602a73b-b8d3-40bc-bae8-f00ff3b9cceb
+    </macros>
+    <link type="text/css" rel="stylesheet"
+          href="/openmrs/moduleResources/rwandahivflowsheet/hiv_flowsheet_new_row.css"/>
+    <section headerLabel="CLIENT COUNSELING">
+
+        <table cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    <b>
+                        $@PATIENT_IDENTIFIER@:
+                    </b>
+                </td>
+                <td>
+                    <b>
+                        <lookup class="value" expression="patientIdentifiers.get(&quot;$@PATIENT_IDENTIFIER@&quot;)"/>
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Encounter Date:
+                </td>
+                <td>
+                    <encounterDate default="today" disallowMultipleEncountersOnDate="warn"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Location:
+                </td>
+                <td>
+                    <encounterLocation/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Provider:
+                </td>
+
+                <td>
+                    <encounterProvider/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type of counseling:
+                </td>
+
+                <td>
+                    <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@COUPLE@" answerLabel="Couple"/>
+                    <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@INDIVIDUAL@" answerLabel="Individual"/>
+                    <br/>
+                </td>
+            </tr>
+        </table>
+        <table border="1" width="100%">
+            <tr>
+                <th>
+                    Select
+                </th>
+                <th>
+                    WHY DID YOU GET TESTED FOR HIV
+                </th>
+                <th>
+                    PROGRAM THAT ORDERED TEST
+                </th>
+                <th>
+                    Clinican notes
+                </th>
+            </tr>
+            <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
+
+                <tr>
+                    <th>Client</th>
+                    <td>
+                        <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@Clinican_notes@"/>
+                        <br/>
+                    </td>
+                </tr>
+            </obsgroup>
+
+            <obsgroup groupingConceptId="$@PARTNER_COUNSELING_CONSTRUCT@">
+
+                <tr>
+                    <th>Partner</th>
+                    <td>
+                        <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@Clinican_notes@"/>
+                        <br/>
+                    </td>
+                </tr>
+            </obsgroup>
+        </table>
+    </section>
+    <br/>
+    <center>
+        <submit/>
+    </center>
+    <encounterVoided/>
+    <br/>
+</htmlform>
