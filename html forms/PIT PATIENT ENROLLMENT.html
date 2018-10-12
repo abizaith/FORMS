@@ -1,19 +1,44 @@
-<htmlform>
+<htmlform xmlns="http://www.w3.org/1999/html">
     <macros>
         @PATIENT_IDENTIFIER@=VCT NUMBER
-        <!--@PATIENT_IDENTIFIER@=TRACnet ID-->
-        @RESULT_OF_HIV_TEST@=3ce17cec-26fe-102b-80cb-0017a47871b2
-        @ENROLLED_IN_HIV_PROGRAM@=e3e27876-bb33-410b-9ddd-6bd1d5c5d13d
-        @Transfered@=3a296bb6-5fc8-40ee-84fc-97c13cacf8d8
-
-        @RETURN VISIT DATE@=3ce94df0-26fe-102b-80cb-0017a47871b2
-        @ENROLLMENT DATE@=badacf97-0970-4dde-aee4-5e1c2bb125f7
-
+        @PARTNER_COUNSELING_CONSTRUCT@=9d3be98f-9885-420c-84b0-270327fde564
+        @CLIENT_COUNSELING_CONSTRUCT@=faf086cb-e708-48b0-9efe-02c8bddda7dd
+        @TYPE_OF_COUNSELING@=d58a9dbf-650d-44d9-914d-bc5f65e84910
+        @COUPLE@=5397f161-a7c1-4924-9d09-cd66dfdff99a
+        @INDIVIDUAL@=b4a3b6b4-16a8-4059-ad23-c36339585494
+        @WHY_DID_YOU_GET_TESTED_FOR_HIV@=3ce37a7e-26fe-102b-80cb-0017a47871b2
+        @PROGRAM_THAT_ORDERED_TEST@=3ce1e0e2-26fe-102b-80cb-0017a47871b2
+        @Clinican_notes@=6602a73b-b8d3-40bc-bae8-f00ff3b9cceb
+        headerColor =#009d8e
+        fontOnHeaderColor = white
     </macros>
-    <link type="text/css" rel="stylesheet"
-          href="/openmrs/moduleResources/rwandahivflowsheet/hiv_flowsheet_new_row.css"/>
-    <section headerLabel="HIV program enrollment">
 
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+
+
+
+    </style>
+    <section headerLabel="CLIENT COUNSELING" class="section">
         <table cellspacing="0" cellpadding="6" width="100%">
             <tr>
                 <td>
@@ -29,15 +54,7 @@
             </tr>
             <tr>
                 <td>
-                    Return visit Date:
-                </td>
-                <td>
-                    <encounterDate default="today" disallowMultipleEncountersOnDate="warn"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    enrollment Date:
+                    Encounter Date:
                 </td>
                 <td>
                     <encounterDate default="today" disallowMultipleEncountersOnDate="warn"/>
@@ -48,7 +65,7 @@
                     Location:
                 </td>
                 <td>
-                    <encounterLocation/>
+                    <encounterLocation default="Kibagabaga HP"/>
                 </td>
             </tr>
             <tr>
@@ -60,32 +77,121 @@
                     <encounterProvider/>
                 </td>
             </tr>
-
         </table>
-        <table>
-            <tr>
-                <td>
-                    Names:
-                    <patient field="name"/>
-                </td>
-                <td>
-                    Gender:
-                    <patient field="gender"/>
-                </td>
-                <td>
-                    Age:
-                    <patient field="age"/>
-                </td>
-                <td>
-                    Results: <font color="red">
-                    <lookup expression="fn.latestObs(&quot;$@RESULT_OF_HIV_TEST@&quot;).getValueCoded().getName()"/>
-                </font>
-                </td>
-            </tr>
-        </table>
-
     </section>
 
+    <section headerLabel="Individual" class="section">
+        <table border="1" width="100">
+            <tr>
+                <td>
+                    Type of counseling:
+                </td>
+                <td>
+                    <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@INDIVIDUAL@" answerLabel="Individual"/>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Select
+                </th>
+                <th>
+                    WHY DID YOU GET TESTED FOR HIV
+                </th>
+                <th>
+                    PROGRAM THAT ORDERED TEST
+                </th>
+                <th>
+                    Clinican notes
+                </th>
+            </tr>
+            <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
+                <tr>
+                    <th>Client</th>
+                    <td>
+                        <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                        <br/>
+                    </td>
+                    <td>
+                        <obs conceptId="$@Clinican_notes@"/>
+                        <br/>
+                    </td>
+                </tr>
+            </obsgroup>
+        </table>
+    </section>
+
+    <table border="1" width="100">
+        <div>
+            <section headerLabel="Couple" class="section">
+                <tr>
+                    <td>
+                        Type of counseling:
+                    </td>
+                    <td>
+                        <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@INDIVIDUAL@" answerLabel="Couple"/>
+                        <br/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Select
+                    </th>
+                    <th>
+                        WHY DID YOU GET TESTED FOR HIV
+                    </th>
+                    <th>
+                        PROGRAM THAT ORDERED TEST
+                    </th>
+                    <th>
+                        Clinican notes
+                    </th>
+                </tr>
+                <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
+
+                    <tr>
+                        <th>Client</th>
+                        <td>
+                            <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                            <br/>
+                        </td>
+                        <td>
+                            <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                            <br/>
+                        </td>
+                        <td>
+                            <obs conceptId="$@Clinican_notes@"/>
+                            <br/>
+                        </td>
+                    </tr>
+                </obsgroup>
+
+                <obsgroup groupingConceptId="$@PARTNER_COUNSELING_CONSTRUCT@">
+
+                    <tr>
+                        <th>Partner</th>
+                        <td>
+                            <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                            <br/>
+                        </td>
+                        <td>
+                            <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                            <br/>
+                        </td>
+                        <td>
+                            <obs conceptId="$@Clinican_notes@"/>
+                            <br/>
+                        </td>
+                    </tr>
+                </obsgroup>
+            </section>
+        </div>
+    </table>
     <br/>
     <center>
         <submit/>
