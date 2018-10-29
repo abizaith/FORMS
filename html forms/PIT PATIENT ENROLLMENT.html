@@ -12,7 +12,6 @@
         headerColor =#009d8e
         fontOnHeaderColor = white
     </macros>
-
     <style>
    .section {
       border: 1px solid $headerColor;
@@ -38,7 +37,10 @@
 
 
     </style>
+
     <section headerLabel="CLIENT COUNSELING" class="section">
+
+
         <table cellspacing="0" cellpadding="6" width="100%">
             <tr>
                 <td>
@@ -65,7 +67,7 @@
                     Location:
                 </td>
                 <td>
-                    <encounterLocation default="Kibagabaga HP"/>
+                    <encounterLocation/>
                 </td>
             </tr>
             <tr>
@@ -77,125 +79,124 @@
                     <encounterProvider/>
                 </td>
             </tr>
-        </table>
-    </section>
-
-    <section headerLabel="Individual" class="section">
-        <table border="1" width="100">
             <tr>
                 <td>
                     Type of counseling:
                 </td>
+
                 <td>
+                    <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@COUPLE@" answerLabel="Couple"/>
                     <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@INDIVIDUAL@" answerLabel="Individual"/>
                     <br/>
                 </td>
+
             </tr>
-            <tr>
-                <th>
-                    Select
-                </th>
-                <th>
-                    WHY DID YOU GET TESTED FOR HIV
-                </th>
-                <th>
-                    PROGRAM THAT ORDERED TEST
-                </th>
-                <th>
-                    Clinican notes
-                </th>
-            </tr>
-            <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
-                <tr>
-                    <th>Client</th>
-                    <td>
-                        <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
-                        <br/>
-                    </td>
-                    <td>
-                        <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
-                        <br/>
-                    </td>
-                    <td>
-                        <obs conceptId="$@Clinican_notes@"/>
-                        <br/>
-                    </td>
-                </tr>
-            </obsgroup>
+
         </table>
+
+        <table border="1" width="100">
+
+            <div hidden="divCheckbox" style="visibility: hidden;">
+                <section headerLabel="Individual" class="section">
+
+                    <tr>
+                        <th>
+                            Select
+                        </th>
+                        <th>
+                            WHY DID YOU GET TESTED FOR HIV
+                        </th>
+                        <th>
+                            PROGRAM THAT ORDERED TEST
+                        </th>
+                        <th>
+                            Clinican notes
+                        </th>
+                    </tr>
+                    <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
+
+                        <tr>
+                            <th>Client</th>
+                            <td>
+                                <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@Clinican_notes@"/>
+                                <br/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </section>
+            </div>
+        </table>
+        <table border="1" width="100">
+            <div>
+                <section headerLabel="Couple" class="section">
+
+                    <tr>
+                        <th>
+                            Select
+                        </th>
+                        <th>
+                            WHY DID YOU GET TESTED FOR HIV
+                        </th>
+                        <th>
+                            PROGRAM THAT ORDERED TEST
+                        </th>
+                        <th>
+                            Clinican notes
+                        </th>
+                    </tr>
+                    <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
+
+                        <tr>
+                            <th>Client</th>
+                            <td>
+                                <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@Clinican_notes@"/>
+                                <br/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+
+                    <obsgroup groupingConceptId="$@PARTNER_COUNSELING_CONSTRUCT@">
+
+                        <tr>
+                            <th>Partner</th>
+                            <td>
+                                <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
+                                <br/>
+                            </td>
+                            <td>
+                                <obs conceptId="$@Clinican_notes@"/>
+                                <br/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </section>
+            </div>
+        </table>
+        <br/>
+        <center>
+            <submit/>
+        </center>
+        <encounterVoided/>
+        <br/>
     </section>
-
-    <table border="1" width="100">
-        <div>
-            <section headerLabel="Couple" class="section">
-                <tr>
-                    <td>
-                        Type of counseling:
-                    </td>
-                    <td>
-                        <obs conceptId="$@TYPE_OF_COUNSELING@" answerConceptId="$@INDIVIDUAL@" answerLabel="Couple"/>
-                        <br/>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th>
-                        Select
-                    </th>
-                    <th>
-                        WHY DID YOU GET TESTED FOR HIV
-                    </th>
-                    <th>
-                        PROGRAM THAT ORDERED TEST
-                    </th>
-                    <th>
-                        Clinican notes
-                    </th>
-                </tr>
-                <obsgroup groupingConceptId="$@CLIENT_COUNSELING_CONSTRUCT@">
-
-                    <tr>
-                        <th>Client</th>
-                        <td>
-                            <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
-                            <br/>
-                        </td>
-                        <td>
-                            <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
-                            <br/>
-                        </td>
-                        <td>
-                            <obs conceptId="$@Clinican_notes@"/>
-                            <br/>
-                        </td>
-                    </tr>
-                </obsgroup>
-
-                <obsgroup groupingConceptId="$@PARTNER_COUNSELING_CONSTRUCT@">
-
-                    <tr>
-                        <th>Partner</th>
-                        <td>
-                            <obs conceptId="$@WHY_DID_YOU_GET_TESTED_FOR_HIV@"/>
-                            <br/>
-                        </td>
-                        <td>
-                            <obs conceptId="$@PROGRAM_THAT_ORDERED_TEST@"/>
-                            <br/>
-                        </td>
-                        <td>
-                            <obs conceptId="$@Clinican_notes@"/>
-                            <br/>
-                        </td>
-                    </tr>
-                </obsgroup>
-            </section>
-        </div>
-    </table>
-    <br/>
-    <center>
-        <submit/>
-    </center>
-    <encounterVoided/>
-    <br/>
 </htmlform>

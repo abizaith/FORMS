@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HIV-FORMS.iml" filepath="$PROJECT_DIR$/HIV-FORMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/HIV-FORMS.iml" filepath="$PROJECT_DIR$/.idea/HIV-FORMS.iml" />
     </modules>
   </component>
 </project>
