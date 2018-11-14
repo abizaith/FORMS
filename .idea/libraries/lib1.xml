@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../openmrs-module-rwandareports/omod/target/rwandareports-2.5.9-SNAPSHOT/lib/commons-dbutils-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../openmrs-module-rwandareports/omod/target/rwandareports-2.5.9-SNAPSHOT/lib/rwandareports-api-2.5.9-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
