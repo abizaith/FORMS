@@ -49,24 +49,24 @@
     <table border="2" cellspacing="0" cellpadding="6" width="100%">
         <tr>
             <td>
-                <img src="/openmrs/images/emr_hands.gif" align="left" height="75"
-                     width="60">
+                <img src="/openmrs/moduleResources/rwandareports/images/rwanda-logo.jpg" align="left" height="100"
+                     width="100">
                 </img>
             </td>
             <td>
                 <h2>
-                    Inshuti Mu Buzima
+                    RWANDA MINISTRY OF HEALTH
                     <br />
-                    <span class="english">PIH Rwanda</span>
+                    <span class="english">MOH Rwanda</span>
                 </h2>
             </td>
             <td>
                 <strong>
                     Programme PMTCT
                     <br />
-                    Fiche Résumé du Patient : RHEA ANC
+                    Fiche Résumé du Patient : MC
                     <br />
-                    <span class="english">RHEA ANC flowsheet</span>
+                    <span class="english">Nutrition flowsheet</span>
                 </strong>
                 <br />
                 Fiche_resume-HIV-HFCSP-RW-V1.0-ng-21Oct10-fr
@@ -86,7 +86,8 @@
                 <lookup class="value" expression="patient.personName.familyName" />
                 <lookup class="value" expression="patient.personName.givenName" />
                 ID:
-                <lookup class="value" expression="patientIdentifiers.get(&quot;IMB ID&quot;)" /> <lookup class="value" expression="patientIdentifiers.get(&quot;IMB Primary Care Registration ID&quot;)" />
+                <lookup class="value" expression="patientIdentifiers.get(&quot;HTC NUMBER&quot;)" />
+                <!--<lookup class="value" expression="patientIdentifiers.get(&quot;IMB Primary Care Registration ID&quot;)" />-->
             </td>
             <!--<td>
                 Date:
@@ -97,50 +98,25 @@
 
     <br />
     <div>
-        <section headerLabel="1. RHEA ANC1: Past Medical History">
-            <htmlformflowsheet formId="72" windowHeight="450" sharedEncounter="true" showHtmlForm="true"/>
+        <section headerLabel="Nutrition Demogaphics Form">
+            <htmlformflowsheet formId="113" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
         </section>
     </div>
     <div>
-        <section headerLabel="2. RHEA ANC2: Physical Examination">
-            <htmlformflowsheet formId="73" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+        <section headerLabel="HeightWeightTracker Form">
+            <htmlformflowsheet formId="9" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
         </section>
     </div>
-
     <div>
-        <section headerLabel="3. RHEA ANC3: Investigation">
-            <htmlformflowsheet formId="74" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
-        </section>
-    </div>
-
-    <div>
-        <section headerLabel="4. RHEA ANC4: Referral Form">
-            <htmlformflowsheet formId="75" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+        <section headerLabel="Nutrition Status Monitoring Form">
+            <htmlformflowsheet formId="112" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
         </section>
     </div>
 
     <div>
-        <section headerLabel="5. RHEA ANC5: Referral Confirmation Form">
-            <htmlformflowsheet formId="76" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+        <section headerLabel="Nutrition Followup Form">
+            <htmlformflowsheet formId="105" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
         </section>
     </div>
 
-    <div>
-        <section headerLabel="6. RHEA ANC6: Delivery Report">
-            <htmlformflowsheet formId="77" sharedEncounter="true" showHtmlForm="true"/>
-        </section>
-    </div>
-
-
-    <div>
-    </div>
-
-    <br />
-    <!--
-        <center>
-        <submit submitLabel="Close Flowsheet" />
-    </center>
-         -->
-    <br />
-    <br />
 </htmlform>

@@ -58,8 +58,8 @@ if(jQuery){
         <tr>
             <td>
                 <b>
-                    IMB ID:
-                    <lookup class="value" expression="patientIdentifiers.get(&quot;IMB ID&quot;)" />
+                    TRACnet ID :
+                    <lookup class="value" expression="patientIdentifiers.get(&quot;TRACnet ID &quot;)" />
                 </b>
             </td>
             <td>
@@ -69,7 +69,7 @@ if(jQuery){
 
             <td>
                 Clinique / Clinic:
-                <encounterLocation />
+                <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
             </td>
             <td>
                 Clinician Nom/ Signature:
@@ -90,11 +90,12 @@ if(jQuery){
             </td></tr>
             <tr><td>Lieu de naissance:<lookup class="value" expression="personAttributes.get('Birthplace')"/>
             </td></tr>
+<!-- How to add relationships  e.g bellow-->
             <tr><td>
                 <obs conceptId="75e71557-ad0c-41d2-ad50-bff3689568c1" labelText="Nom du Pere:" />
                 <obs conceptId="fca56314-5e87-41fa-902d-0c09e795d74a" labelText=" Prenom du Pere:" /></td></tr>
-            <!-- <tr><td>Nom de la mere:<relationship id="relationship" type="91e67a44-688d-4374-b90d-a354b7917e01,d283d838-2700-102b-80cb-0017a47871b2" whoAmI="B,B"
-            changeExistingRelationship="true,false" programIds="518a9a1a-c5a9-4ce7-9396-292aef46e817"/></td></tr> -->
+            <tr><td>Nom de la mere:<relationship id="relationship" type="2f94359d-b429-4b13-8e90-f09d19ba8059" whoAmI="B,B"
+                                                 changeExistingRelationship="true,false" programIds="38ffe579-f99f-469c-99fc-5f8c847c33eb"/></td></tr>
             <tr><td>
                 No TRACNET de la mere:<!--<lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('TRACnet ID') ) $patId #end "/> -->
             </td></tr>
@@ -130,7 +131,7 @@ if(jQuery){
           #end
     #end
 #end "/><br/></td></tr>
-
+<!--End relatiopnships coding-->
             <tr>
                 <th class="subheader">Gardien de l'enfant &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
                     &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
@@ -164,7 +165,8 @@ if(jQuery){
             <tr><td class="checkboxGroup"><span id="checkboxRadio"><table><tr>
 <td><obs conceptId="c0d26fc9-a892-40e5-b33b-752de77b7f81" answerConceptId="be3f7524-e744-43e4-a76e-bc78fbb76acd" answerLabel="enfant né de mère séropositive" /><br/></td></tr>
 <tr><td><obs conceptId="c0d26fc9-a892-40e5-b33b-752de77b7f81" answerConceptId="d8e151b3-7355-43af-a1f2-703fe8573f60" answerLabel="enfant né de mère séronegative (Couple Discordant)" /></td></tr>
-</table></span><p><b>La mere donne son consentement a la clinique de communiquer avec l'ASC?<br />
+</table></span><p><b>
+                La mere donne son consentement a la clinique de communiquer avec l'ASC?<br />
                 <obs conceptId="cd98b2ac-edd0-4a1f-bf6a-00800911e2a6" answerConceptId="3cd6f600-26fe-102b-80cb-0017a47871b2" answerLabel="Oui: "
                      showDate="true" dateLabel="Date" />(cochez uniquement si le consentement est donne)</b>
             </p>
