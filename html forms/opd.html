@@ -1096,7 +1096,10 @@ input[type="submit"] {
                             </tr>
                             <tr>
                                 <td>Location
-                                    <encounterLocation default="289"/>
+                                    <b>
+                                        <encounterLocation id="location"
+                                                           default="GlobalProperty:registration.defaultLocationCode"/>
+                                    </b><br/>
                                 </td>
                             </tr>
                             <tr>
@@ -1204,6 +1207,12 @@ input[type="submit"] {
                                                         <render n="9" concept="Diagnosis"/>
                                                         <render n="10" concept="Diagnosis"/>
                                                     </repeat>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Other Motive de Consultation
+                                                    <obs conceptId="1736" style="textarea" rows="3" cols="40"/>
                                                 </td>
                                             </tr>
                                         </obsgroup>
@@ -1420,13 +1429,13 @@ input[type="submit"] {
                                 </td>
                             </tr>
 
-                            <tr>
+                            <!--<tr>
                                 <td>Lab Request Exams</td>
                                 <td>
                                     <obs conceptId="b129088f-b503-42e3-bf42-d981b90ecd28" id=""
                                          style="" rows="5" cols="50"/>
                                 </td>
-                            </tr>
+                            </tr>-->
 
                             <!-- <tr>
                                  <td>Lab Request Exams:
@@ -2122,56 +2131,82 @@ input[type="submit"] {
                             <div class="section">
                                 <div class="sectionheader">Examen Bio-Microscopique</div>
                                 <div class="sectionbody">
-                                    <table class="baseline-aligned">
-                                        <tr>
-                                            <td>Paupi&#232;re</td>
-                                            <td>
-                                                <obs conceptId="12040" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Conjoctive</td>
-                                            <td>
-                                                <obs conceptId="12042" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Corn&#233;e</td>
-                                            <td>
-                                                <obs conceptId="12044" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Chambre ant&#232;rieure</td>
-                                            <td>
-                                                <obs conceptId="12045" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Iris</td>
-                                            <td>
-                                                <obs conceptId="12046" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pupille</td>
-                                            <td>
-                                                <obs conceptId="12048" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cristallin</td>
-                                            <td>
-                                                <obs conceptId="12049" size="10"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fond d'oeil</td>
-                                            <td>
-                                                <obs conceptId="12050" size="10"/>
-                                            </td>
-                                        </tr>
 
+                                    <table class="baseline-aligned">
+
+                                        <obsgroup groupingConceptId="6d58c700-9482-4d57-a7c7-f9eaaca7b3a0">
+                                            <tr>
+                                                <th>AV OD</th>
+                                                <td>Paupi&#232;re
+                                                    <obs conceptId="12040" size="10"/>
+                                                </td>
+
+                                                <td>Conjoctive
+                                                    <obs conceptId="12042" size="10"/>
+                                                </td>
+
+                                                <td>Corn&#233;e
+                                                    <obs conceptId="12044" size="10"/>
+                                                </td>
+
+                                                <td>Chambre ant&#232;rieure
+                                                    <obs conceptId="12045" size="10"/>
+                                                </td>
+
+                                                <td>Iris
+                                                    <obs conceptId="12046" size="10"/>
+                                                </td>
+
+                                                <td>Pupille
+                                                    <obs conceptId="12048" size="10"/>
+                                                </td>
+
+                                                <td>Cristallin
+                                                    <obs conceptId="12049" size="10"/>
+                                                </td>
+
+                                                <td>Fond d'oeil
+                                                    <obs conceptId="12050" size="10"/>
+                                                </td>
+                                            </tr>
+                                        </obsgroup>
+                                        <obsgroup groupingConceptId="6d58c700-9482-4d57-a7c7-f9eaaca7b3a0">
+
+                                            <tr>
+                                                <th>AV OG</th>
+                                                <td>Paupi&#232;re
+                                                    <obs conceptId="12040" size="10"/>
+                                                </td>
+
+                                                <td>Conjoctive
+                                                    <obs conceptId="12042" size="10"/>
+                                                </td>
+
+                                                <td>Corn&#233;e
+                                                    <obs conceptId="12044" size="10"/>
+                                                </td>
+
+                                                <td>Chambre ant&#232;rieure
+                                                    <obs conceptId="12045" size="10"/>
+                                                </td>
+
+                                                <td>Iris
+                                                    <obs conceptId="12046" size="10"/>
+                                                </td>
+
+                                                <td>Pupille
+                                                    <obs conceptId="12048" size="10"/>
+                                                </td>
+
+                                                <td>Cristallin
+                                                    <obs conceptId="12049" size="10"/>
+                                                </td>
+
+                                                <td>Fond d'oeil
+                                                    <obs conceptId="12050" size="10"/>
+                                                </td>
+                                            </tr>
+                                        </obsgroup>
                                     </table>
                                 </div>
                             </div>
@@ -3480,12 +3515,104 @@ input[type="submit"] {
                 </div>
                 <br/>
             </div>
+
+
+            <!-- This div adds Transfer form -->
+
+            <div id="tab9" class="sectionheader">
+                <span id="tab_title9">9. Transfer (Inter Service)</span>
+            </div>
+            <div id="tab_content9">
+
+                <div class="section">
+                    <div class="sectionheader">Transfer Information</div>
+                    <div class="sectionbody">
+                        <obsgroup groupingConceptId="12088">
+                            <table class="baseline-aligned">
+                                <tr>
+                                    <td>Transferring Facility</td>
+                                    <td>
+                                        <encounterLocation id="location"
+                                                           default="GlobalProperty:registration.defaultLocationCode"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Transferring Department</td>
+                                    <td>
+                                        <obs conceptId="6702"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Transfer Date and Time</td>
+                                    <td>
+                                        <obs conceptId="12098"/>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                     <td>Receiving Facility</td>
+                                     <td>
+                                         <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                                     </td>
+                                 </tr>-->
+                                <tr>
+                                    <td>Receiving Department</td>
+                                    <td>
+                                        <obs conceptId="6702"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Reason for Transferring</td>
+                                    <td>
+                                        <obs conceptId="3004" id="past_medical" style="textarea" rows="3" cols="30"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </obsgroup>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="sectionheader">Transportation</div>
+                    <div class="sectionbody">
+                        <obsgroup groupingConceptId="12100">
+                            <table class="baseline-aligned">
+                                <tr>
+                                    <td>Required monitoring during transportation</td>
+                                    <td>
+                                        <obs conceptId="12102" style="checkbox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Type of transportation</td>
+                                    <td>
+                                        <obs conceptId="975"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Did the patient or next Kin consent?</td>
+                                    <td>
+                                        <obs conceptId="12103"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </obsgroup>
+                    </div>
+                </div>
+
+                <div id="div9">
+                    <div style="color: red;" id="close9">
+                        <span><b>[X] Close me</b></span>
+                    </div>
+                </div>
+                <br/>
+
+            </div>
             <div>
                 <center>
                     <submit/>
                 </center>
             </div>
-
         </div>
 
 

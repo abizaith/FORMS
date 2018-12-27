@@ -1,7 +1,10 @@
-<htmlform> <openmrs:htmlInclude
-        file="/scripts/jquery/jquery-1.3.2.min.js" /> <openmrs:htmlInclude
-        file="/scripts/jquery-ui/js/jquery-ui-1.7.2.custom.min.js" /> <openmrs:htmlInclude
-        file="/scripts/jquery-ui/css/redmond/jquery-ui-1.7.2.custom.css" />
+<htmlform>
+    <openmrs:htmlInclude
+            file="/scripts/jquery/jquery-1.3.2.min.js"/>
+    <openmrs:htmlInclude
+            file="/scripts/jquery-ui/js/jquery-ui-1.7.2.custom.min.js"/>
+    <openmrs:htmlInclude
+            file="/scripts/jquery-ui/css/redmond/jquery-ui-1.7.2.custom.css"/>
 
     <style>
 body {
@@ -21,9 +24,9 @@ body {
 	color: #02416e;
 	height: 40px;
 	width: 100%;
-	border: 2px solid #009d8e;
+	border: 2px solid #ccccff;
 	text-align: center;
-	background-color: #009d8e;
+	background-color: #ebf2f7;
 	margin-bottom: 5px;
 }
 
@@ -78,10 +81,10 @@ body {
 	font-weight: bold;
 	height: auto;
 	width: inherit;
-	border: 2px solid #009d8e;
+	border: 2px solid #ccccff;
 	text-align: left;
 	padding: 2px;
-	background-color: #009d8e;
+	background-color: #81afc1;
 }
 
 .sectionbody {
@@ -128,7 +131,8 @@ input[type="submit"] {
 	font-style: italic;
 	font-family: Georgia;
 }
-</style>
+
+    </style>
 
     <script type="text/javascript">
 	//if (jQuery) {
@@ -149,8 +153,6 @@ input[type="submit"] {
 						$hfe("#div6").hide();
 						$hfe("#div7").hide();
 						$hfe("#div8").hide();
-						$hfe("#div9").hide();
-						$hfe("#div10").hide();
 						$hfe("#echographyId").hide();
 						$hfe("#stomatologyId").hide();
 						$hfe("#soinsInfirmiersId").hide();
@@ -160,7 +162,6 @@ input[type="submit"] {
 						$hfe("#ophtalmologyId").hide();
 						$hfe("#kinestherapyId").hide();
 						$hfe("#oxygenotherapyId").hide();
-
 
 						$hfe("#close1").click(function() {
 							$hfe("#div1").css('display', 'none');
@@ -198,16 +199,6 @@ input[type="submit"] {
 						$hfe("#close8").click(function() {
 							$hfe("#div8").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-						});
-
-						$hfe("#close9").click(function() {
-							$hfe("#div9").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-						});
-
-						$hfe("#close10").click(function() {
-							$hfe("#div10").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 						$hfe("#echographyCloseId").click(function() {
@@ -255,8 +246,6 @@ input[type="submit"] {
 						$hfe("#tab_content6").css('display', 'none');
 						$hfe("#tab_content7").css('display', 'none');
 						$hfe("#tab_content8").css('display', 'none');
-						$hfe("#tab_content9").css('display', 'none');
-						$hfe("#tab_content10").css('display', 'none');
 
 						$hfe("#tab1").click(function() {
 
@@ -268,8 +257,6 @@ input[type="submit"] {
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content1").css('display', 'block');
 							$hfe("#tab_content2").css('display', 'none');
 							$hfe("#tab_content3").css('display', 'none');
@@ -278,10 +265,7 @@ input[type="submit"] {
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
-
 						$hfe("#tab2").click(function() {
 
 							$hfe("#div2").show();
@@ -292,8 +276,6 @@ input[type="submit"] {
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content2").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content3").css('display', 'none');
@@ -302,10 +284,7 @@ input[type="submit"] {
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
-
 						$hfe("#tab3").click(function() {
 
 							$hfe("#div3").show();
@@ -316,8 +295,6 @@ input[type="submit"] {
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content3").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -326,8 +303,6 @@ input[type="submit"] {
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 						$hfe("#tab4").click(function() {
@@ -340,8 +315,6 @@ input[type="submit"] {
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content4").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -350,8 +323,6 @@ input[type="submit"] {
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 						$hfe("#tab5").click(function() {
@@ -364,8 +335,6 @@ input[type="submit"] {
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content5").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -374,8 +343,6 @@ input[type="submit"] {
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 
@@ -389,8 +356,6 @@ input[type="submit"] {
 							$hfe("#div5").hide();
 							$hfe("#div7").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content6").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -399,8 +364,6 @@ input[type="submit"] {
 							$hfe("#tab_content5").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 						$hfe("#tab7").click(function() {
@@ -413,8 +376,6 @@ input[type="submit"] {
 							$hfe("#div5").hide();
 							$hfe("#div6").hide();
 							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content7").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -423,8 +384,6 @@ input[type="submit"] {
 							$hfe("#tab_content5").css('display', 'none');
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
 						});
 
 						$hfe("#tab8").click(function() {
@@ -437,8 +396,6 @@ input[type="submit"] {
 							$hfe("#div5").hide();
 							$hfe("#div6").hide();
 							$hfe("#div7").hide();
-							$hfe("#div9").hide();
-							$hfe("#div10").hide();
 							$hfe("#tab_content8").css('display', 'block');
 							$hfe("#tab_content1").css('display', 'none');
 							$hfe("#tab_content2").css('display', 'none');
@@ -447,56 +404,6 @@ input[type="submit"] {
 							$hfe("#tab_content5").css('display', 'none');
 							$hfe("#tab_content6").css('display', 'none');
 							$hfe("#tab_content7").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
-						});
-
-						$hfe("#tab9").click(function() {
-
-							$hfe("#div9").show();
-							$hfe("#div1").hide();
-							$hfe("#div2").hide();
-							$hfe("#div3").hide();
-							$hfe("#div4").hide();
-							$hfe("#div5").hide();
-							$hfe("#div6").hide();
-							$hfe("#div7").hide();
-							$hfe("#div8").hide();
-							$hfe("#div10").hide();
-							$hfe("#tab_content9").css('display', 'block');
-							$hfe("#tab_content1").css('display', 'none');
-							$hfe("#tab_content2").css('display', 'none');
-							$hfe("#tab_content3").css('display', 'none');
-							$hfe("#tab_content4").css('display', 'none');
-							$hfe("#tab_content5").css('display', 'none');
-							$hfe("#tab_content6").css('display', 'none');
-							$hfe("#tab_content7").css('display', 'none');
-							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content10").css('display', 'none');
-						});
-
-						$hfe("#tab10").click(function() {
-
-							$hfe("#div10").show();
-							$hfe("#div1").hide();
-							$hfe("#div2").hide();
-							$hfe("#div3").hide();
-							$hfe("#div4").hide();
-							$hfe("#div5").hide();
-							$hfe("#div6").hide();
-							$hfe("#div7").hide();
-							$hfe("#div8").hide();
-							$hfe("#div9").hide();
-							$hfe("#tab_content10").css('display', 'block');
-							$hfe("#tab_content1").css('display', 'none');
-							$hfe("#tab_content2").css('display', 'none');
-							$hfe("#tab_content3").css('display', 'none');
-							$hfe("#tab_content4").css('display', 'none');
-							$hfe("#tab_content5").css('display', 'none');
-							$hfe("#tab_content6").css('display', 'none');
-							$hfe("#tab_content7").css('display', 'none');
-							$hfe("#tab_content8").css('display', 'none');
-							$hfe("#tab_content9").css('display', 'none');
 						});
 
 						var selected_value;
@@ -615,7 +522,6 @@ input[type="submit"] {
 								$hfe("#oxygenotherapyId").show();
 							}
 						});
-
 						/* TEnd of part that handles Accordion Functionality */
 
 						$hfe('#1-removeEntry').remove();
@@ -827,7 +733,7 @@ input[type="submit"] {
 																	+ "\n- PAST/ANTECEDENTS: "
 																	+ answer1
 																	+ "\n- OTHER: ");
-						});
+										});
 						//});
 
 						//$hfe(document).ready( function() {
@@ -1052,260 +958,175 @@ input[type="submit"] {
 								});
 					});
 
-</script>
-    <!-- RADIOLOGY  FORM -->
+    </script> <!-- MEDICAL CONSULTATION -->
 
-    <div class="header">DH - RADIOLOGY FORM</div>
+    <div class="header">DH - DOSSIER INFIRMIER FORM</div>
     <div class="bodycontainer">
 
         <div id="accordion">
-            <div id="tab1" class="sectionheader">
-                <span id="tab_title1">1. GENERAL INFORMATION</span>
-            </div>
-            <div id="tab_content1">
-                <br />
+
+            <div id="">
+                <br/>
                 <div class="section">
                     <div class="sectionheader">Encounter Details</div>
                     <div class="sectionbody">
                         <table class="baseline-aligned">
                             <tr>
                                 <td>Date:</td>
-                                <td><encounterDate default="today" /></td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
                                 <td>
-                                    <encounterLocation id="location"
-                                                       default="GlobalProperty:registration.defaultLocationCode"/>
+                                    <encounterDate default="today"/>
                                 </td>
                             </tr>
                             <tr>
+                                <td>Location</td>
+                                <b>
+                                    <encounterLocation id="location"
+                                                       default="GlobalProperty:registration.defaultLocationCode"/>
+                                </b><br/>
+                            </tr>
+                            <tr>
                                 <td>Provider</td>
-                                <td><encounterProvider default="currentUser" /></td>
+                                <td>
+                                    <encounterProvider default="currentUser"/>
+                                </td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
                 <div class="section">
-                    <div class="sectionheader">Patient Information</div>
+                    <div class="sectionheader">Demographic Information</div>
                     <div class="sectionbody">
                         <table class="baseline-aligned">
                             <tr>
                                 <td>Patient names</td>
-                                <td><b><u><lookup expression="patient.personName" /></u></b><br />
-                                    {<b>Id:</b> <lookup
-                                            expression="patient.patientIdentifier.identifier" />; <b>Sex:</b>
-                                    <lookup expression="patient.gender" />; <b>Age:</b> <lookup
-                                            expression="patient.age" />}</td>
+                                <td><b><u>
+                                    <lookup expression="patient.personName"/>
+                                </u></b><br/>
+                                    {<b>Id:</b>
+                                    <lookup
+                                            expression="patient.patientIdentifier.identifier"/>
+                                    ; <b>Sex:</b>
+                                    <lookup expression="patient.gender"/>
+                                    ; <b>Age:</b>
+                                    <lookup
+                                            expression="patient.age"/>
+                                    }
+                                </td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
+
                 <div class="section">
+                    <div class="sectionheader">1. Vital Signs Informations</div>
+                    <div class="sectionbody">
 
-
-                </div>
-
-                <div id="div1">
-                    <div style="color: red;" id="close1">
-                        <span><b>[X] Close me</b></span>
-                    </div>
-                </div>
-                <br/>
-            </div>
-
-
-
-
-
-            <!-- This div adds RADIOLOGY request part -->
-
-
-            <div id="tab2" class="sectionheader">
-                <span id="tab_title2">2. RADIOLOGY REQUEST</span>
-            </div>
-            <div id="tab_content2">
-                <br />
-
-                <div class="header">RADIOLOGY REQUEST</div>
-
-                <div class="bodycontainer">
-
-
-                    <div class="section">
                         <table>
                             <tr>
-                                <td>CLINICAL INDICATIONS  / Presenting  Complaints</td>
-                                <td>
-                                    <table>
-                                        <obsgroup id="motive" groupingConceptId="1293">
-                                            <tr>
-                                                <td><repeat> <template>
-                                                    <div id="{n}-toggleContainer" style="display: none;">
-                                                        <table>
-                                                            <tr>
-                                                                <td><obs conceptId="1293" id="cons_motive"
-                                                                         labelText="Motive added:" /></td>
-                                                                <td><button id="{n}-addEntry" class="addEntry">Add</button>
-                                                                    <button id="{n}-removeEntry" class="removeEntry">Remove</button></td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </template> <render n="1" concept="Diagnosis" /> <render n="2"
-                                                                                                         concept="Diagnosis" /> <render n="3" concept="Diagnosis" />
-                                                    <render n="4" concept="Diagnosis" /> <render n="5"
-                                                                                                 concept="Diagnosis" /> <render n="6" concept="Diagnosis" />
-                                                    <render n="7" concept="Diagnosis" /> <render n="8"
-                                                                                                 concept="Diagnosis" /> <render n="9" concept="Diagnosis" />
-                                                    <render n="10" concept="Diagnosis" /> </repeat></td>
-                                            </tr>
-                                        </obsgroup>
-                                    </table>
-                                    <div id="other_motive">
-                                        <obs id="other_motive" conceptId="2129"
-                                             labelText="Other Consultation Motive:" style="textarea" />
-                                    </div>
-                                </td>
+                                <obsgroup groupingConceptId="1114">
+                                    <td>
+                                        <obs conceptId="5088" labelText="Temperature:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5089" labelText="Weight:" required="true"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5090" labelText="Height:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5085" labelText="SBP:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5086" labelText="DBP:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5087" labelText="Pulse:"/>
+                                    </td>
+                                </obsgroup>
                             </tr>
-
-                            <tr>
-                                <td>X-RAY EXAMINATION OF</td>
-                                <td>
-                                    <blockquote>
-                                        <table>
-                                            <tr><td><obs conceptId="12619" style="checkbox" /> SKULL</td></tr>
-                                            <tr><td><obs conceptId="12620" style="checkbox" />MANDIBLE </td></tr>
-                                            <tr><td><obs conceptId="12621" style="checkbox" />PARANASAL SINUSES</td></tr>
-                                            <tr><td><obs conceptId="12622" style="checkbox" />HAND( L or R) FINGERS </td></tr>
-                                            <tr><td><obs conceptId="12623" style="checkbox" />WIRST( L or R) </td></tr>
-                                            <tr><td><obs conceptId="12624" style="checkbox" />FOREARM (L or R) </td></tr>
-                                            <tr><td><obs conceptId="12625" style="checkbox" />HUMERUS (L or R) </td></tr>
-                                            <tr><td><obs conceptId="12626" style="checkbox" />SHOULDER( L  or R) </td></tr>
-                                            <tr><td><obs conceptId="12627" style="checkbox" />CLAVICLE(L or R) </td></tr>
-                                            <tr><td><obs conceptId="12628" style="checkbox" />FOOT(L or R) </td></tr>
-                                            <tr><td><obs conceptId="12629" style="checkbox" />CALCANEUS( L or R) </td></tr>
-                                            <tr><td><obs conceptId="12630" style="checkbox" />LOWER LEG (R or L) </td></tr>
-                                            <tr><td><obs conceptId="12631" style="checkbox" />KNEE (L or R) </td></tr>
-                                            <tr><td><obs conceptId="12632" style="checkbox" />FEMUR(L or  R) </td></tr>
-                                            <tr><td><obs conceptId="12633" style="checkbox" />HIP ( L or R ) </td></tr>
-                                            <tr><td><obs conceptId="12634" style="checkbox" />PELIVIS </td></tr>
-                                            <tr><td><obs conceptId="12635" style="checkbox" />CERVICAL SPINE </td></tr>
-                                            <tr><td><obs conceptId="12646" style="checkbox" />THORACIC SPINE </td></tr>
-                                            <tr><td><obs conceptId="12647" style="checkbox" />LUMBAR SPINE </td></tr>
-                                            <tr><td><obs conceptId="12636" style="checkbox" />SACRUM COCCYX </td></tr>
-                                            <tr><td><obs conceptId="12637" style="checkbox" />PELVIS </td></tr>
-                                            <tr><td><obs conceptId="12638" style="checkbox" />CHEST X- RAY </td></tr>
-                                            <tr><td><obs conceptId="12639" style="checkbox" />ABDOMEN X-RAY </td></tr>
-                                        </table>
-                                    </blockquote>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>ULTRASOUND OF</td>
-                                <td>
-                                    <blockquote>
-                                        <table>
-                                            <tr><td><obs conceptId="12640" style="checkbox" />Abdominal ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12641" style="checkbox" />Urological ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12642" style="checkbox" />Gynecological ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12643" style="checkbox" />Obstetric ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12644" style="checkbox" />Thyroid ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12645" style="checkbox" />Breast ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12652" style="checkbox" />Ultrasound,Genetic</td></tr>
-                                            <tr><td><obs conceptId="12653" style="checkbox" />Cardiac ultrasound</td></tr>
-                                            <tr><td><obs conceptId="12654" style="checkbox" />Hepatic ultrasound</td></tr>
-
-
-                                        </table>
-                                    </blockquote>
-                                </td>
-                            </tr>
-
                         </table>
-                    </div>
 
 
-                </div>
-
-                <div id="div2">
-                    <div style="color: red;" id="close2">
-                        <span><b>[X] Close me</b></span>
                     </div>
                 </div>
-                <br/>
+
 
             </div>
 
-            <!-- End RADIOLOGY request part -->
-
-            <!-- This div adds RADIOLOGY results part -->
-
-
-            <div id="tab3" class="sectionheader">
-                <span id="tab_title3">3. RADIOLOGY RESULTS</span>
-            </div>
-            <div id="tab_content3">
-                <br />
-
-                <div class="section">
-                    <div class="sectionheader">RADIOGRAPHER'S COMMENTS: EXPOSURE FACTORS: </div>
-
-
+            <section>
+                <div class="sectionheader"></div>
+                <fieldset>
                     <table class="baseline-aligned">
                         <tr>
-                            <td><obs conceptId="12649" labelCode="KVP" />
-                            </td>
-                            <td><obs conceptId="12650" labelCode="mAs" />
-                            </td>
-
-                        </tr>
-                    </table>
-
-                    <table>
-                        <tr>
-                            <td>Films used</td>
                             <td>
-                                <blockquote>
-                                    <table>
-                                        <tr><td><obs conceptId="7988" answerConceptId="7481" style="checkbox" /></td></tr>
-                                        <tr><td><obs conceptId="7988" answerConceptId="7482" style="checkbox" /></td></tr>
-                                        <tr><td><obs conceptId="7988" answerConceptId="7483" style="checkbox" /></td></tr>
-                                        <tr><td><obs conceptId="7988" answerConceptId="7485" style="checkbox" /></td></tr>
-                                        <tr><td><obs conceptId="7988" answerConceptId="12651" style="checkbox" /></td></tr>
-                                    </table>
-                                </blockquote>
+                                <obs conceptId="5242" labelCode="Respiration"/>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Radiology Finding </td>
-                            <td><obs conceptId="12184" style="textarea" rows="3" cols="80" /></td>
-                        </tr>
-                        <tr><td>Conclusion </td>
-                            <td><div id="primary_digno"><obs id="primary_digno" conceptId="3065" answerClasses="Diagnosis" style="autocomplete" size="80" /></div></td>
-                            <td><span style="color: blue"><b><i>Type 3 first letters of a diagnosis!</i></b></span></td>
-                            <td><div id="other_primDiag"><obs conceptId="3106" style="textarea" /></div></td>
                         </tr>
                         <tr>
                             <td>
-                                <obs conceptId="3d47a038-c74a-4246-a0aa-40a0db014fe7" />
-
+                                <obs conceptId="10567" labelCode="Ponctions (en litres/24h)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="10858" labelCode="Diurese (en litres/24h)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="11335" labelCode="Selles (Nb de fois/24h)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="5088" labelCode="Tension Arterielle 1 "/>
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(2 fois/24h)
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs conceptId="5088" labelCode="Tension Arterielle 2 "/>
                             </td>
                         </tr>
                     </table>
 
-                    <div>
-                        <center><submit/></center>
-                    </div>
+                </fieldset>
 
-                    <div class="footer">
-                        <b>&#169;</b> <span>MoH, District Hospital RADIOLOGY form</span>
-                    </div>
+            </section>
+            <section>
+                <div class="sectionheader">2. Dossier Infirmier</div>
+                <div class="sectionbody">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td>Soins Infirmiers</td>
+                            <td>
+                                <obs conceptId="1364" style="textarea" rows="3" cols="30"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Observations</td>
+                            <td>
+                                <obs conceptId="1391" style="textarea" rows="3" cols="30"/>
+                            </td>
+                        </tr>
+                    </table>
+
+
                 </div>
+            </section>
+
+
+            <div>
+                <center>
+                    <submit/>
+                </center>
             </div>
+
+        </div>
+
+
+        <div class="footer">
+            <b>&#169;</b> <span>MoH, District Hospital OPD form</span>
         </div>
     </div>
-</htmlform>
+
+    <!-- END - MEDICAL CONSULTATION --> </htmlform>
