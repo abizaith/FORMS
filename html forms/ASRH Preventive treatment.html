@@ -1,0 +1,113 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>ASRH Preventive Treament </h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+                 <section headerCode="A. Offer preventive measures">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106583" answerConceptId="106071" style="checkbox" /> </td>
+                        <td><obs conceptId="106583" answerConceptId="106072" style="checkbox" /> </td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106583" answerConceptId="106073" style="checkbox" /> </td>
+                        <td><obs conceptId="106583" answerConceptId="106074" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

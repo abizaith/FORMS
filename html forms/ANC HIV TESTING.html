@@ -1,0 +1,291 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   .lblcolor{background: #e2e3f2;width: 500px;}
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+</style>
+
+    <translations defaultLocale="en">
+        <code name="Temp">
+
+            <variant locale="en" value="Temp  (celcius)"/>
+        </code>
+
+
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+
+    </translations>
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>HIV TESTING</h2>
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Birtth Date: <lookup expression="patient.birthdate" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+            <section headerCode="HIV STATUS">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Previously known HIV status </td>
+                        <td><obs conceptId="105562" answerCodes ="Positif,Negatif,Unknown" style="radio" />
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        Confirmatory test results<lookup expression="fn.latestObs(13239).valueText"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Under ARV ? </td>
+                        <td><obs conceptId="105563" answerCodes ="Yes,No" style="radio" /> Line Regiment
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        Confirmatory test results<lookup expression="fn.latestObs(11049).valueText"/></td>
+                    </tr>
+                    <tr>
+                        <td><b>DLast HIV test</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">VIH Results</td>
+                        <td><obs conceptId="105564" answerCodes ="Positif,Negatif" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Test Date</td>
+                        <td><obs conceptId="1837" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+
+        <section headerCode="DISCORDANT COUPLE (line)">
+            <table class="baseline-aligned">
+                    <tr>
+                        <td ><b>A. 2nd HIV test </b></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">VIH Results </td>
+                        <td><obs conceptId="106685" answerCodes ="Positif,Negatif" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Test Date</td>
+                        <td><obs conceptId="1837" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td ><b>B. 3rd HIV test </b></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">VIH Results </td>
+                        <td><obs conceptId="106685" answerCodes ="Positif,Negatif" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Test Date</td>
+                        <td><obs conceptId="1837" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="WOMAN WITH HIV POSITIVE">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Creatinine</td>
+                        <td><obs conceptId="1625" style="text" size="25"/><obs conceptId="8508" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">CD4 </td><td>
+                        <lookup complexExpression="#foreach($cd4 in $fn.allObs(5497)) $cd4.valueNumeric #end"/>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Recent Viral load</td>
+                        <td><lookup complexExpression="#foreach($ViralLoad in $fn.allObs(856)) $ViralLoad.valueNumeric #end"/>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">WHO stage</td>
+                        <td><lookup expression="fn.currentProgramWorkflowStatus(2).state.concept.name" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">ARV start date</td>
+                        <td><obs conceptId="3586" style="text" size="25"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">prescribed ARV regimen</td>
+                        <td><obs conceptId="106760" answerCodes ="1a=TDF+3TC+ EFV,1b=TDF+3TC+NVP,1c=ABC+3TC+EFV,1d=AZT+3TC+ATV/r,1e=TDF+3TC+ATV/r" style="radio" />
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <obs conceptId="106759" style="text" size="20"/> 1f= others (specify)</td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Cotrimoxazole start date</td>
+                        <td><obs conceptId="106684" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Screened for TB? </td>
+                        <td><obs conceptId="106814" answerCodes ="Positif,Negatif,Unknown" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Screening for STI  </td>
+                        <td><obs conceptId="13364" answerCodes ="Positif,Negatif,Unknown" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Referred to ART clinic  </td>
+                        <td><obs conceptId="105568" answerCodes ="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Tracnet</td>
+                        <td><obs conceptId="106815" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td ><b>If woman not enrolled here </b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Enrolled in other facilit</td><td><obs conceptId="106681" answerCodes ="YES,NO" style="radio" /></td></tr>
+                    <tr>
+                        <td class="lblcolor">Died</td><td><obs conceptId="106682" answerCodes ="YES,NO" style="radio" /></td></tr>
+                    <tr>
+                        <td class="lblcolor">TRANSFER OUT</td><td><obs conceptId="3000" answerCodes ="YES,NO,Unknown" style="radio" /></td></tr>
+                    <tr>
+                        <td class="lblcolor">HIV lost followup</td><td><obs conceptId="106816" answerCodes ="YES,NO" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="TEST RPR">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Test RPR Client</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Result</td>
+                        <td><obs conceptId="1478" answerCodes ="Positif,Negatif" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Test Date</td>
+                        <td><obs conceptId="105570" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If positive Partner Treated? </td>
+                        <td><obs conceptId="105571" answerCodes ="Yes,No" style="radio"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Partner RPR Client</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Result</td>
+                        <td><obs conceptId="106817" answerCodes ="Positif,Negatif" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Test Date</td>
+                        <td><obs conceptId="106818" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If positive Treated? </td>
+                        <td><obs conceptId="106819" answerCodes ="Yes,No" style="radio"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Partenaires VIH + des femmes VIH - qui ont commencés les ARV Oui/Non</td>
+                        <td><obs conceptId="105573" answerCodes ="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Shared results? </td>
+                        <td><obs conceptId="105574" answerCodes ="Yes,No" style="radio"/></td>
+                    </tr>
+                </table>
+            </section>
+
+    </includeIf>
+
+        <submit/>
+
+
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr>
+                    <td>This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+
+</htmlform>

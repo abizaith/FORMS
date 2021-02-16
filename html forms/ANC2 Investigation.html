@@ -1,0 +1,168 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   .lblcolor{background: #e2e3f2;width: 500px;}
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+</style>
+
+    <translations defaultLocale="en">
+        <code name="Temp">
+
+            <variant locale="en" value="Temp  (celcius)"/>
+        </code>
+
+
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+
+    </translations>
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>GENERAL EXAMINATION </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Birtth Date: <lookup expression="patient.birthdate" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section >
+
+
+            <section headerCode="A. LABORATORY  TEST RESULTS">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">RPR Result</td>
+                        <td ><obs conceptId="1478" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+
+                        <td class="lblcolor">Partner RPR Result</td>
+                        <td ><obs conceptId="8168" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+
+                        <td class="lblcolor">HB testing </td>
+                        <td ><obs conceptId="106870" answerCodes ="No anemia,Moderate anemia,Severe anemia" style="radio"/></td>
+                    </tr>
+                    <tr>
+
+                        <td class="lblcolor">Blood group and Rhesus</td>
+                        <td ><obs conceptId="300" answerCodes ="A , A+ ,A-, B+, B-, AB+,AB-,O+,O-" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Random blood sugar</td>
+                        <td ><obs conceptId="105519" answerCodes="Normal,Abnormal" style="radio"/> Specify if abnormal<obs conceptId="78832823-7bba-45a8-8492-32040f6eb9bb" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TORCHES screen ( hepatitis, Rubella,CMV,Toxo,Heerpes,Syphilis)</td>
+                        <td ><obs conceptId="105520" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Result  (Repeat every 3 months and during labour.)</td>
+                        <td ><obs conceptId="105521" answerCodes ="Negative,Positive" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Result for Partner</td>
+                        <td ><obs conceptId="13320" answerCodes ="Negative,Positive" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Albuminuria (Abdominal echography)</td>
+                        <td ><obs conceptId="105522" answerCodes ="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urine examination: for bacteriuria, leucocytes and nitrites </td>
+                        <td ><obs conceptId="105523" answerCodes ="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal swab (FV- if indicated)</td>
+                        <td ><obs conceptId="106188" answerCodes ="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+             </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

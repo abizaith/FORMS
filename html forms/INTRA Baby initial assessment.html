@@ -1,0 +1,203 @@
+<htmlform>
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <translations defaultLocale="en">
+        <code name="lmp">
+            <variant locale="en" value="First day of last menstral period "/>
+            <variant locale="fr" value="Date des dernières règles "/>
+        </code>
+        <code name="tested">
+            <variant locale="en" value="Has she been tested for HIV/AIDS?"/>
+            <variant locale="fr" value="Est-ce que le patient a subi un test de dépistage du VIH?"/>
+        </code>
+        <code name="due_date">
+            <variant locale="en" value="Approximate date of delivery"/>
+            <variant locale="fr" value="Date probable d'accouchement"/>
+        </code>
+    </translations>
+    <script type="text/javascript">
+$j(function() {
+	getField('lmp.value').change(function() {
+		var mp = getValue('lmp.value');
+        //alert(mp);
+		var d = new Date(mp);
+
+		d.setFullYear (d.getFullYear() + 1);
+		d.setMonth(d.getMonth() - 3);
+
+		d.setDate(d.getDate() + 7);
+
+		var curr_date = d.getDate();
+
+		var curr_month = d.getMonth();
+		curr_month++;
+
+		var curr_year = d.getFullYear();
+
+		var duedate = curr_year + "-" + curr_month + "-" + curr_date;
+
+
+		setValue('dd.value',duedate);
+
+
+	});
+
+});
+</script>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="A. Initial assessment and brief newborn  examination">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Breathing</td>
+                    <td><obs conceptId="105653" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">HR</td>
+                    <td><obs conceptId="105497" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Colour</td>
+                    <td><obs conceptId="105670" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Reflex irritability</td>
+                    <td><obs conceptId="105677" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Tone</td>
+                    <td><obs conceptId="106762" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Apgar score at 1 and 5 minutes  M</td>
+                    <td><obs conceptId="106763" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="B. Supportive care">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106611" answerConceptId="105671" style="checkbox" /></td>
+                    <td><obs conceptId="106611" answerConceptId="105672" style="checkbox" /></td>
+                    <td><obs conceptId="106611" answerConceptId="106612" style="checkbox" /></td>
+                    <td><obs conceptId="106611" answerConceptId="105673" style="checkbox" /></td>
+                    <td><obs conceptId="106611" answerConceptId="105674" style="checkbox" /></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="C. Ongoing assessment·">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Respiratory rate</td>
+                    <td><obs conceptId="106794" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Colour </td>
+                    <td><obs conceptId="105670" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Positioning for patent airway every 15 minutes for first 2 hours</td>
+                    <td><obs conceptId="105675" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Temperature and HR within 1 hour of birth M</td>
+                    <td><obs conceptId="105676" answerCodes="Normal,Abnornal" style="radio"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td >This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

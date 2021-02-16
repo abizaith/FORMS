@@ -1,0 +1,174 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Postartum Family Planning</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="A. Counseling given on different methods">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Breastfeeding status</td>
+                    <td ><obs conceptId="106007" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Specify if normal</td>
+                    <td><obs conceptId="106008" rows="1" cols="30" /></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="Immediate postpartum">
+
+            <table class="baseline-aligned">
+
+                <tr>
+                    <td><obs conceptId="106663" answerConceptId="7fe50d49-164e-406f-a7f4-52b9f6e52c8f" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="3ceb4d4e-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="e86f139f-b053-473e-bfdb-5d4d5281a410" style="checkbox" /></td>
+                </tr>
+
+                <tr>
+                    <td><obs conceptId="106663" answerConceptId="08423292-8dac-4786-ace8-6b0fcff72dc9" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="c8e205cc-fb5a-43b7-99e1-1b3f66aadf38" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="3271a021-7d8a-46d1-a35c-d53f336c6d16" style="checkbox" /></td>
+                </tr>
+                <tr>
+                    <td><obs conceptId="106663" answerConceptId="9ca785e2-fd56-4596-949f-b8976e98f911" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="3ceb52ee-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="7c397b3f-bafb-4c77-8b57-836b2e7596e0" style="checkbox" /></td>
+                </tr>
+                <tr>
+                    <td><obs conceptId="106663" answerConceptId="9b84935b-b58a-4c0e-a3a2-6166667b4913" style="checkbox" /></td>
+                    <td><obs conceptId="106663" answerConceptId="3ceb4ee8-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="Immediate postpartum (up to 6 months for women exclusively breastfeeding)">
+
+            <table class="baseline-aligned">
+
+                <tr>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="8597eca9-cd21-4b0c-a5e0-013691ec4bb5" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="7fe50d49-164e-406f-a7f4-52b9f6e52c8f" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="e86f139f-b053-473e-bfdb-5d4d5281a410" style="checkbox" /></td>
+                </tr>
+
+                <tr>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="76750b3e-635a-4789-a86e-e531e6c87d9e" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="28084ec9-8ca3-47dc-ac3d-200fcec6a941" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="06587123-01fb-4e66-bdcb-68400a59e106" style="checkbox" /></td>
+                </tr>
+                <tr>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="9b84935b-b58a-4c0e-a3a2-6166667b4913" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="3ceb52ee-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                    <td><obs conceptId="fd26b534-bada-4b5b-ba47-b2acd01be8f7" answerConceptId="3ceb4ee8-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                </tr>
+            </table>
+
+        </section>
+
+        <section headerCode="Delay 6 months">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="dd8ff733-3441-4c2d-a25b-5e179b4a60a7" answerConceptId="3271a021-7d8a-46d1-a35c-d53f336c6d16" style="checkbox" /></td>
+                    <td><obs conceptId="dd8ff733-3441-4c2d-a25b-5e179b4a60a7" answerConceptId="9ca785e2-fd56-4596-949f-b8976e98f911" style="checkbox" /></td>
+                    <td><obs conceptId="dd8ff733-3441-4c2d-a25b-5e179b4a60a7" answerConceptId="7c397b3f-bafb-4c77-8b57-836b2e7596e0" style="checkbox" /></td>
+                </tr>
+            </table>
+    </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

@@ -1,0 +1,261 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Check general condion</h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+        <section >
+            <section headerCode="A. GENERAL EXAMINATION">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Temperature °C</td>
+                        <td><obs conceptId="5088" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">BP</td>
+                        <td><obs conceptId="105590" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Severe Pallor </td>
+                        <td><obs conceptId="105589" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pulse </td>
+                        <td><obs conceptId="5087" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sign of impending shock if mother i\s bleeding</td>
+                        <td><obs conceptId="105591" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Weak/Lethargic</td>
+                        <td><obs conceptId="105539" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Difficulty in breathing / Respiratory distress/Cynosis</td>
+                        <td><obs conceptId="105592" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Level of Unconsciousness LOC </td>
+                        <td><obs conceptId="105540" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Oxygen saturation</td>
+                        <td><obs conceptId="5092" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Dehydration</td>
+                        <td><obs conceptId="3274" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="B. Abdominal examination">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Uterine Height</td>
+                        <td><obs conceptId="8145" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal position</td>
+                        <td><obs conceptId="105525" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal tachycardia/bradycardia</td>
+                        <td><obs conceptId="3361" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number and frequency of contractions if normal</td>
+                        <td><obs conceptId="105593" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+
+                        <td class="lblcolor">Color of the amniotic fluid</td>
+                        <td><obs conceptId="105594" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Dilation of the cervix;</td>
+                        <td><obs conceptId="105595" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">State of the cervix;</td>
+                        <td><obs conceptId="105596" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Application of the cervix on the presentation and Descent </td>
+                        <td><obs conceptId="105597" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Risk factors on Examination">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Breech presentation</td>
+                        <td><obs conceptId="8539" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Transverse lie</td>
+                        <td><obs conceptId="105584" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Small pelvis/CPD</td>
+                        <td><obs conceptId="8527" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Poor progress of labour</td>
+                        <td><obs conceptId="105585" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Foul smelling vaginal discharge</td>
+                        <td><obs conceptId="105586" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Premature &#60; 37 weeks</td>
+                        <td><obs conceptId="106874" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">High BP</td>
+                        <td><obs conceptId="106875" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. HIV TESTING DURING LABOR SERVICES">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">HIV result</td>
+                        <td><obs conceptId="2169" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date tested</td>
+                        <td><obs conceptId="1837" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date results received</td>
+                        <td><obs conceptId="6549" /> </td>
+                    </tr>
+                    <tr>
+                        <td><b>Seropositive</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">ARV taken during pregnancy? </td>
+                        <td><obs conceptId="105598" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">ARV initi- ated during labor? (O/N) </td>
+                        <td><obs conceptId="105599" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Discordant couple?</td>
+                        <td><obs conceptId="6096" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                        <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

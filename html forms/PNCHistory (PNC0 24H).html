@@ -1,0 +1,175 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+
+
+
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Assess the mother within 24 hour after delivery  (PNC0)</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    <td> Current ANC visit : <lookup expression="fn.latestEncounter(a703372d-28b7-4831-9817-ee385c8c47d8)"/></td>
+                </tr>
+            </table>
+        </section>
+        <section >
+
+            <section headerCode="A. MOTHER AND NEWBORN">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Age of the mother</td>
+                        <td><obs conceptId="13514" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Parity</td>
+                        <td><obs conceptId="1053" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Gestity</td>
+                        <td><obs conceptId="105578" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Birth date</td>
+                        <td><obs conceptId="6954" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Place of birth: </td>
+                        <td><obs conceptId="3528" answerCodes="Hopital,Health Center,Home" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sex of newborn </td>
+                        <td><obs conceptId="8160" answerCodes="Male,Femme" style="radio" /></td>
+                    </tr>
+                    <td><b>1. Maternal Outcome"</b></td>
+                        <tr>
+                            <td class="lblcolor">Mother outcome </td>
+                            <td><obs conceptId="8163" answerConceptIds="1742,2895,1852" answerCodes="PatientDied,Alive,Miscarriage/abortion" style="radio" /></td>
+                        </tr>
+                    <td><b>2. Newborn Outcome"</b></td>
+                    <tr>
+                        <td class="lblcolor">Mother outcome </td>
+                        <td><obs conceptId="106608" answerConceptIds="6543,105766,8179,105767,105768,105769" answerCodes="BORN ALIVE, LBW/ELBW, Preterm, Still birth, Early neonatal death, Death within 24hr" style="radio" /></td>
+                    </tr>
+                        <tr>
+                            <td class="lblcolor">Head circumference</td>
+                            <td><obs conceptId="5314" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Height</td>
+                            <td><obs conceptId="5090" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Weight at birth</td>
+                            <td><obs conceptId="5916" /></td>
+                        </tr>
+                    </table>
+            </section>
+            <section headerCode="B. HISTORY OF DELIVERY">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106609" answerConceptIds="105506,105507,8520,105508,105770,105511,105467,105771,105772" answerCodes="High Fever with chills rigor, Severe headaches Blurred vision, Vaginal Bleeding, Unconsciousness/Convulsion/ fit/Restlessness, Cyanosis/ sign of impending shock such as mark pallor cold and clammy extremities weak and rapid pulse (greather than 100/min) systolic BP (less than90mmHg), Heavy vaginal bleeding, Abdominal pains, Pain in perineal wound, Difficulty in urination
+" style="radio" /></td>
+                        </tr>
+                    </table>
+            </section>
+
+        </section>
+
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

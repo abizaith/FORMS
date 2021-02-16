@@ -1,0 +1,1468 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+</style>
+
+    <translations defaultLocale="en">
+
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+        <code name="abdominal_pains">
+            <variant locale="en" value="Abdominal pains"/>
+            <variant locale="fr" value="Douleurs abdominales"/>
+        </code>
+        <code name="fever_history">
+            <variant locale="en" value="Fever"/>
+            <variant locale="fr" value="Fièvre"/>
+        </code>
+        <code name="cough_hystory">
+            <variant locale="en" value="Cough"/>
+            <variant locale="fr" value="La toux"/>
+        </code>
+        <code name="pv_bleeding">
+            <variant locale="en" value="PV Bleeding"/>
+            <variant locale="fr" value="Saignement PV"/>
+        </code>
+        <code name="pv_discharge">
+            <variant locale="en" value="PV Discharge"/>
+            <variant locale="fr" value="Décharge PV"/>
+        </code>
+        <code name="baby_mooving">
+            <variant locale="en" value="Baby moving (after 4 months)"/>
+            <variant locale="fr" value="Bébé bouge (après 4 mois)"/>
+        </code>
+        <code name="tetanus_vaccine">
+            <variant locale="en" value="Tetanus vaccine"/>
+            <variant locale="fr" value="Vaccin contre le tétanos"/>
+        </code>
+        <code name="tobaco_alcohol_drug">
+            <variant locale="en" value="Tobacco Alcohol and Drug Abuse"/>
+            <variant locale="fr" value="Abus de tabac et d'alcool"/>
+        </code>
+        <code name="hd_preg_history">
+            <variant locale="en" value="PREGNANCY HISTORY"/>
+            <variant locale="fr" value="HISTORIQUE DE LA GROSSESSE"/>
+        </code>
+        <code name="recurent_abortions">
+            <variant locale="en" value="Recurrent abortions"/>
+            <variant locale="fr" value="Avortements récurrents"/>
+        </code>
+        <code name="premature_delivery">
+            <variant locale="en" value="Premature deliveries"/>
+            <variant locale="fr" value="Accouchement prématuré"/>
+        </code>
+        <code name="birth_death">
+            <variant locale="en" value="Still births/death immediately after birth"/>
+            <variant locale="fr" value="Natures mortes / mort immédiatement après la naissance"/>
+        </code>
+        <code name="past_haemorrhage">
+            <variant locale="en" value="Postpartum haemorrhage in the past"/>
+            <variant locale="fr" value="Hémorragie postpartum dans le passé"/>
+        </code>
+        <code name="retained_placenta">
+            <variant locale="en" value="Previous retained placenta"/>
+            <variant locale="fr" value="Précédent placenta retenu"/>
+        </code>
+        <code name="csections">
+            <variant locale="en" value="C/sections"/>
+            <variant locale="fr" value="C / sections"/>
+        </code>
+        <code name="rupture_uterus">
+            <variant locale="en" value="Ruptured uterus"/>
+            <variant locale="fr" value="Utérus rompu"/>
+        </code>
+        <code name="pre_eclampsia">
+            <variant locale="en" value="Pre/Eclampsia"/>
+            <variant locale="fr" value="Pré / éclampsie"/>
+        </code>
+        <code name="multiple_pregn">
+            <variant locale="en" value="Multipara pregnancy (> 6 pregnancies)"/>
+            <variant locale="fr" value="Grossesse multipare (> 6 grossesses)"/>
+        </code>
+        <code name="hd_health_history">
+            <variant locale="en" value="HEALTH HISTORY"/>
+            <variant locale="fr" value="HISTORIQUE DE LA SANTÉ"/>
+        </code>
+        <code name="prev_operations">
+            <variant locale="en" value="Previous operations like myomectomy"/>
+            <variant locale="fr" value="Opérations précédentes comme la myomectomie"/>
+        </code>
+        <code name="diabetes_Mellitus">
+            <variant locale="en" value="Diabetes Mellitus  ( DM)"/>
+            <variant locale="fr" value="Diabète sucré (DM)"/>
+        </code>
+        <code name="asthma">
+            <variant locale="en" value="Asthma"/><variant locale="fr" value="Asthme"/>
+        </code>
+        <code name="heart_desease">
+            <variant locale="en" value="Heart diseases"/>
+            <variant locale="fr" value="Maladies cardiaques"/>
+        </code>
+        <code name="renal_deseases">
+            <variant locale="en" value="Renal diseases"/>
+            <variant locale="fr" value="Maladies rénales"/>
+        </code>
+        <code name="cancer_patient">
+            <variant locale="en" value="Cancer patient"/>
+            <variant locale="fr" value="Patient cancéreux"/>
+        </code>
+        <code name="tb_history">
+            <variant locale="en" value="TB (If taking anti-tuberculosis drugs)"/>
+            <variant locale="fr" value="TB (si vous prenez des médicaments antituberculeux)"/>
+        </code>
+        <code name="hiv_history">
+            <variant locale="en" value="HIV (if under HIV treatement)"/>
+            <variant locale="fr" value="VIH (si sous traitement contre le VIH)"/>
+        </code>
+        <code name="sti_history">
+            <variant locale="en" value="STI ( if as other STI diagnosed)"/>
+            <variant locale="fr" value="IST (si comme une autre IST diagnostiquée)"/>
+        </code>
+        <code name="hd_family_plan">
+            <variant locale="en" value="FAMILY PLANING NETHOD USED BEFORE ( ANC1,2,3,4)"/>
+            <variant locale="fr" value="METHODE PLANING FAMILIALE utilisé"/>
+        </code>
+        <code name="pf_history">
+            <variant locale="en" value=" Which methods"/>
+            <variant locale="fr" value=" Quelles méthodes"/>
+        </code>
+        <code name="pf_planned">
+            <variant locale="en" value=" What do you plan to use"/>
+            <variant locale="fr" value="  Que comptez-vous utiliser"/>
+        </code>
+        <code name="hd_previnfection">
+            <variant locale="en" value="Prevention of infections"/>
+            <variant locale="fr" value="Prévention des infections"/>
+        </code>
+        <code name="itbn_history">
+            <variant locale="en" value="ITBN( insecticide Treated Bed Net) "/>
+            <variant locale="fr" value="Moustiquaire imprégnée d'insecticide ITBN"/>
+        </code>
+        <code name="hd">
+            <variant locale="en" value="Heart disease"/>
+            <variant locale="fr" value="Maladie du coeur"/>
+        </code>
+        <code name="phone">
+            <variant locale="en" value="Phone Number"/>
+            <variant locale="fr" value="Numero de Telephone"/>
+        </code>
+        <code name="diabetes">
+            <variant locale="en" value="Diabetes"/>
+            <variant locale="fr" value="Diabéte"/>
+        </code>
+        <code name="asthma">
+            <variant locale="en" value="Asthma"/>
+            <variant locale="fr" value="Asthme"/>
+        </code>
+        <code name="tb">
+            <variant locale="en" value="Tuberculosis"/>
+            <variant locale="fr" value="Tuberculose"/>
+        </code>
+        <code name="hbp">
+            <variant locale="en" value="Hypertension"/>
+            <variant locale="fr" value="Hypertension artérielle"/>
+        </code>
+        <code name="Small Pelvis">
+            <variant locale="en" value="Small Pelvis"/>
+            <variant locale="fr" value="Petit bassin"/>
+        </code>
+        <code name="numberOfBirths">
+            <variant locale="en" value="Number of Births"/>
+            <variant locale="fr" value="Nombre des naissances"/>
+        </code>
+        <code name="Loss of Conciousness While Pregnant or When Giving Birth">
+            <variant locale="en" value="Loss of Conciousness While Pregnant or When Giving Birth"/>
+            <variant locale="fr" value="Perte de conscience pendant la grossesse ou lors de l'accouchement"/>
+        </code>
+        <code name="Postconvulsive Loss of Consciousness">
+            <variant locale="en" value="Postconvulsive Loss of Consciousness"/>
+            <variant locale="fr" value="perte de conscience post-convulsive"/>
+        </code>
+        <code name="Uterine Rupture">
+            <variant locale="en" value="Uterine Rupture"/>
+            <variant locale="fr" value="Rupture utérine"/>
+        </code>
+        <code name="Excessive Bleeding">
+            <variant locale="en" value="Excessive Bleeding (>= 500ml) After Giving Birth"/>
+            <variant locale="fr" value="Saigne beaucoup (>= 500 ml) peu de temps après l'accouchement"/>
+        </code>
+        <code name="Gave Birth to a Child Who Died the Same Day">
+            <variant locale="en" value="Gave Birth to a Child Who Died the Same Day"/>
+            <variant locale="fr" value="A accouché d'un enfant décédé le même jour"/>
+        </code>
+        <code name="Successive Abortions">
+            <variant locale="en" value="Successive Abortions"/>
+            <variant locale="fr" value="Avortements successifs"/>
+        </code>
+        <code name="risk">
+            <variant locale="en" value="Height is less than 150 cm"/>
+            <variant locale="fr" value="hauteur inférieure à 150 cm"/>
+        </code>
+        <code name="First Pregnancy and is Above 30">
+            <variant locale="en" value="First Pregnancy and is Above 30"/>
+            <variant locale="fr" value="Première grossesse et la femme a plus de 30 ans"/>
+        </code>
+        <code name="Is Under 18 or Above 35">
+            <variant locale="en" value="Is Under 18 or Above 35"/>
+            <variant locale="fr" value="Femme de moins de 18 ans ou de plus de 35 ans"/>
+        </code>
+        <code name="Yes">
+            <variant locale="en" value="Yes"/>
+            <variant locale="fr" value="Oui"/>
+        </code>
+        <code name="No">
+            <variant locale="en" value="No"/>
+            <variant locale="fr" value="Non"/>
+        </code>
+        <code name="height">
+            <variant locale="en" value="Height"/>
+            <variant locale="fr" value="Taille"/>
+        </code>
+        <code name="pregnancies">
+            <variant locale="en" value="Number Of Pregnancies"/>
+            <variant locale="fr" value="Nombre de grossesses"/>
+        </code>
+        <code name="births">
+            <variant locale="en" value="Number Of Term Births:"/>
+            <variant locale="fr" value="Nombre de naissances à terme"/>
+        </code>
+        <code name="sbirths">
+            <variant locale="en" value="Number Of Still Births"/>
+            <variant locale="fr" value="Nombre d'enfants mort-nés"/>
+        </code>
+        <code name="children">
+            <variant locale="en" value="Number Of Children Alive"/>
+            <variant locale="fr" value="Nombre d'enfants"/>
+        </code>
+        <code name="csection">
+            <variant locale="en" value="Number Of C-Sections"/>
+            <variant locale="fr" value="Nombre de césariennes"/>
+        </code>
+        <code name="abortion">
+            <variant locale="en" value="Number Of Abortions/Miscarriages"/>
+            <variant locale="fr" value="Nombre d'avortements / fausses couches"/>
+        </code>
+        <code name="dead_children">
+            <variant locale="en" value="Number Of Children Who died After Birth:"/>
+            <variant locale="fr" value="Nombre d'enfants décédés après naissance"/>
+        </code>
+        <code name="lbdob">
+            <variant locale="en" value="Date of Birth for last born"/>
+            <variant locale="fr" value="Date de naissance du dernier né"/>
+        </code>
+        <code name="lbstatus">
+            <variant locale="en" value="Last born status"/>
+            <variant locale="fr" value="Status du dernier né"/>
+        </code>
+        <code name="Alive">
+            <variant locale="en" value="Alive"/>
+            <variant locale="fr" value="Né vivant"/>
+        </code>
+        <code name="Dead">
+            <variant locale="en" value="Dead"/>
+            <variant locale="fr" value="Mort-né"/>
+        </code>
+        <code name="Unknown">
+            <variant locale="en" value="Unknown"/>
+            <variant locale="fr" value="Inconnu"/>
+        </code>
+        <code name="lmp">
+            <variant locale="en" value="First day of last menstral period "/>
+            <variant locale="fr" value="Date des dernières règles "/>
+        </code>
+        <code name="tested">
+            <variant locale="en" value="Has she been tested for HIV/AIDS?"/>
+            <variant locale="fr" value="Est-ce que le patient a subi un test de dépistage du VIH?"/>
+        </code>
+        <code name="due_date">
+            <variant locale="en" value="Approximate date of delivery"/>
+            <variant locale="fr" value="Date probable d'accouchement"/>
+        </code>
+        <code name="partner">
+            <variant locale="en" value="Did she arrive to the clinic with her partner?"/>
+            <variant locale="fr" value="Est-ce que le patient est venu avec son partenaire?"/>
+        </code>
+        <code name="placenta">
+            <variant locale="en" value="Incomplete Placenta"/>
+            <variant locale="fr" value="Placenta incomplet"/>
+        </code>
+        <code name="hypertension">
+            <variant locale="en" value="Hypertension"/>
+            <variant locale="fr" value="Hypertension"/>
+        </code>
+        <code name="5preg">
+            <variant locale="en" value="More Than 5 pregnancies"/>
+            <variant locale="fr" value="Plus de 5 grossesses"/>
+        </code>
+        <code name="fibroids">
+            <variant locale="en" value="Uterine Fibroids"/>
+            <variant locale="fr" value="Les fibromes utérins"/>
+        </code>
+        <code name="encounterDetails">
+            <variant locale="en" value="Encounter Details"/>
+            <variant locale="fr" value="Rencontrer les détails"/>
+        </code>
+        <code name="obInformation">
+            <variant locale="en" value="Obsetric Information"/>
+            <variant locale="fr" value="Information obstétrique"/>
+        </code>
+        <code name="obstetricalRiskFactors">
+            <variant locale="en" value="Obstetrical risk factors"/>
+            <variant locale="fr" value="Facteurs de risque obstétricaux"/>
+        </code>
+        <code name="medicalConditions">
+            <variant locale="en" value="Medical Conditions"/>
+            <variant locale="fr" value="Conditions médicales"/>
+        </code>
+        <code name="medicalDates">
+            <variant locale="en" value="Medical Dates"/>
+            <variant locale="fr" value="Dates médicaux"/>
+        </code>
+    </translations>
+	
+		
+	<script type="text/javascript">
+if(jQuery){
+ jQuery(document).ready(function(){
+    if ( $j.browser.msie ) {
+        $j(":checkbox").click(function(){
+             $j(this).change();
+     });
+ }
+ $j(".baseline-aligned").each(function(){
+     var group = $j(this);
+     function disableFn(){
+         group.children("#disabled").fadeTo(250,0.33);
+         group.children("#disabled").find(":checkbox").attr("checked",false); //uncheck
+         group.children("#disabled").find("input[type$='text']").val("");
+         group.children("#disabled").find("input").attr("disabled",true);  //disable
+     }
+ function enableFn(){
+     group.children("#disabled").fadeTo(250,1);
+     group.children("#disabled").find("input").attr("disabled",false);
+ }
+  disableFn();
+ $j(this).children("#trigger").find(":checkbox:first").change(function(){
+     var checked = $j(this).attr("checked");
+     if(checked == true){
+
+          enableFn();
+     }else{
+         disableFn();
+     }
+ });
+});
+ 
+ 
+ $j(".baseline-aligned").each(function(){
+     var group = $j(this);
+     var uncheckAll = function(){
+         group.find("input[type$='checkbox']").attr("checked",false);
+         group.find("input[type$='checkbox']").change();
+     }
+     
+ 
+ group.find("#checkboxAll").find("input").click(
+     /*  This was tricky... A number of things needed to happen
+        Basically, This is supposed to treat a group of inputs as if
+        were all one big checkbox. It is designed so that a checkbox
+         can be next to an input, and the user clicks the input, the
+        checkbox checks as well. But, when the user clicks the checkbox,
+         the browser marks the checkbox as checked. Therefore, when we check
+         if the checkbox is already checked, it always respondes true...
+         We needed to have 2 cases: when the clicking action is on the first checkbox
+         and when the action is on any other.  */
+		 
+		 	 
+    function(){
+		
+         var flip;
+         var checked = $j(this).siblings(":checkbox:first").attr("checked");
+         if($j(this).attr("name") == $j(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
+             checked = $j(this).attr("checked");
+             flip = checked;
+         }else{
+             flip = !checked;
+         }
+		 
+         if($j(this).attr("type") == "text") if(flip == false) flip = !flip; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+         
+		 
+		 
+		 
+		 //alert(second);
+		 
+		 uncheckAll();
+         $j(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",flip);
+         $j(this).parents("#checkboxAll:first").find(":checkbox").change();
+		 
+		 
+		 var second =group.find("#checkboxCheckbox:first").find(":checkbox:first").attr("checked");
+		 var thard =group.find("#checkboxCheckbox2:first").find(":checkbox:first").attr("checked");
+		 var first =group.find("#checkboxAll:first").find(":checkbox:first").attr("checked");
+		 
+		 if(first=='checked' &amp;&amp; thard=='checked' &amp;&amp; second=='checked'){
+		  $j('#message').text('Check BP (diastolic BP > 90 mm HG) SBP>14 :\n manage as Eclampsia with Magnesium sulphate \n if there are convulsions or decreased  level of consciousness Température:38°C \n Check malaria ,\n Check neck stiffness to rule out meningitis or tetanus. If Weak,  lethargic Frequent or painful urination think about UTI Put up intravenous line give Ampicillin 2g and Gentamycin 80mg stat doses and transfer to hospital urgently').css('color','red').css("font-weight","Bold");
+		 $j('#dangertd').css('background-color','red'); 
+		 } else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+		$j('#dangertd').css('background-color','white'); 
+		 }
+     }
+ );
+ 
+ 
+ 
+ group.find("#checkboxCheckbox").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+    // $j(this).attr("checked",true);
+    // $j(this).change();
+
+	  var flip;
+      var checked = $j(this).siblings(":checkbox:first").attr("checked");
+       
+	if($j(this).attr("name") == $j(this).parents("#checkboxCheckbox:first").find(":checkbox:first").attr("name")){
+             checked = $j(this).attr("checked");
+             flip = checked;
+         }else{
+             flip = !checked;
+         }
+		 
+         if($j(this).attr("type") == "text") if(flip == false) flip = !flip; // this is so the user doesn't go to check the checkbox, then uncheck it when they hit the input.
+         
+	    $j(this).parents("#checkboxCheckbox:first").find(":checkbox").attr("checked",flip);
+        $j(this).parents("#checkboxCheckbox:first").find(":checkbox").change();
+		 
+	 
+	  var second =group.find("#checkboxCheckbox:first").find(":checkbox:first").attr("checked");
+		 var thard =group.find("#checkboxCheckbox2:first").find(":checkbox:first").attr("checked");
+		 var first =group.find("#checkboxAll:first").find(":checkbox:first").attr("checked");
+		 
+		 if(first=='checked' &amp;&amp; thard=='checked' &amp;&amp; second=='checked'){
+		  $j('#message').text('Check BP (diastolic BP > 90 mm HG) SBP>14 : manage as Eclampsia with Magnesium sulphate if there are convulsions or decreased  level of consciousness Température:38°C  Check malaria , Check neck stiffness to rule out meningitis or tetanus. If Weak,  lethargic Frequent or painful urination think about UTI Put up intravenous line give Ampicillin 2g and Gentamycin 80mg stat doses and transfer to hospital urgently').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		}else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+ 
+ 
+ group.find("#checkboxCheckbox2").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+   //  $j(this).attr("checked",true);
+   //  $j(this).change();
+	 
+	  var second =group.find("#checkboxCheckbox:first").find(":checkbox:first").attr("checked");
+		 var thard =group.find("#checkboxCheckbox2:first").find(":checkbox:first").attr("checked");
+		 var first =group.find("#checkboxAll:first").find(":checkbox:first").attr("checked");
+		 
+		 if(first=='checked' &amp;&amp; thard=='checked' &amp;&amp; second=='checked'){
+		  $j('#message').text('Check BP (diastolic BP > 90 mm HG) SBP>14 : manage as Eclampsia with Magnesium sulphate if there are convulsions or decreased  level of consciousness Température:38°C  Check malaria , Check neck stiffness to rule out meningitis or tetanus. If Weak,  lethargic Frequent or painful urination think about UTI Put up intravenous line give Ampicillin 2g and Gentamycin 80mg stat doses and transfer to hospital urgently').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		} else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+  group.find("#breathing").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+    // $j(this).attr("checked",true);
+    // $j(this).change();
+	 
+	  var second =group.find("#breathing:first").find(":checkbox:first").attr("checked");
+		
+		 if(second=='checked'){
+		  $j('#message').text('If the patient is not breathing Clear airway and ventilate with Ambu bag and mask until she starts to breath  again. If possible keep on oxygen high flow Keep the patient lying on her back, the head in a slight extension. Put up an intravenous line and transfer urgently Keep monitoring the vital signs (BP, pulse, breathing rate) till patient arrives in hospital').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		} else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+ 
+  group.find("#bleeding").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+    // $j(this).attr("checked",true);
+    // $j(this).change();
+	 
+	  var second =group.find("#bleeding:first").find(":checkbox:first").attr("checked");
+	  var first =group.find("#heavy:first").find(":checkbox:first").attr("checked");
+		
+		 if(second=='checked'|| first=='checked'){
+		  $j('#message').text('Ask if there is abdominal pain Look at the PV blood loss on the pad  If gestational age is less then 2 months do speculum examination: site and amount of bleeding, open cervix or products of conception visible Stabilize with Normal saline infusion then transfer  to hospital').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		} else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+ 
+ 
+  group.find("#heavy").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+     // $j(this).attr("checked",true);
+     // $j(this).change();
+	 
+	  var second =group.find("#bleeding:first").find(":checkbox:first").attr("checked");
+	  var first =group.find("#heavy:first").find(":checkbox:first").attr("checked");
+		
+		 if(second=='checked'|| first=='checked'){
+		  $j('#message').text('Ask if there is abdominal pain Look at the PV blood loss on the pad  If gestational age is less then 2 months do speculum examination: site and amount of bleeding, open cervix or products of conception visible Stabilize with Normal saline infusion then transfer  to hospital').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		} else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+ 
+  group.find("#abdominal").find("input[type$='checkbox']").click(function(){
+    // uncheckAll();
+    // $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+    // $j(this).attr("checked",true);
+    // $j(this).change();
+	 
+	  var second =group.find("#abdominal:first").find(":checkbox:first").attr("checked");
+		
+		 if(second=='checked'){
+		  $j('#message').text('Check Temperature if greater then 38oc Give Ampicillin and Gentamycin  SBP if less then 90 mm Hg Rapid pulse (110btts per min or higher) Check for pallor Give Normal saline and urgently transfer to hospitals').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','red'); 
+		} else{
+		   $j('#message').text(' ').css('color','red').css("font-weight","Bold");
+			$j('#dangertd').css('background-color','white'); 
+		 }
+ });
+ 
+ //group.find("#breathing").click(
+ //    function(){
+//uncheckRadioAndAll();
+    // }
+// );
+ });
+ });
+}
+</script>
+    <script type="text/javascript">
+
+var $ = jQuery.noConflict();
+$(document).ready(function() {
+	var group1 = $j("#ageOne");
+	var group2 = $j("#ageTwo");
+	var group3 = $j("#parity")
+
+	var patAge = $("#age").text();
+	var testAge = 17;
+	var testAge1 = 38;
+	
+	
+
+	if(patAge &lt; 18 ||patAge &gt; 35)
+	{
+		group1.find("input[type$='checkbox']").attr("checked",true);
+	}
+	$("#height").change(function() {
+		var txt = $("#height input").val();
+		var group = $j("#heightOK");
+		//alert(txt);
+
+		if(txt == null || txt == ''){
+			group.find("input[type$='checkbox']").attr("checked",false);
+		}
+		else if(txt &gt; 149) {
+			group.find("input[type$='checkbox']").attr("checked",false);
+		}
+
+		else {
+
+			group.find("input[type$='checkbox']").attr("checked",true);
+		}
+
+	});
+	
+	// encounter date 
+	var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+
+	$("#nop").change(function() {
+		var txt = $("#nop input").val();
+		if(txt == 1 &amp;&amp; patAge &gt; 30 ){
+
+			group2.find("input[type$='checkbox']").attr("checked",true);
+		}
+		else{
+			group2.find("input[type$='checkbox']").attr("checked",false);
+		}
+
+		if(txt == null || txt == ''){
+			group2.find("input[type$='checkbox']").attr("checked",false);
+			group3.find("input[type$='checkbox']").attr("checked",false);
+		}
+		else if(txt &gt; 5){
+			group3.find("input[type$='checkbox']").attr("checked",true);
+		}
+		else{
+			group3.find("input[type$='checkbox']").attr("checked",false);
+		}
+	});
+});
+
+</script> <script type="text/javascript">
+$j(function() {
+	getField('lmp.value').change(function() {
+		var mp = getValue('lmp.value');
+        //alert(mp);
+		var d = new Date(mp);
+
+		d.setFullYear (d.getFullYear() + 1);
+		d.setMonth(d.getMonth() - 3);
+
+		d.setDate(d.getDate() + 7);
+
+		var curr_date = d.getDate();
+
+		var curr_month = d.getMonth();
+		curr_month++;
+
+		var curr_year = d.getFullYear();
+
+		var duedate = curr_year + "-" + curr_month + "-" + curr_date;
+
+
+		setValue('dd.value',duedate);
+
+
+	});
+
+});
+</script>
+    <script type="text/javascript">
+		var $ = jQuery.noConflict();
+		$j(document).ready(function(){
+		   $('#page1id').click(function() {
+				$('#page1').toggle();
+				$('#page2').hide();
+				$('#page3').hide();
+		   });
+		   
+		   $('#page2id').click(function() {
+				$('#page2').toggle();
+				$('#page1').hide();
+				$('#page3').hide();
+		   });
+		   
+		   $('#page3id').click(function() {
+				$('#page3').toggle();
+				$('#page1').hide();
+				$('#page2').hide();
+		   });
+		});
+</script>
+    <!--
+    <macros>
+        paperFormId = (Fill this in)
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+     -->
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+
+  <h2>PAGE 1: GENERAL INFORMATION</h2>
+
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId"/>
+                    </td>
+                    <td>
+                        Health Facility:
+						
+                        <!--encounterLocation id="location" default="2"/-->
+						<encounterLocation id="location" default="SessionAttribute:emrContext.sessionLocationId"/>
+                        <!-- encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/-->
+                    </td>
+                    <td>
+                        Provider:
+                        <!--encounterProvider role="Provider"/ -->
+						<encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+					<tr>
+					<td colspan="3" id="message"></td>
+				</tr>
+            </table>
+        </section>
+
+    <div class="pageHead"><h2 id="page1id">GENERAL EXAMINATION</h2></div>
+	
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+		<div id="page1" class="pages">
+        <section >
+            <section headerCode="Medical Date">
+                <table class="baseline-aligned">
+
+
+                    <tr>
+                        <td><obs conceptId="5624" id="nop" labelCode="pregnancies"/></td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td><obs conceptId="968" id="lmp" labelCode="lmp"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="6188" id="dd" allowFutureDates="true" labelCode="due_date"/></td>
+                    </tr>
+                    <tr style="display: none;">
+                        <td><span id="age"><lookup expression="patient.age" /></span></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Accompanied by partner</td>
+                        <td><obs conceptId="6547" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Duration of pregnancy (week) </td>
+                        <td><obs conceptId="105483" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="1426"  labelCode="phone"/> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="hd_currentprobl">
+                <table class="baseline-aligned risks">
+                            <tr>
+                                <td class="lblcolor"> Any Current Problem </td>
+                                <td><obs conceptId="2310" id="past_medical" style="textarea" rows="3" cols="30"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41096" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="105467" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41335" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="40884" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="105460" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41336" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41257" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="10909" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="106792" style="checkbox"/></td>
+                                <!--  <td><obs conceptId="105462" answerConceptId="106460" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="5945" style="checkbox"/></td>
+                                 <td><obs conceptId="105462" answerConceptId="107" style="checkbox"/></td>-->
+                            </tr>
+                </table>
+            </section>
+
+            <section headerCode="hd_preg_history">
+
+                <table class="baseline-aligned">
+
+
+                    <tr>
+                        <td><obs conceptId="1053" labelCode="numberOfBirths"/></td>
+                    </tr>
+
+                    <tr>
+
+                        <td><obs conceptId="9623" labelCode="births"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="8157" labelCode="abortion"/></td>
+                    </tr>
+
+
+
+
+                    <tr>
+
+                        <td><obs conceptId="8158" labelCode="dead_children"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="2649" labelCode="children"/></td>
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td><obs conceptId="8404" labelCode="lbdob"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="8159" answerConceptIds="6543,6544,1067"
+                                 answerCodes="Alive,Dead,Unknown" style="radio" labelCode="lbstatus"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="8143" labelCode="csection"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="8142" labelCode="sbirths"/></td>
+                    </tr>
+
+
+
+                </table>
+            </section>
+
+            <section headerCode="obstetricalRiskFactors">
+
+                <table class="baseline-aligned risks">
+                    <tr>
+
+                        <td><obs conceptId="105464" answerConceptId="105470"
+                                 answerCodes="premature_delivery" style="checkbox"/></td>
+                        <td><obs conceptId="105464" answerConceptId="105471"
+                                 answerCodes="birth_death" style="checkbox"/></td>
+
+                        <td><obs conceptId="105464" answerConceptId="105463"
+                                 answerCodes="past_haemorrhage" style="checkbox"/></td>
+
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="105464" answerConceptId="1171"
+                                 answerCodes="csections" style="checkbox"/></td>
+
+                        <td><obs conceptId="105464" answerConceptId="105473"
+                                 answerCodes="rupture_uterus" style="checkbox"/></td>
+                        <td><obs conceptId="105464" answerConceptId="10801"
+                                 answerCodes="pre_eclampsia" style="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="105464" answerConceptId="105474"
+                                 answerCodes="multiple_pregn" style="checkbox"/></td>
+
+                        <td><obs conceptId="8534" answerConceptId="8527"
+                                 answerCodes="Small Pelvis" style="checkbox" /></td>
+                        <td><obs conceptId="8534" answerConceptId="8528"
+                                 answerCodes="Loss of Conciousness While Pregnant or When Giving Birth"
+                                 style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8534" answerConceptId="8529"
+                                 answerCodes="Postconvulsive Loss of Consciousness"
+                                 style="checkbox" /></td>
+
+                        <td><obs conceptId="8534" answerConceptId="8530"
+                                 answerCodes="Uterine Rupture" style="checkbox" /></td>
+                        <td><obs conceptId="8534" answerConceptId="8531"
+                                 answerCodes="Excessive Bleeding"
+                                 style="checkbox" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="8534" answerConceptId="8532"
+                                 answerCodes="Gave Birth to a Child Who Died the Same Day"
+                                 style="checkbox" /></td>
+
+                        <td><obs conceptId="8534" answerConceptId="8533"
+                                 answerCodes="Successive Abortions" style="checkbox" /></td>
+                        <!--<td><obs conceptId="8534" id="heightOK" answerConceptId="8518" style="checkbox" answerCodes="hrisk"/>
+                        </td>-->
+                        <td><obs conceptId="8534" answerConceptId="8518" id="heightOK" answerCodes="risk"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs id="ageTwo" conceptId="8534"
+                                 answerConceptId="8536"
+                                 answerCodes="First Pregnancy and is Above 30" style="checkbox" /></td>
+
+                        <td><obs id="ageOne" conceptId="8534"
+                                 answerConceptId="8535" answerCodes="Is Under 18 or Above 35"
+                                 style="checkbox" /></td>
+                        <td><obs conceptId="8534" answerConceptId="9618" id="parity" answerCode="5preg"/></td>
+                        <!--<td><obs conceptId="8534" answerConceptId="9618" answerCodes="risk" id="parity" style="checkbox" /></td>-->
+
+                        <td><obs conceptId="8534"
+                                 answerConceptId="9617" answerCode="placenta"
+                                 style="checkbox" /></td>
+                    </tr>
+
+                </table>
+            </section>
+
+            <section headerCode="hd_health_history">
+                <table class="baseline-aligned risks">
+                    <tr>
+                        <td><obs conceptId="105465" answerConceptId="8270"
+                                 answerCodes="prev_operations" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="175"
+                                 answerCodes="diabetes_Mellitus" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="5"
+                                 answerCodes="asthma" style="checkbox"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="105465" answerConceptId="3305"
+                                 answerCodes="heart_desease" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="6033"
+                                 answerCodes="renal_deseases" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="6864"
+                                 answerCodes="cancer_patient" style="checkbox"/></td>
+
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="105465" answerConceptId="58"
+                                 answerCodes="tb_history" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="1169"
+                                 answerCodes="hiv_history" style="checkbox"/></td>
+                        <td><obs conceptId="105465" answerConceptId="174"
+                                 answerCodes="sti_history" style="checkbox"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="8505" answerConceptId="3305"
+                                 style="checkbox" answerCode="hd"/></td>
+                        <td><obs conceptId="8505" answerConceptId="6806"
+                                 style="checkbox" /></td>
+                        <td><obs conceptId="8505" answerConceptId="8504"
+                                 style="checkbox" answerCode="fibroids"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="8505" answerConceptId="3720"
+                                 style="checkbox" answerCode="diabetes"/></td>
+                        <td><obs conceptId="8505" answerConceptId="5"
+                                 style="checkbox" answerCode="asthma"/></td>
+                        <td><obs conceptId="8505" answerConceptId="58"
+                                 style="checkbox" answerCode="tb"/></td>
+                    </tr>
+                    <tr><td><obs conceptId="8534"
+                                 answerConceptId="903" answerCode="hbp"
+                                 style="checkbox"/></td>
+                        <td><obs conceptId="1621" style="checkbox" labelCode="tested"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="E. PREVENTIVE OF INFECTIONS">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Tetanus vaccine</td>
+                        <td><obs conceptId="11045" answerCodes="TETANUS BOOSTER 1,TETANUS BOOSTER 2, TETANUS BOOSTER 3, TETANUS BOOSTER 4, TETANUS BOOSTER 5" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT1</td>
+                        <td><obs conceptId="54" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT2</td>
+                        <td><obs conceptId="11041" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT3</td>
+                        <td><obs conceptId="11042" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT4</td>
+                        <td><obs conceptId="11043" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT5</td>
+                        <td><obs conceptId="11044" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">ITBN</td>
+                        <td><obs conceptId="105493" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerLabel="Contraceptive Methods">
+                <obsgroup groupingConceptId="b2918713-521f-43dd-91f3-9c6c699eb033">
+                    <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+
+                        <tr>
+                            <td><obs conceptId="64898fa2-031b-45ce-ba53-c817433b408e" answerConceptId="3fd055f1-9837-474c-87cb-a0857e9954fa" style="checkbox" /></td>
+                            <td><obs conceptId="cd3e9923-a3d3-4309-be05-9e7f604afcd4" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="b54777dc-538c-44d4-ad0b-baa38b707592" labelText="Natural"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="3240a617-0af7-4495-bd8b-2b313e9db781" answerConceptId="3240a617-0af7-4495-bd8b-2b313e9db781" style="checkbox" /></td>
+                            <td><obs conceptId="cd3e9923-a3d3-4309-be05-9e7f604afcd4" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="b54777dc-538c-44d4-ad0b-baa38b707592" labelText="Natural"/></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+        </section>
+		</div>
+		
+        <div class="pageHead"><h2 id="page2id">PHYSICAL EXAMINATION</h2></div>
+		<div id="page2" class="pages">
+        <section headerCode="C. GENERAL EXAMINATION">
+            <table class="baseline-aligned">
+
+                <obsgroup groupingConceptId="1114">
+                    <tr> <td class="lblcolor">Temperature</td>
+                        <td><obs conceptId="5088"/><obs conceptId="105496" answerCodes="Normal,Abnormal" style="radio"/> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal <obs conceptId="106869" id="past_medical" style="textarea" rows="3" cols="30"/></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Weight</td>
+                        <td><obs conceptId="5089"  required="" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Gaining weight (compare with previous) <obs conceptId="105481" answerCodes="YES,NO" style="radio"/></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Height</td>
+                        <td><obs conceptId="5090"  /></td></tr>
+                    <tr>
+                        <td class="lblcolor">SBP/DBP</td>
+                        <td><obs conceptId="5085" /> / <obs conceptId="106797" answerCodes="Normal,Severe hypertension,Moderate hypertension" style="radio"/></td>
+                    </tr>
+                    <tr><td class="lblcolor">Pulse</td>
+                        <td><obs conceptId="5087"/><obs conceptId="105497" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory Rate</td>
+                        <td><obs conceptId="5242"/><obs conceptId="106794" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory Rate</td>
+                        <td><obs conceptId="5242"/><obs conceptId="106794" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Clinical sign for anaemia(Conjunctival pallor; Palmar pallor)</td>
+                        <td><obs conceptId="105482" style="textarea" rows="3" cols="30"/><obs conceptId="106798" answerCodes="No clinical anemia,Moderate anemia,Severe anemia" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Clinical signs of jaundice (conjunctival, palms, nails)</td>
+                        <td><obs conceptId="215" style="textarea" rows="3" cols="30"/><obs conceptId="106709" answerCodes="YES,NO" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"> MUAC</td>
+                        <td><obs conceptId="1290"/> <obs conceptId="106634" answerCodes="Severe acute malnutrition (W/H bellow 70%) without medical complications, Severe acute malnutrition (W/H bellow 70%) with medical complications ,Severe acute malnutrition (bilateral pitting oedema),Severe acute malnutrition (MUAC bellow 160 mm) ,
+                                Moderate acute malnutrition (W/H equal and greater than 70% and bellow 80%) without medical complications, Moderate acute malnutrition (W/H equal and greater than 70% and bellow 80%) with medical complications ,No malnutrition (W/H equal and greater than 80% AND MUAC equal and greater than 160 mm)
+                                " style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"> Hygiene</td>
+                        <td><obs conceptId="106800" style="textarea" rows="3" cols="30"/> <obs conceptId="105488" answerCodes="POOR,GOOD,NORMAL,ABNORMAL" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"> Oral conditions</td>
+                        <td><obs conceptId="106801" style="textarea" rows="3" cols="30"/> <obs conceptId="105489" answerCodes="NORMAL,ABNORMAL" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Neck examination for thyroid and adenopathy</td>
+                        <td><obs conceptId="105500" style="textarea" rows="3" cols="30"/><obs conceptId="105499" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Breast examination</td>
+                        <td><obs conceptId="105485" style="textarea" rows="3" cols="30"/><obs conceptId="106077" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Lower limb exam for varicose veins and oedema</td>
+                        <td><obs conceptId="106802" style="textarea" rows="3" cols="30"/><obs conceptId="105502" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+
+                </obsgroup>
+            </table>
+        </section>
+
+       <section headerCode="CHECK FOR DANGER SIGNS">
+          <obsgroup groupingConceptId="106686" id="checkGroupSignId">
+                    <table class="baseline-aligned" id="dangertd">
+                        <tr>
+                            <td><span id="checkboxAll"><obs conceptId='106686' id="hfId" answerConceptId="105506"  style="checkbox"/></span></td>
+                            <td><span id="checkboxCheckbox"><obs conceptId='106686' id="shId" answerConceptId="105507" style="checkbox"/></span></td>
+                            <td><span id="checkboxCheckbox2"><obs conceptId='106686' id="ucId" answerConceptId="105508"  style="checkbox"/></span></td>
+							<td><span id="breathing"><obs conceptId='106686' id="dbId" answerConceptId="105509"  style="checkbox"/></span></td>
+                            <td><span id="bleeding"><obs conceptId='106686' answerConceptId="105510"  style="checkbox"/></span></td>
+                            <td><span id="heavy"> <obs conceptId='106686' answerConceptId="105511"  style="checkbox"/></span></td>
+                            <td><span id="abdominal"><obs conceptId='106686' answerConceptId="151"  style="checkbox"/></span></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+				
+        </section>
+
+        <section headerCode="Pregnancy Examination">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Fundal Height ( cm)</td><td style="width: 400px;">
+                    <obs conceptId="51d0c588-374f-4596-aab6-1f9ce8b4e88a" style="text"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Check if matching gestational age</td>
+                    <td><obs conceptId="ab27e978-0884-4225-9576-ffd18a6cd0ba" answerCodes="Yes,No" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal heart rate (bpm)</td>
+                    <td><obs conceptId="57c934dd-a086-4e73-a9b8-3b9c1abef1b1" style="text" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Position of foetus</td>
+                    <td><obs conceptId="659598ed-0ad4-4444-ab92-5f655e5b8549"  answerCodes="Normal,Abnormal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="3dfecd70-5ca6-45b5-8b8e-88245015ccf0" style="text" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Check if baby is moving. </td>
+                    <td><obs conceptId="8fee5c07-bcea-491f-aea8-40d5d5c35b97" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Breast examination</td>
+                    <td><obs conceptId="044841dc-65ad-4cd6-8f6f-c75033e7c756" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="06670fb0-472d-4f6f-974e-238cf151777b" style="text" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Genital examination</td>
+                    <td><obs conceptId="ff43b70e-a473-4362-bf44-ee5ee6752283" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="66610734-d7b8-412c-92e0-c2f96312061d" style="text" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="ABDOMINAL ECHOGRAPHIE">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Body movements</td>
+                    <td><obs conceptId="295454c3-6f6f-4226-9499-572d5fabe8ce" answerCodes="Yes,No" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Sex of Baby</td>
+                    <td><obs conceptId="48b89be4-c178-4f0a-a912-9c643d324c1d" answerCodes="Male,Female" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal position</td>
+                    <td><obs conceptId="370efbe9-f916-425c-9d3e-8dd1c747be3e" answerCodes="Normal,Transvers lie,Breech" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal heart</td>
+                    <td><obs conceptId="03970ffd-0748-4233-a75d-f16e4ac5f297" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="7b21ab30-4863-4e18-b7ef-850d85adfefb" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Respiratory movements</td>
+                    <td><obs conceptId="2d890d78-0dfc-4e83-88c2-721cbe953940" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="026ac8fc-b736-4385-aac0-e9946f3c11ac" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal tone</td>
+                    <td><obs conceptId="bea1ca18-af98-4f02-9e4d-a759d1329b3a" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="3dc4db1b-222d-4783-9574-cb42b8fbb20f" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Amniotic fluid test index</td>
+                    <td><obs conceptId="ee891321-3066-41c4-8fb4-22a8c6d46b5d" rows="3" cols="30" /></td>
+                </tr>
+
+            </table>
+        </section>
+        <section headerCode="OTHER PROBLEMS">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Lungs ( normal Abnornal)</td>
+                    <td><obs conceptId="0f736975-e6c8-4c3f-a7b9-c6bceabbae80" answerCodes="Normal,Abnormal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="79724fd6-c232-4a30-ad07-a75370f03416" rows="3" cols="30" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Heart ( normal Abnornal)</td>
+                    <td><obs conceptId="eee9d1b3-bb88-452e-a203-4100e8e25084" answerCodes="Normal,Abnormal" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="f0db2916-e03b-4da8-af92-d7a92f9c6dd2" rows="3" cols="30" /></td>
+                </tr>
+            </table>
+        </section>
+        <!--<section headerCode="Date and Place of Delivery">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Calculate estimated date of delivery</td>
+                    <td><obs conceptId="fb27a14b-4a0f-439e-a31a-c619fe320714" size="25" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Planned place of Delivery</td>
+                    &lt;!&ndash;<td><obs conceptId="0cd5903f-98ab-469a-a7ab-206eda2459cc" size="25" /></td>&ndash;&gt;
+                    <td><encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                    <td><obs conceptId="3b941e7a-1e5c-47ac-95a2-510fbf3a93a0" rows="3" cols="30" /> </td>
+                </tr>
+            </table>
+        </section>-->
+		</div>
+		
+        <div class="pageHead"><h2 id="page3id">ANC INVESTIGATION</h2></div>
+        <div id="page3" class="pages">
+		<section headerCode="WOMAN WITH HIV POSITIVE">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="3ceb4880-26fe-102b-80cb-0017a47871b2" id="Pregnancy Status" labelCode="Pregnancy Status"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="6547" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="partner"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="1621" style="yes_no" labelCode="tested"/></td>
+                    </tr>
+                    <tr>
+
+                        <td><obs conceptId="1837" labelCode="HIV test date"/></td>
+                    </tr>
+
+                    <tr>
+
+                        <td><obs conceptId="2169" style="radio" labelCode="HIV Test Result" answerConceptIds="3083,664,703"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="6549" labelCode="Date HIV Test Result Recieved "/></td>
+                    </tr>
+                    <!--<tr>
+                     <td>
+     <font color="red"><obs conceptId="a6f136a1-9aef-4152-85e2-e99dfb9f9f26" labelCode ="Eligible for HAART"/></font>
+                     </td>
+                     </tr>-->
+                    <tr>
+                        <td><obs conceptId="6981" labelCode="RPR test date"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="1478" style="radio" answerConceptIds="664,703,10824" labelCode="RPR Result" answerCodes="neg,pos,uknw"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="6550" labelCode="Date RPR Test Result Recieved"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8169" answerConceptIds="1065,1066,8165" answerCodes="Yes,No,Not Sure"
+                                 style="radio" labelCode="Was she treated for syphilis?"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="9622"  labelCode="Urinary Albumin"  answerConceptIds="10825,10824,664,10874,7237,7238,7240" answerCodes="nomaterial,noreagent,neg,trace,positive+,positive++,positive+++" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="21" labelCode="Hemoglobin"/>g/dl</td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="2061" style="radio" labelCode="shared" answerCodes="dna,No,nop,uknw,Yes"/></td>
+                    </tr>
+                </table>
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Creatinine</td>
+                    <td><obs conceptId="1625" style="text" size="25"/><obs conceptId="8508" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">CD4 </td><td>
+                    <lookup complexExpression="#foreach($cd4 in $fn.allObs(5497)) $cd4.valueNumeric #end"/>
+                    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Recent Viral load</td>
+                    <td><lookup complexExpression="#foreach($ViralLoad in $fn.allObs(856)) $ViralLoad.valueNumeric #end"/>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">WHO stage</td>
+                    <td><lookup expression="fn.currentProgramWorkflowStatus(2).state.concept.name" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <lookup complexExpression="#foreach($encounter in $fn.allEncounters(null)) $encounter.encounterDatetime #end"/></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">ARV start date</td>
+                    <td><obs conceptId="3586" style="text" size="25"/></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">prescribed ARV regimen</td>
+                    <td><obs conceptId="106760" answerCodes ="1a=TDF+3TC+ EFV,1b=TDF+3TC+NVP,1c=ABC+3TC+EFV,1d=AZT+3TC+ATV/r,1e=TDF+3TC+ATV/r" style="radio" />
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="106759" style="text" size="20"/> 1f= others (specify)</td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Cotrimoxazole start date</td>
+                    <td><obs conceptId="106684" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Screened for TB? </td>
+                    <td><obs conceptId="106814" answerCodes ="Positif,Negatif,Unknown" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Screening for STI  </td>
+                    <td><obs conceptId="13364" answerCodes ="Positif,Negatif,Unknown" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Referred to ART clinic  </td>
+                    <td><obs conceptId="105568" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Tracnet</td>
+                    <td><obs conceptId="106815" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td ><b>If woman not enrolled here </b></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Enrolled in other facilit</td><td><obs conceptId="106681" answerCodes ="YES,NO" style="radio" /></td></tr>
+                <tr>
+                    <td class="lblcolor">Died</td><td><obs conceptId="106682" answerCodes ="YES,NO" style="radio" /></td></tr>
+                <tr>
+                    <td class="lblcolor">TRANSFER OUT</td><td><obs conceptId="3000" answerCodes ="YES,NO,Unknown" style="radio" /></td></tr>
+                <tr>
+                    <td class="lblcolor">HIV lost followup</td><td><obs conceptId="106816" answerCodes ="YES,NO" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="PARTNER INFORMATION">
+                <table class="baseline-aligned" >
+                    <tr>
+                        <td><obs conceptId="12499" labelCode="partnername"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="6551" labelCode="Partners HIV Test Date"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="34e08543-a000-4e8b-bd9c-435a1c15d1c2" style="radio" labelCode="Result of partners HIV Test" answerCodes="dna,neg,notest,na,pos,uknw,waiting"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <font color="red"> <obs conceptId="94f6be96-8fac-4db4-9507-934561cd307b" style="no_yes" noLabel="no" yesLabel="yes" labelText="Positive partner on ARV?"/></font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8167" answerConceptIds="1065,1066"
+                                 style="radio" answerCodes="Yes,No" labelCode="Was the partner sent for an RPR test?" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8409" labelCode="Partners RPR Test Date"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8168" labelCode="Partners RPR Result" style="radio" answerCodes="neg,pos,uknw" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="8170" answerConceptIds="1065,1066,8165"
+                                 style="radio" labelCode="Was her patner treated for syphilis?" answerCodes="Yes,No,Not Sure" /></td>
+                    </tr>
+                </table>
+            </section>
+		</div>
+
+        <center>
+           <!-- <enrollInProgram programId="25"/>-->
+            <submit/>
+        </center>
+
+
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td>This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+
+</htmlform>

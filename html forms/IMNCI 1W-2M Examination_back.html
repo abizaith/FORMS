@@ -1,0 +1,135 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+	});
+</script>
+
+    <h2>0-7 days Examination</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+        <section headerCode="Complaints">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                  
+                        <tr>
+                                <td class="lblcolor">Current complaints</td>
+                                <td><obs conceptId="3ce2b170-26fe-102b-80cb-0017a47871b2" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                   
+                </table>
+        </section>
+
+            <section headerCode="A. POSSIBLE BACTERIAL INFECTION OR SEVERE ILLNESS">
+                <table class="baseline-aligned">
+                    <tr><td><obs conceptId="106708" answerConceptId="106429" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="206" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="106430" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="106431" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="106432" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="801" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="106308" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="106309" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106708" answerConceptId="105980" style="radio" /></td></tr>
+                    <tr><td><b>Discharge from the eyes</b></td></tr>
+                    <tr>
+                        <td><obs conceptId="106908" answerConceptId="1076" style="radio" /></td>
+                        <td><obs conceptId="106908" answerConceptId="106433" style="radio" /></td>
+                        <td><obs conceptId="106908" answerConceptId="3250" style="radio" /></td>
+                        <td><obs conceptId="106908" answerConceptId="105834" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+        <submit/>
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

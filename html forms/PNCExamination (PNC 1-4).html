@@ -1,0 +1,263 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+	.lblcolormatrix{background: #e2e3f2;width: 150px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <!--<td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    <td> Current ANC visit : <lookup expression="fn.latestEncounter(a703372d-28b7-4831-9817-ee385c8c47d8)"/></td>-->
+                </tr>
+            </table>
+        </section>
+        <section>
+
+            <section headerCode="A. Assessing mother breast feeding ">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr><td class="lblcolor">Mother is not breast feeding</td>
+                        <td><obs conceptId="105788" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Examination</b></td>
+                    <tr><td class="lblcolor">Incorrect breastfeeding position and attachment </td>
+                        <td><obs conceptId="105789" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Assessing mother’s mental condition ">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                    <tr>
+                    <td><obs conceptId="106599" answerConceptIds="105824,105771,105825,105826,105827,867,105828,105829" answerCodes="Feeling of anxiety about resuming sexual intercourse,Pain in perineal wound,trauma during sexual intercourse, Feeling of anxiety or lack of confidence about breast milk supply,Headaches,Insomnia, post-partum depression, psychosis and anxiety
+ " style="radio" /></td>
+                    </tr>
+                    </table>
+            </section>
+
+            <section headerCode="C.Assessing vaginal bleeding ">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr><td class="lblcolor">Vaginal bleeding</td>
+                        <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Perineal Examination</b></td>
+                    <tr>
+                        <td class="lblcolor">Vaginal bleeding</td>
+                        <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Assessing Malaria since Delivery">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Fever with Chills and rigors</td>
+                        <td><obs conceptId="105506" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Rapid Diagnostic test for Malaria (RDT) OR Blood smear = positive</td>
+                        <td><obs conceptId="105830" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="E. Assessing mother’s breast condition ">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr>
+                        <td>Breast pain and swelling</td>
+                        <td><obs conceptId="105831" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Physical Examination</b></td>
+                    <tr>
+                        <td><obs conceptId="106604" answerConceptIds="105832,105833,36457,105834,105835,105836" answerCodes="Nipple soreness, Fissured, Retraction of nipple - N6453, Swollen, Shinny breast, Part of breast is painful swollen red
+" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="F. Assessing the uterus condition">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr>
+                        <td><obs conceptId="106600" answerConceptIds="105837,105586" answerCodes="Pain in SPA ( Supra Pubic Area), Foul smelling vaginal discharge" style="radio" /></td>
+                    </tr>
+                    <td><b>Physical Examination</b></td>
+                    <tr>
+                        <td><obs conceptId="105586" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Temperature measurement</b></td>
+                    <tr>
+                        <td >Temperature</td>
+                        <td><obs conceptId="5088" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td >Specify if &#62; 38’ C</td>
+                        <td><obs conceptId="105838" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Abdominal Examination</b></td>
+                    <tr>
+                        <td>Lack of uterine involution (normal involution is half-inch per day after delivery)</td>
+                        <td><obs conceptId="105839" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                </table>
+            </section>
+            <section headerCode="G. Assessing the Urinary Trac">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr>
+                        <td><obs conceptId="106601" answerConceptIds="105840,105841,105843,105842" answerCodes="Flank Pain,Burning Urination, Difficult urination Cannot pass urine Stress incontinence Dribbling of urine, Leakage of urine
+" style="radio" /></td>
+                    </tr>
+                    <td><b>Temperature measurement</b></td>
+                    <tr>
+                        <td >Temperature</td>
+                        <td><obs conceptId="5088" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td >Specify if &#62; 38’ C</td>
+                        <td><obs conceptId="105838" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="H.Assessing General Condition">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr>
+                        <td><obs conceptId="106602" answerConceptIds="105844,105845,105846" answerCodes="Numbness of Limb,Constipation or Bleeding and painful piles, Unilateral calf muscle pain" style="radio" /></td>
+                    </tr>
+                    <td><b>Physical Examination</b></td>
+                    <tr><td >Unilateral calf muscle tenderness and swelling</td>
+                        <td><obs conceptId="105847" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr><td >Pallor</td>
+                        <td><obs conceptId="5245" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Investigation</b></td>
+                    <tr><td >Hb %</td>
+                        <td><obs conceptId="21" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="F. Check for Cough and Breathing Difficulties">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106603" answerConceptIds="105848,105849" answerCodes="Cough and Breathing Difficulties Less than 2 week,Cough and Breathing Difficulties More than 2 week " style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="G. Nutrition Status ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">MUAC &lt; 21</td>
+                        <td><obs conceptId="10972" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Is the mother qualifies for FBP or other food supplement program </td>
+                        <td><obs conceptId="105850" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>   <td class="lblcolor">Summary of positive and negative findings, and actions taken</td>
+                        <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

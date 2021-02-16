@@ -1,0 +1,224 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+
+
+
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Assess the mother within 24 hour after delivery  (PNC0)</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+
+            <section headerCode="A. Type of delivery">
+                <td><b>1.C-section</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Pain</td>
+                        <td><obs conceptId="6896" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sedation</td>
+                        <td><obs conceptId="105773" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory rate</td>
+                        <td><obs conceptId="5242" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">BHeart rate</td>
+                        <td><obs conceptId="5087" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">BP </td>
+                        <td><obs conceptId="105590"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature </td>
+                        <td><obs conceptId="5088" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Intravenous infusions</td>
+                        <td><obs conceptId="105774" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal loss</td>
+                        <td><obs conceptId="105775" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urinary output</td>
+                        <td><obs conceptId="105776" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Surgical site drainage and wound</td>
+                        <td><obs conceptId="105777" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Higher risk of Thromboembolism</td>
+                        <td><obs conceptId="105778" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+
+            <tr>
+                <td class="lblcolor"><b>2.Normal vaginal delivery</b></td>
+                <td><obs conceptId="105779" answerCodes="Yes,No" style="radio"/></td>
+            </tr>
+
+            <tr>
+                <td class="lblcolor"><b>3.Assisted vaginal delivery forceps</b></td>
+                <td><obs conceptId="105780" answerCodes="Yes,No" style="radio"/></td>
+            </tr>
+
+            <tr>
+                <td class="lblcolor"><b>4.Assisted vaginal delivery, vacuum</b></td>
+                <td><obs conceptId="10991" answerCodes="Yes,No" style="radio"/></td>
+            </tr>
+                    <tr>
+                        <td class="lblcolor">Check for completeness of placenta and membranes</td>
+                        <td><obs conceptId="106885" answerCodes="Complete,Incomplete" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Assess general maternal well-being (blood pressure, body temperature)</td>
+                        <td><obs conceptId="105781" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check for pallor (conjunctiva and palms)</td>
+                        <td><obs conceptId="105782" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check perineum for tears</td>
+                        <td><obs conceptId="105783" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Inflammation</td>
+                        <td><obs conceptId="105784" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Discharge</td>
+                        <td><obs conceptId="11315" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check for uterine contraction</td>
+                        <td><obs conceptId="105785" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Feel if uterus is hard and round</td>
+                        <td><obs conceptId="105786" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="B. Any difficulties at birth ?">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Record the difficulties that were faced during birth</td>
+                        <td><obs conceptId="105787" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of positive and negative findings and actions taken</td>
+                        <td><obs conceptId="105532" raw="3" style="text"/></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

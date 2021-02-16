@@ -1,0 +1,163 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+	});
+</script>
+    <h2>Developmental milestones assessment
+    </h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+        <section>
+
+            <section>
+            <section headerCode="A. Social-Emotional function">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Interaction with the parent or caregiver </td>
+                        <td><obs conceptId="105750" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105751" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Other people  </td>
+                        <td><obs conceptId="105753" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105752" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Surroundings</td>
+                        <td><obs conceptId="105754" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105755" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+                <section headerCode="B. Cognitive function:  ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Learning, </td>
+                        <td><obs conceptId="105756" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105757" rows="3" cols="30" /></td>
+                    </tr>
+                      <tr>
+                        <td class="lblcolor">thinking</td>
+                        <td><obs conceptId="106830" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105733" rows="3" cols="30" /></td>
+                      </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="105735" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105759" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Communication">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Both language nonverbal communication </td>
+                        <td><obs conceptId="105761" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105760" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Physical milestones">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Large motor skills </td>
+                        <td><obs conceptId="105762" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105763" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">fine motor skill</td>
+                        <td><obs conceptId="3548" answerCodes="Normal,Abnomal" style="radio" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="105764" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        </section>
+    </includeIf>
+        <submit />
+
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

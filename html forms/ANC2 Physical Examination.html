@@ -1,0 +1,405 @@
+<htmlform>
+<macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <translations defaultLocale="en">
+    <code name="lmp">
+        <variant locale="en" value="First day of last menstral period "/>
+        <variant locale="fr" value="Date des dernières règles "/>
+    </code>
+    <code name="tested">
+        <variant locale="en" value="Has she been tested for HIV/AIDS?"/>
+        <variant locale="fr" value="Est-ce que le patient a subi un test de dépistage du VIH?"/>
+    </code>
+    <code name="due_date">
+        <variant locale="en" value="Approximate date of delivery"/>
+        <variant locale="fr" value="Date probable d'accouchement"/>
+    </code>
+    </translations>
+    <script type="text/javascript">
+$j(function() {
+	getField('lmp.value').change(function() {
+		var mp = getValue('lmp.value');
+        //alert(mp);
+		var d = new Date(mp);
+
+		d.setFullYear (d.getFullYear() + 1);
+		d.setMonth(d.getMonth() - 3);
+
+		d.setDate(d.getDate() + 7);
+
+		var curr_date = d.getDate();
+
+		var curr_month = d.getMonth();
+		curr_month++;
+
+		var curr_year = d.getFullYear();
+
+		var duedate = curr_year + "-" + curr_month + "-" + curr_date;
+
+
+		setValue('dd.value',duedate);
+
+
+	});
+
+});
+</script>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="Medical Date">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Last Menstrual period LMP</td>
+                    <td><obs conceptId="968" id="lmp" labelCode=""/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Expected Date of Delivery EDD</td>
+                    <td><obs conceptId="6188" id="dd" allowFutureDates="true" labelCode=""/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Duration of pregnancy (week)</td>
+                    <td><obs conceptId="1279"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Accompanied by partner</td>
+                    <td><obs conceptId="6547" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+                    <section headerCode="CURRENT COMPLAINTS">
+                        <table class="baseline-aligned risks">
+                            <tr>
+                                <td class="lblcolor"> Any Current Problem </td>
+                                <td><obs conceptId="2310" id="past_medical" style="textarea" rows="3" cols="30"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41096" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="105467" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41335" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="40884" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="105460" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41336" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="41257" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="10909" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="106792" style="checkbox"/></td>
+                                <!--  <td><obs conceptId="105462" answerConceptId="106460" style="checkbox"/></td>
+                                <td><obs conceptId="105462" answerConceptId="5945" style="checkbox"/></td>
+                                 <td><obs conceptId="105462" answerConceptId="107" style="checkbox"/></td>-->
+                            </tr>
+                            <!--<tr>
+                                <td>Other Diagnostic</td>
+                                <td><obs conceptId="3065" answerClasses="Diagnosis" style="autocomplete" size="80" /></td>
+                            </tr>
+-->
+                        </table>
+                    </section>
+
+            <section headerCode="C. GENERAL EXAMINATION">
+                <table class="baseline-aligned">
+
+                            <obsgroup groupingConceptId="1114">
+                                <tr> <td class="lblcolor">Temperature</td>
+                                    <td><obs conceptId="5088"/><obs conceptId="105496" answerCodes="Normal,Abnormal" style="radio"/> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal <obs conceptId="106869" id="past_medical" style="textarea" rows="3" cols="30"/></td>
+                                </tr>
+                                <tr> <td class="lblcolor">Weight</td>
+                                    <td><obs conceptId="5089"  required="" />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Gaining weight (compare with previous) <obs conceptId="105481" answerCodes="YES,NO" style="radio"/></td>
+                                </tr>
+                                <tr> <td class="lblcolor">Height</td>
+                                    <td><obs conceptId="5090"  /></td></tr>
+                                <tr>
+                                    <td class="lblcolor">SBP/DBP</td>
+                                    <td><obs conceptId="5085" /> / <obs conceptId="106797" answerCodes="Normal,Severe hypertension,Moderate hypertension" style="radio"/></td>
+                                </tr>
+                                <tr><td class="lblcolor">Pulse</td>
+                                    <td><obs conceptId="5087"/><obs conceptId="105497" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Respiratory Rate</td>
+                                    <td><obs conceptId="5242"/><obs conceptId="106794" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Respiratory Rate</td>
+                                    <td><obs conceptId="5242"/><obs conceptId="106794" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Clinical sign for anaemia(Conjunctival pallor; Palmar pallor)</td>
+                                    <td><obs conceptId="105482" style="textarea" rows="3" cols="30"/><obs conceptId="106798" answerCodes="No clinical anemia,Moderate anemia,Severe anemia" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Clinical signs of jaundice (conjunctival, palms, nails)</td>
+                                    <td><obs conceptId="215" style="textarea" rows="3" cols="30"/><obs conceptId="106709" answerCodes="YES,NO" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                <td class="lblcolor"> MUAC</td>
+                                <td><obs conceptId="1290"/> <obs conceptId="106634" answerCodes="Severe acute malnutrition (W/H bellow 70%) without medical complications, Severe acute malnutrition (W/H bellow 70%) with medical complications ,Severe acute malnutrition (bilateral pitting oedema),Severe acute malnutrition (MUAC bellow 160 mm) ,
+                                Moderate acute malnutrition (W/H equal and greater than 70% and bellow 80%) without medical complications, Moderate acute malnutrition (W/H equal and greater than 70% and bellow 80%) with medical complications ,No malnutrition (W/H equal and greater than 80% AND MUAC equal and greater than 160 mm)
+                                " style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor"> Hygiene</td>
+                                    <td><obs conceptId="106800" style="textarea" rows="3" cols="30"/> <obs conceptId="105488" answerCodes="POOR,GOOD,NORMAL,ABNORMAL" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor"> Oral conditions</td>
+                                    <td><obs conceptId="106801" style="textarea" rows="3" cols="30"/> <obs conceptId="105489" answerCodes="NORMAL,ABNORMAL" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Neck examination for thyroid and adenopathy</td>
+                                    <td><obs conceptId="105500" style="textarea" rows="3" cols="30"/><obs conceptId="105499" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Breast examination</td>
+                                    <td><obs conceptId="105485" style="textarea" rows="3" cols="30"/><obs conceptId="106077" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Lower limb exam for varicose veins and oedema</td>
+                                    <td><obs conceptId="106802" style="textarea" rows="3" cols="30"/><obs conceptId="105502" answerCodes="Normal,Abnormal" style="radio"/></td>
+                                </tr>
+
+                            </obsgroup>
+                    </table>
+            </section>
+
+            <section headerCode="CHECK FOR DANGER SIGNS">
+                <obsgroup groupingConceptId="106686">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId='106686' answerConceptId="105506"  style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="105507" style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="105508"  style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="105509"  style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="105510"  style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="105511"  style="checkbox"/></td>
+                            <td><obs conceptId='106686' answerConceptId="151"  style="checkbox"/></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+
+            <section headerCode="Pregnancy Examination">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Fundal Height ( cm)</td><td style="width: 400px;">
+                        <obs conceptId="51d0c588-374f-4596-aab6-1f9ce8b4e88a" style="text"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check if matching gestational age</td>
+                        <td><obs conceptId="ab27e978-0884-4225-9576-ffd18a6cd0ba" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal heart rate (bpm)</td>
+                        <td><obs conceptId="57c934dd-a086-4e73-a9b8-3b9c1abef1b1" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Position of foetus</td>
+                        <td><obs conceptId="659598ed-0ad4-4444-ab92-5f655e5b8549"  answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="3dfecd70-5ca6-45b5-8b8e-88245015ccf0" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check if baby is moving. </td>
+                        <td><obs conceptId="8fee5c07-bcea-491f-aea8-40d5d5c35b97" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Breast examination</td>
+                        <td><obs conceptId="044841dc-65ad-4cd6-8f6f-c75033e7c756" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="06670fb0-472d-4f6f-974e-238cf151777b" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Genital examination</td>
+                        <td><obs conceptId="ff43b70e-a473-4362-bf44-ee5ee6752283" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="66610734-d7b8-412c-92e0-c2f96312061d" style="text" /></td>
+                    </tr>
+                </table>
+            </section>
+
+
+            <section headerCode="ABDOMINAL ECHOGRAPHIE">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Body movements</td>
+                        <td><obs conceptId="295454c3-6f6f-4226-9499-572d5fabe8ce" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sex of Baby</td>
+                        <td><obs conceptId="48b89be4-c178-4f0a-a912-9c643d324c1d" answerCodes="Male,Female" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal position</td>
+                        <td><obs conceptId="370efbe9-f916-425c-9d3e-8dd1c747be3e" answerCodes="Normal,Transvers lie,Breech" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal heart</td>
+                        <td><obs conceptId="03970ffd-0748-4233-a75d-f16e4ac5f297" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="7b21ab30-4863-4e18-b7ef-850d85adfefb" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory movements</td>
+                        <td><obs conceptId="2d890d78-0dfc-4e83-88c2-721cbe953940" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="026ac8fc-b736-4385-aac0-e9946f3c11ac" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal tone</td>
+                        <td><obs conceptId="bea1ca18-af98-4f02-9e4d-a759d1329b3a" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="3dc4db1b-222d-4783-9574-cb42b8fbb20f" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Amniotic fluid test index</td>
+                        <td><obs conceptId="ee891321-3066-41c4-8fb4-22a8c6d46b5d" rows="3" cols="30" /></td>
+                    </tr>
+
+                </table>
+            </section>
+            <section headerCode="OTHER PROBLEMS">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Lungs ( normal Abnornal)</td>
+                        <td><obs conceptId="0f736975-e6c8-4c3f-a7b9-c6bceabbae80" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="79724fd6-c232-4a30-ad07-a75370f03416" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Heart ( normal Abnornal)</td>
+                        <td><obs conceptId="eee9d1b3-bb88-452e-a203-4100e8e25084" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Abnormal</td>
+                        <td><obs conceptId="f0db2916-e03b-4da8-af92-d7a92f9c6dd2" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Date and Place of Delivery">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Calculate estimated date of delivery</td>
+                        <td><obs conceptId="fb27a14b-4a0f-439e-a31a-c619fe320714" size="25" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Planned place of Delivery</td>
+                        <!--<td><obs conceptId="0cd5903f-98ab-469a-a7ab-206eda2459cc" size="25" /></td>-->
+                        <td><encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                        <td><obs conceptId="3b941e7a-1e5c-47ac-95a2-510fbf3a93a0" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+    </includeIf>
+
+        <submit/>
+
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr>
+                    <td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+
+</htmlform>

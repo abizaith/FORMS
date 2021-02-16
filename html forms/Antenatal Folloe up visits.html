@@ -1,0 +1,266 @@
+<htmlform>
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+
+                </tr>
+            </table>
+        </section>
+        <section headerCode="History">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Gestational age </td>
+                    <td><obs conceptId="13192" size="25" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Any vaginal bleeding since last visit</td>
+                    <td><obs conceptId="106803" answerCodes ="YES,NO" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Baby moving (after 4 months), </td>
+                    <td><obs conceptId="105468" answerCodes ="YES,NO" style="radio"/> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Planned place of Delivery</td>
+                    <td><lookup expression="fn.latestObs(105517).valueText"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="C. GENERAL EXAMINATION">
+            <table class="baseline-aligned">
+
+                <obsgroup groupingConceptId="1114">
+                    <tr> <td class="lblcolor">Temperature</td>
+                        <td><obs conceptId="5088"/><obs conceptId="105496" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Weight</td>
+                        <td><obs conceptId="5089"  required="true" />Gaining/losing weight (compare with previous) <obs conceptId="105481" answerCodes="YES,NO" style="radio"/></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Height</td>
+                        <td><obs conceptId="5090"  /></td></tr>
+                    <tr>
+                        <td class="lblcolor">SBP/DBP</td>
+                        <td><obs conceptId="5085" /> / <obs conceptId="5086" /><obs conceptId="106797" answerCodes="Normal,Severe hypertension,Moderate hypertension" style="radio"/></td>
+                    </tr>
+                    <tr><td class="lblcolor">Pulse</td>
+                        <td><obs conceptId="5087"/><obs conceptId="105497" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory Rate</td>
+                        <td><obs conceptId="5242"/><obs conceptId="106794" answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Check fundal height if matching weeks of amenorrhea.</td>
+                        <td><obs conceptId="9619" answerCodes="YES,NO" style="radio"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Feel for obvious multiple pregnancy</td>
+                        <td><obs conceptId="13510" answerCodes="YES,NO" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Feel for transverse lie, (if no echography available) </td>
+                        <td><obs conceptId="106804" style="textarea" rows="3" cols="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fetal heart rate </td>
+                        <td><obs conceptId="105487" /> <obs conceptId="106805"  answerCodes="Normal,Abnormal" style="radio"/></td>
+                    </tr>
+                </obsgroup>
+            </table>
+
+            <section headerCode="Investigations">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">RPR Result</td>
+                        <td ><obs conceptId="1478" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Partner RPR Result</td>
+                        <td ><obs conceptId="8168" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HB testing is enough instead of FBC</td>
+                        <td ><obs conceptId="21" answerCodes ="No anemia,Moderate anemia,Severe anemia" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Blood group and Rhesus</td>
+                        <td ><obs conceptId="300" answerCodes ="A , A+ ,A-, B+, B-, AB+,AB-,O+,O-" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Random blood sugar</td>
+                        <td ><obs conceptId="105519" answerCodes="Normal,Abnormal" style="radio"/> Specify if abnormal<obs conceptId="78832823-7bba-45a8-8492-32040f6eb9bb" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TORCHES screen ( hepatitis, Rubella,CMV,Toxo,Heerpes,Syphilis)</td>
+                        <td ><obs conceptId="105520" answerCodes ="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Result  (Repeat every 3 months and during labour.)</td>
+                        <td ><obs conceptId="105521" answerCodes ="Negative,Positive" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV Result for Partner</td>
+                        <td ><obs conceptId="13320" answerCodes ="Negative,Positive" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Albuminuria (Abdominal echography)</td>
+                        <td ><obs conceptId="105522" answerCodes ="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urine examination: for bacteriuria, leucocytes and nitrites </td>
+                        <td ><obs conceptId="105523" answerCodes ="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal swab (FV- if indicated)</td>
+                        <td ><obs conceptId="106188" answerCodes ="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section >
+                <section headerCode="Counseling Given to the Mother">
+                    <obsgroup groupingConceptId="106680">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor">Counseling about HIV and STI prevention</td>
+                                <td><obs conceptId="105533" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Elaboration of the delivery plan</td>
+                                <td><obs conceptId="105534" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Messages on health and advice</td>
+                                <td><obs conceptId="105535" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Family planning methods and Compliance to medications</td>
+                                <td><obs conceptId="105536" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">NutritionCounseling Given to the Mother</td>
+                                <td><obs conceptId="106806" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Hygiene counseling Given to the Mother</td>
+                                <td><obs conceptId="106807" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Danger signs and when to attend health facility</td>
+                                <td><obs conceptId="106808" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Delivery preparation and what to bring in labour</td>
+                                <td><obs conceptId="106809" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Preventive measures (Malaria, Tetanus Anaemia/ Iron supplements)</td>
+                                <td><obs conceptId="106810" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Early referrals</td>
+                                <td><obs conceptId="106811" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                        </table>
+                    </obsgroup>
+                </section>
+        </section>
+        </section>
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

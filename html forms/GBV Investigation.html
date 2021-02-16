@@ -1,0 +1,186 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>INVESTIGATION</h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+                <!-- <tr>
+                     <td class="lblcolor">1. General appearance and conduct.</td>
+                     <td><obs conceptId="106207" rows="1" cols="30" /></td>
+                 </tr>-->
+            </table>
+        </section>
+            <section headerCode="A. Investigations: ">
+
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Any biological evidence </td>
+                        <td><obs conceptId="106182" answerCodes="Yes,No" style="radio" /></td>
+                    </tr> <tr>
+                    <td class="lblcolor">which moistened swabs :  </td>
+                    <td><obs conceptId="8159" answerConceptIds="1065,1066,1066" answerCodes="semen,saliva,blood " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">which tweezers :  </td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="hair,fibres,grass soil" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urinalysis – microscopy+ Chlamydia  </td>
+                        <td><obs conceptId="106183" answerCodes="Positive,Negative" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pregnancy test </td>
+                        <td><obs conceptId="2473" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">HIV Test </td>
+                        <td><obs conceptId="3387" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">FBC </td>
+                        <td><obs conceptId="7836" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">Hepatitis B and C studies
+                        </td>
+                        <td><obs conceptId="106184" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Liver Function Tests </td>
+                        <td><obs conceptId="953" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">VDRL </td>
+                        <td><obs conceptId="299" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal/urethral swabs if discharge</td>
+                        <td><obs conceptId="106185" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">X-rays of specific areas for physical assault</td>
+                        <td><obs conceptId="106186" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Investigations Carried Out for Evidence Purposes">
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Urine analysis for epithelial cells </td>
+                        <td><obs conceptId="106187" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">High vaginal /Rectal swab for evidence of spermatozoa</td>
+                        <td><obs conceptId="106188" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="D. Diagnostic and Conclusion">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Type of violence based on gender and child abuse</td>
+                        <td><obs conceptId="106737" answerConceptIds="106733,106734,106735,106736" answerCodes="Physique,Sexuelle,Psychologique,Autres" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sexual</td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Vaginale,Anal,Other orifices" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of findings and action taken</td>
+                        <td><obs conceptId="106189" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

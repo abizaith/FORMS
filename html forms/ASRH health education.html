@@ -1,0 +1,188 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>ASRH health education</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <section headerCode="Menstrual cycles">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">What is the menstrual cycle</td>
+                        <td><obs conceptId="106474" style="checkbox" /> </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><b>A regular 28 day cycle and its phases</b></td>
+                        <td><obs conceptId="106590" answerConceptId="106475" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106476" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106477" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106478" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106479" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106480" style="checkbox" /> </td>
+                        <td><obs conceptId="106590" answerConceptId="106481" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="B. Reproductive systems and their function">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106584" answerConceptId="106482" style="checkbox" /> </td>
+                        <td><obs conceptId="106584" answerConceptId="106483" style="checkbox" /> </td>
+                        <td><obs conceptId="106584" answerConceptId="106484" style="checkbox" /> </td>
+                        <td><obs conceptId="106584" answerConceptId="106485" style="checkbox" /> </td>
+                        <td><obs conceptId="106584" answerConceptId="106486" style="checkbox" /> </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="C. Fertility  days, Fertilization and sterility">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106585" answerConceptId="106487" style="checkbox" /> </td>
+                        <td><obs conceptId="106585" answerConceptId="106488" style="checkbox" /> </td>
+                        <td><obs conceptId="106585" answerConceptId="106489" style="checkbox" /> </td>
+                        <td><obs conceptId="106585" answerConceptId="106490" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Sexuality and sexual development">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106586" answerConceptId="106491" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106492" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106493" style="checkbox" /> </td>
+
+                        <td><obs conceptId="106586" answerConceptId="106494" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106495" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106496" style="checkbox" /> </td>
+
+                        <td><obs conceptId="106586" answerConceptId="106497" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106498" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106499" style="checkbox" /> </td>
+
+                        <td><obs conceptId="106586" answerConceptId="106500" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106501" style="checkbox" /> </td>
+                        <td><obs conceptId="106586" answerConceptId="106502" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="E. Nutrition">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">
+                            Eating a balanced diet rich in iron (e.g. dark green vegetables, iron fortified beans, meat, eggs and fish) and to take iron-folic acid supplements when planning a pregnancy48 hours</td>
+                        <td><obs conceptId="106503" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="How to avoid unwanted pregnancies and STIs ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106591" answerConceptId="106504" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106505" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106506" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106507" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106508" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106509" style="checkbox" /> </td>
+                        <td><obs conceptId="106591" answerConceptId="106510" style="checkbox" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

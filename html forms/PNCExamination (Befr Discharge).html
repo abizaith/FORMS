@@ -1,0 +1,247 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+	.lblcolormatrix{background: #e2e3f2;width: 150px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    <td> Current ANC visit : <lookup expression="fn.latestEncounter(a703372d-28b7-4831-9817-ee385c8c47d8)"/></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+
+            <section headerCode="A. Assessing mother breast feeding">
+                <table class="baseline-aligned">
+                    <td><b>History since delivery</b></td>
+                    <tr>
+                        <td class="lblcolor">Mother is not breast feeding</td>
+                        <td><obs conceptId="105788" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Examination</b></td>
+                    <tr><td class="lblcolor">Incorrect breastfeeding position and attachment </td>
+                        <td><obs conceptId="105789" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Examine mother and baby">
+                <table class="baseline-aligned">
+                    <td><b>Verify normal vital signs for Mother:</b></td>
+                    <tr>
+                        <td class="lblcolor">Temperature</td>
+                        <td><obs conceptId="5088" style="text" /></td>
+                    </tr>
+                    <tr><td class="lblcolor">Temperature &#60; 38.0&#176;C</td>
+                        <td><obs conceptId="105790" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">DBP</td>
+                        <td><obs conceptId="5086" style="text" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">SBP</td>
+                        <td><obs conceptId="5085" style="text"  /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Heart rate</td>
+                        <td><obs conceptId="5087" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Heart rate &#60; 100 beats per minute</td>
+                        <td><obs conceptId="105791" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Verify normal vital signs for Newborn:</b></td>
+                    <tr> <td class="lblcolor">Respiration</td>
+                        <td><obs conceptId="5242" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiration &#60; 60 beats per minute</td>
+                        <td><obs conceptId="105792" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Temperature</td>
+                        <td><obs conceptId="5088" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature 36.5-37.5&#176;C axillary</td>
+                        <td><obs conceptId="105793" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Confirm newborn immunizations have been given and linked to immunization register</td>
+                        <td><obs conceptId="105794" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Weigh infant</td>
+                        <td><obs conceptId="105795" style="text" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">Measure length of infant</td>
+                        <td><obs conceptId="105796" style="text" /></td>
+                    </tr>
+                    <tr> <td class="lblcolor">MUAC of mother</td>
+                        <td><obs conceptId="105797" style="text" /></td>
+                    </tr>
+                    <td><b>Check for breast</b></td>
+                    <tr>
+                        <td class="lblcolor">Nipple retraction </td>
+                        <td><obs conceptId="105798" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Abdominal Examination</b></td>
+                    <tr>
+                        <td class="lblcolor">Bladder distension </td>
+                        <td><obs conceptId="105799" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Lack of uterine involution </td>
+                        <td><obs conceptId="105800" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <td><b>Perineal Examination </b></td>
+                    <tr>
+                        <td class="lblcolor">Vaginal bleeding</td>
+                        <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes specify </td>
+                        <td><obs conceptId="105802" style="text" size="25"/></td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Perineal tenderness </td>
+                        <td><obs conceptId="105803" answerCodes="Yes,No" style="radio" /></td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Perineal bruising </td>
+                        <td><obs conceptId="105804" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any pus discharge from perineal wound </td>
+                        <td><obs conceptId="105805" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any leakage of urine from vagina</td>
+                        <td><obs conceptId="105806" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any leakage of faeces from vagina</td>
+                        <td><obs conceptId="105807" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Perineal tear</td>
+                        <td><obs conceptId="8290" answerConceptIds="8290" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes specify wich degree </td>
+                        <td><obs conceptId="105808" style="text" size="25"/></td>
+                    </tr>
+                    <td>Confirm syphilis and HIV testing</td>
+                    <tr><td class="lblcolor">HIV status</td>
+                        <td><obs conceptId="3753" answerCodes="Negative,Positive" style="radio" /></td></tr>					 																															 					<tr><td class="lblcolor">Verify that the mother and newborn have received antiretrovirals </td>
+                    <td><obs conceptId="2589" answerCodes="Yes,No" style="radio" /></td></tr>
+                    <tr><td class="lblcolor">A follow-up plan is clearly communicated</td>
+                        <td><obs conceptId="105801" answerCodes="Yes,No" style="radio" /></td></tr>
+                    <tr><td class="lblcolor">Syphilis Exams</td>
+                        <td><obs conceptId="223" answerCodes="Negative,Positive" style="radio" /></td></tr>
+
+                    <tr>
+                        <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                        <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

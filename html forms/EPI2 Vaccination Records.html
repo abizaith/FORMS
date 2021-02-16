@@ -1,0 +1,235 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+	});
+</script>
+    <h2>Vaccination Record (Child) </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+        <section>
+
+
+            <section headerCode="A. Immunization history Child ">
+
+<workflowState workflowId="3490de57-6ab5-4419-be54-3f23b70abe6c" labelText="Vaccines : "  stateIds="e9d4d7d0-3f02-4318-ac91-0077a6154c3d,d8430d7b-5fc3-4601-b55d-43de3ba5714a,35fec5cc-e43d-440f-9ec7-8f17fcd3b9df,2a2fc4fa-bcb3-4706-b28d-2d14337695d1,78bbbb30-4d71-49d6-b2d9-93ad3fe286b1,5dcd7dd7-c5b2-407c-b633-82e319a68399,2635b8a1-99a5-45c2-9b46-e18343c46f62,5aafbd6d-3183-46a1-a758-4784ab397b6e,10fed63e-ad46-4fb7-908c-52f8254a9689,1a174627-bd3a-467b-8c17-37af1cd18650,6168fad3-94b8-4727-8e3f-d933b2a27472,05ac0b17-878f-4d1d-a511-c0e27933b985,554f95ae-a6ea-4ec0-a224-4e12b282af2e,3f374637-bc92-4fd7-be15-c05d31bd27ef,2cc45873-e690-48d2-915d-bd631b9f6df1,a50a2d9e-d794-44cb-8f80-bcaaceae2b2b,7b021da1-5509-44b1-b9c0-0ac8bd07b72f,fb06a92a-be8c-4c0b-8564-0042ef49e98b" type="radio" />
+
+                <!-- <table class="baseline-aligned">
+                    <tr>
+                        <td >vaccin</td>
+                        <td>Total Dose</td>
+                        <td>Date</td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">BCG </td>
+                        <td><obs conceptId="2194" style="text" /></td>
+                        <td><obs conceptId="106831" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Polio 0 </td>
+                        <td><obs conceptId="106835" style="text" /></td>
+                        <td><obs conceptId="106832" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Hepatitis B1</td>
+                        <td><obs conceptId="106833" style="text" /></td>
+                        <td><obs conceptId="106834" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Polio 1 </td>
+                        <td><obs conceptId="106836" style="text" /></td>
+                        <td><obs conceptId="106837" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Penta 1 </td>
+                        <td><obs conceptId="2199" style="text" /></td>
+                        <td><obs conceptId="106838" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">DPT-HepB-Hib 1</td>
+                        <td><obs conceptId="106839" style="text" /></td>
+                        <td><obs conceptId="106840" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Rota 1 </td>
+                        <td><obs conceptId="105727" style="text" /></td>
+                        <td><obs conceptId="106841" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Polio 2 </td>
+                        <td><obs conceptId="2197" style="text" /></td>
+                        <td><obs conceptId="106842" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Penta 2</td>
+                        <td><obs conceptId="2200" style="text" /></td>
+                        <td><obs conceptId="106843" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">PCV2</td>
+                        <td><obs conceptId="106844" style="text" /></td>
+                        <td><obs conceptId="106845" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                    <td class="lblcolor">Rota 2</td>
+                    <td><obs conceptId="105728" style="text" /></td>
+                    <td><obs conceptId="106846" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">DPT-HepB-Hib 2</td>
+                        <td><obs conceptId="106847" style="text" /></td>
+                        <td><obs conceptId="106848" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Polio 3 </td>
+                        <td><obs conceptId="8066" style="text" /></td>
+                        <td><obs conceptId="106849" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Penta 3</td>
+                        <td><obs conceptId="2201" style="text" /></td>
+                        <td><obs conceptId="106850" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">PCV3</td>
+                        <td><obs conceptId="106851" style="text" /></td>
+                        <td><obs conceptId="106852" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Measles1</td>
+                        <td><obs conceptId="106853" style="text" /></td>
+                        <td><obs conceptId="106854" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Rubella</td>
+                        <td><obs conceptId="12583" style="text" /></td>
+                        <td><obs conceptId="106855" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Measles 2</td>
+                        <td><obs conceptId="106856" style="text" /></td>
+                        <td><obs conceptId="106857" answerConceptIds="1065,1066" style="radio" /></td>
+                    </tr>
+                </table> -->
+            </section>
+            <section headerCode="B. Vaccination Records for Mother">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">TT1</td>
+                        <td><obs conceptId="106858" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT2 </td>
+                        <td><obs conceptId="106859" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT3</td>
+                        <td><obs conceptId="106860" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT4</td>
+                        <td><obs conceptId="106861" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT5</td>
+                        <td><obs conceptId="106862" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                </table>
+            </section>
+        </section>
+        
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

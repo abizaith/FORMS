@@ -1,0 +1,363 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+.pages {
+    display:none;
+}
+
+.pageHead {
+    background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+    border-style: solid;
+    border-color: white;
+    cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+		
+        
+    var weight=<lookup expression="fn.latestObs(5089).valueNumeric"/>;
+    var height=<lookup expression="fn.latestObs(5090).valueNumeric"/>;
+
+    setValue('weighttxt.value',weight);
+    setValue('heighttxt.value',height);
+
+		$j('.vaccine').hide();
+	
+		$j('input[value="d392d97b-b326-426c-b3c6-0507eeee71e3"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.atBirth').show();
+		});
+		
+		$j('input[value="37a402b6-a88e-4f57-a1f0-7d8f9827f4bd"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.sixWeeks').toggle();
+		});
+		
+		$j('input[value="a20fd4e3-0421-4478-8cb4-b8f7a87853db"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.tenWeeks').toggle();
+		});
+		
+		
+		$j('input[value="4d89ec19-22a1-46c1-9ad4-360a905624eb"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.fourteenWeeks').toggle();
+		});
+		
+		$j('input[value="31a2e0f5-0f93-41f6-bda2-8514e85fe1f4"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.nineMonths').toggle();
+		});
+		
+		$j('input[value="670d24a4-69e0-480d-abea-0730db6d74dd"]').change(function() {
+			$j('.vaccine').hide();
+			$j('.fifteenMonths').toggle();
+		});
+        $j('#dangersigntd').hide();
+        $j('#milestonestd').hide();
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+
+    $j("#dangersignid").change(function() {
+		var isCheckedNormal = $j('#w14_0').attr('checked')?true:false;
+		var isCheckedAbdnormal = $j('#w14_1').attr('checked')?true:false;
+		// alert(" ==> "+isCheckedAbdnormal);
+		if(isCheckedNormal==true){
+		$j('#dangersigntd').show();
+		}else{
+		 $j('#dangersigntd').hide();
+		}
+  });
+
+  $j("#milestonesid").change(function() {
+		var isCheckedNormal = $j('#w50_0').attr('checked')?true:false;
+		var isCheckedAbdnormal = $j('#w50_0').attr('checked')?true:false;
+		// alert(" ==> "+isCheckedAbdnormal);
+		if(isCheckedAbdnormal==true){
+		$j('#milestonestd').show();
+		}else{
+		 $j('#milestonestd').hide();
+		}
+  });
+                $j('#page1').hide();
+                $j('#page2').hide();
+				
+        $j('#page1id').click(function() {
+                $j('#page1').toggle();
+                $j('#page2').hide();
+        });
+        
+        $j('#page2id').click(function() {
+                $j('#page2').toggle();
+                $j('#page1').hide();
+        });
+        
+	});
+</script>
+    <h2>Vaccination Record (Child) </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+        <div class="pageHead"><h2 id="page1id">EXAMINATION</h2></div>
+        <div id="page1" class="pages">
+
+              <section headerCode="A. Physical examination">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Weight(Kg) </td>
+                            <td><obs id="weighttxt" conceptId="5089" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Height/length(cm)</td>
+                            <td><obs id="heighttxt" conceptId="5090" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">MUAC (6-59months) </td>
+                            <td><obs conceptId="1290" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Any Danger sign?</td>
+                            <td><obs conceptId="13639" id="dangersignid" answerCodes="Yes,No" style="radio" /></td><td id = "dangersigntd">If yes Specify<obs conceptId="105731" rows="3" cols="30" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B. Developement Milestones ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106658" answerConceptId="105732" style="checkbox" /> </td>
+                            <td><obs conceptId="106658" answerConceptId="105733" style="checkbox" /> </td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106658" answerConceptId="105734" style="checkbox" /> </td>
+                            <td><obs conceptId="106658" answerConceptId="105735" style="checkbox" /> </td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106658" answerConceptId="105736" style="checkbox" /> </td>
+                            <td></td>
+                        </tr>
+                    </table>
+    
+                </section>
+                <section headerCode="C. Motor coordination">
+    
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106659" answerConceptId="105737" style="checkbox" /> </td>
+                            <td><obs conceptId="106659" answerConceptId="105738" style="checkbox" /> </td>
+                            <td><obs conceptId="106659" answerConceptId="105739" style="checkbox" /> </td>
+                        </tr>																													 					<tr>
+                        <td><obs conceptId="106659" answerConceptId="105740" style="checkbox" /> </td>
+                        <td><obs conceptId="106659" answerConceptId="105741" style="checkbox" /> </td>
+                        <td><obs conceptId="106659" answerConceptId="105742" style="checkbox" /> </td>
+                    </tr>
+                    </table>
+    
+                </section>
+                <section headerCode="D. Social interaction">
+    
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106660" answerConceptId="105743" style="checkbox" /> </td>
+                            <td><obs conceptId="106660" answerConceptId="105744" style="checkbox" /> </td>
+                        </tr>
+                    </table>
+    
+                </section>
+                <section headerCode="E. Adaptive">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106661" answerConceptId="105745" style="checkbox" /> </td>
+    
+                            <td><obs conceptId="106661" answerConceptId="105746" style="checkbox" /> </td>
+    
+                            <td><obs conceptId="106661" answerConceptId="105747" style="checkbox" /> </td>
+    
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">The milestones are appropriate for the age ?</td>
+                            <td><obs conceptId="105748" id="milestonesid" answerCodes="Yes,No" style="radio" /></td>
+                            <td></td>
+                        </tr>
+                        <tr id="milestonestd" >
+                            <td class="lblcolor" >Specify if no</td>
+                            <td><obs conceptId="105749" rows="3" cols="30" /></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </section>
+</div>
+<div class="pageHead"><h2 id="page2id">IMMUNIZATION</h2></div>
+<div id="page2" class="pages">
+            <section headerCode="A. Immunization Record ">
+
+<workflowState id="adminage" workflowId="859cabca-c956-41bb-aa91-f836718a3ba2" labelText="Vaccines : "  stateIds="d392d97b-b326-426c-b3c6-0507eeee71e3,37a402b6-a88e-4f57-a1f0-7d8f9827f4bd,a20fd4e3-0421-4478-8cb4-b8f7a87853db,4d89ec19-22a1-46c1-9ad4-360a905624eb,31a2e0f5-0f93-41f6-bda2-8514e85fe1f4,670d24a4-69e0-480d-abea-0730db6d74dd" type="radio" />
+
+                <table class="baseline-aligned">
+                    <tr class="atBirth vaccine">
+                        <td>
+							<obs conceptId="106943" answerConceptId="2194" answerLabel="BCG" style="checkbox" />
+							<obs conceptId="106943" answerConceptId="106923" answerLabel="Polio 0" style="checkbox" />
+						</td>
+                    </tr>
+                    <tr class="sixWeeks vaccine">
+                        <td> 
+							<obs conceptId="106944" answerConceptId="106923" answerLabel="Polio 1" style="checkbox" />
+							<obs conceptId="106944" answerConceptId="106839" answerLabel="DPT-HepB-Hib 1" style="checkbox" />
+							<obs conceptId="106944" answerConceptId="6645" answerLabel="PCV13-1" style="checkbox" />
+							<obs conceptId="106944" answerConceptId="105727" answerLabel="Rotavirus 1" style="checkbox" />
+						</td>
+                    </tr>
+                    <tr class="tenWeeks vaccine">
+                        <td>
+							<obs conceptId="106945" answerConceptId="106923" answerLabel="Polio 2" style="checkbox" />
+							<obs conceptId="106945" answerConceptId="106839" answerLabel="DPT-HepB-Hib 2" style="checkbox" />
+							<obs conceptId="106945" answerConceptId="6646" answerLabel="PCV13-2" style="checkbox" />
+							<obs conceptId="106945" answerConceptId="105727" answerLabel="Rotavirus 2" style="checkbox" />
+						</td>
+                    </tr>
+                    <tr class="fourteenWeeks vaccine">
+                        <td>
+							<obs conceptId="106946" answerConceptId="106923" answerLabel="Polio 3" style="checkbox" />
+							<obs conceptId="106946" answerConceptId="782" answerLabel="Hepatitis B 1" style="checkbox" />
+							<obs conceptId="106946" answerConceptId="106839" answerLabel="DPT-HepB-Hib 3" style="checkbox" />
+							<obs conceptId="106946" answerConceptId="6645" answerLabel="PCV13-3" style="checkbox" />
+						</td>
+                    </tr>
+                    <tr class="nineMonths vaccine">
+                        <td>
+							<obs conceptId="106947" answerConceptId="106853" answerLabel="MR 1" style="checkbox" />
+						</td>
+                    </tr>
+                    <tr class="fifteenMonths vaccine">
+                        <td>
+							<obs conceptId="106948" answerConceptId="106853" answerLabel="MR 2" style="checkbox" />
+						</td>
+                    </tr>
+                </table>
+				
+				
+            </section>
+            <section headerCode="B. Vaccination for Mother">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">TT1</td>
+                        <td><obs conceptId="106858" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT2 </td>
+                        <td><obs conceptId="106859" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT3</td>
+                        <td><obs conceptId="106860" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT4</td>
+                        <td><obs conceptId="106861" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">TT5</td>
+                        <td><obs conceptId="106862" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                </table>
+            </section>
+</div>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

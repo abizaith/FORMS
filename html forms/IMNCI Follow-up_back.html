@@ -1,0 +1,174 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Follow-up visit</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            Coming From: <obs conceptId="bf03ebfd-8e57-4c9d-a946-6c5d4e43cdaf" />
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+
+        <section headerCode="A. Immediate followup">
+            <table class="baseline-aligned">
+                <td><b>Any sick child: </b></td>
+                <tr>
+                    <td><obs conceptId="106714" answerConceptId="106280" style="radio" /></td>
+                    <td><obs conceptId="106714" answerConceptId="106281" style="radio" /></td>
+                    <td><obs conceptId="106714" answerConceptId="106282" style="radio" /></td>
+                </tr>
+                <td><b>If a child developed cough or cold </b></td>
+                <tr>
+                    <td><obs conceptId="106715" answerConceptId="801" style="radio" /></td>
+                    <td><obs conceptId="106715" answerConceptId="105509" style="radio" /></td>
+                </tr>
+                <td><b>If a child has diarrhoea  </b></td>
+                <tr>
+
+                    <td><obs conceptId="106716" answerConceptId="106283" style="radio" /></td>
+                    <td><obs conceptId="106716" answerConceptId="106284" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="B.Followup within 2 days">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106717" answerConceptId="43" style="radio" /></td>
+                    <td><obs conceptId="106717" answerConceptId="197" style="radio" /></td>
+                    <td><obs conceptId="106717" answerConceptId="106285" style="radio" /></td>
+                    <td><obs conceptId="106717" answerConceptId="106286" style="radio" /></td>
+                    <td><obs conceptId="106717" answerConceptId="106287" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="C.Followup within 5 days">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106718" answerConceptId="11678" style="radio" /></td>
+                    <td><obs conceptId="106718" answerConceptId="10882" style="radio" /></td>
+                    <td><obs conceptId="106718" answerConceptId="106288" style="radio" /></td>
+                    <td><obs conceptId="106718" answerConceptId="106289" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="D.Followup  within 14 days">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106719" answerConceptId="106290" style="radio" /></td>
+                    <td><obs conceptId="106719" answerConceptId="106291" style="radio" /></td>
+                    <td><obs conceptId="106719" answerConceptId="106292" style="radio" /></td>
+                    <td><obs conceptId="106719" answerConceptId="3" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="E.Followup within 30 days">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106720" answerConceptId="6941" style="radio" /></td>
+                    <td><obs conceptId="106720" answerConceptId="106293" style="radio" /></td>
+                    <td><obs conceptId="106720" answerConceptId="106294" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="F.Follow-up Result">
+            <table class="baseline-aligned">
+                <tr>
+                    <td><obs conceptId="106721" answerConceptId="13660" style="radio" /></td>
+                    <td><obs conceptId="106721" answerConceptId="106295" style="radio" /></td>
+                    <td><obs conceptId="106721" answerConceptId="106296" style="radio" /></td>
+                    <td><obs conceptId="106721" answerConceptId="106297" style="radio" /></td>
+                    <td><obs conceptId="106721" answerConceptId="159" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+    <submit/>
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+    
+</htmlform>

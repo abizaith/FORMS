@@ -1,0 +1,766 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $j(document).ready(function(){
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+
+       $('#page1id').click(function() {
+            $('#page1').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page2id').click(function() {
+            $('#page2').toggle();
+            $('#page1').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page3id').click(function() {
+            $('#page3').toggle();
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page4id').click(function() {
+            $('#page4').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page1').hide();
+       });
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+    });    
+</script>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                   <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page1id">DEVELOPMENT HEALTH</h3></div>
+        <div id="page1" class="pages">
+            <section>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><strong>Location ( where come from ) of the victim</strong></td>
+                        <td><obs conceptId="106656" answerConceptId="106230" style="checkbox" /></td>
+                        <td><obs conceptId="106656" answerConceptId="106231" style="checkbox" /></td>
+                        <td><obs conceptId="106656" answerConceptId="106232" style="checkbox" /></td>
+                        <td><obs conceptId="106656" answerConceptId="106233" style="checkbox" /></td>
+                        <td><obs conceptId="106656" answerConceptId="106234" style="checkbox" /></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Anamnesis and history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">When do you say this happened?</td>
+                        <td><obs conceptId="106235"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">When is the first time you remember this happening?</td>
+                        <td><obs conceptId="106236" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Threats that were made?</td>
+                        <td><obs conceptId="106237" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What area of your body did you say was touched or hurt?</td>
+                        <td><obs conceptId="106238" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have any pain in your bottom or genital area?</td>
+                        <td><obs conceptId="106239" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Is there any blood in your panties or in the toilet?</td>
+                        <td><obs conceptId="106240" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any difficulty or pain with voiding or defecating?</td>
+                        <td><obs conceptId="106241" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Relationship with the perpetrator</td>
+                        <td><obs conceptId="106242" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date</td>
+                        <td><obs conceptId="106217"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Time of the violence</td>
+                        <td><obs conceptId="106243"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Venue of the violence </td>
+                        <td><obs conceptId="106244" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number of persons who did violence</td>
+                        <td><obs conceptId="106245"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Instrument used</td>
+                        <td><obs conceptId="106246" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">History of washing/bathing since assault</td>
+                        <td><obs conceptId="106247" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="General history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Tell me about your general health</td>
+                        <td><obs conceptId="106248" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you seen a nurse or a doctor lately?</td>
+                        <td><obs conceptId="106249" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106250" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you been diagnosed with any illnesses? </td>
+                        <td><obs conceptId="106251" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106252" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had any operations?</td>
+                        <td><obs conceptId="106253" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106254" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you suffer from any infectious diseases?</td>
+                        <td><obs conceptId="106255" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106256" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have any allergies? </td>
+                        <td><obs conceptId="106257" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106258" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Are you currently taking any or medicine? </td>
+                        <td><obs conceptId="106259" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106260" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Gynaecological history ( >20 years )">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">When was your last menstrual period?</td>
+                        <td><obs conceptId="968"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Duration of the menstrual period</td>
+                        <td><obs conceptId="106261" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><strong>Sexual activity:</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you currently have a sexual partner? </td>
+                        <td><obs conceptId="106262" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">When did you have the last consented sexual intercourse?</td>
+                        <td><obs conceptId="106263"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sex for the partner(s) ( in life) </td>
+                        <td><obs conceptId="106264" answerCodes="Man,Female" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Related to STI</td>
+                        <td><obs conceptId="106265"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Related to violence based on gender and child abuse </td>
+                        <td><obs conceptId="106266" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106267" style="checkbox" /></td> <td><obs conceptId="106268" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106269" style="checkbox" /></td> <td><obs conceptId="106270" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="9978" style="checkbox" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Had you had any sexual intercourse prior to this incident?  </td>
+                        <td><obs conceptId="106271" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106272" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had any pregnancies?   </td>
+                        <td><obs conceptId="106273" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106274" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Use of contraception</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you use contraception?  </td>
+                        <td><obs conceptId="106275" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes What type </td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066,1065,1066,1065,1066,1065" answerCodes="G,P,EV,EM,AV,AD,AP" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Others</td>
+                        <td><obs conceptId="105486" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="History Taking for Children victims of sexual violence">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">What grade are you in at school?</td>
+                        <td><obs conceptId="106276" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How many brothers and sisters do you have?</td>
+                        <td><obs conceptId="106277" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Other Past history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Medical</td>
+                        <td><obs conceptId="106278" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Surgical</td>
+                        <td><obs conceptId="13391" rows="1" cols="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Psychiatric</td>
+                        <td><obs conceptId="106279" rows="1" cols="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Allergy  </td>
+                        <td><obs conceptId="106877" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page2id">PHYS. EXAMINATION (CHILD)</h3></div>
+        <div id="page2" class="pages">
+            <section headerCode="Take the vital signs (if not taken)">
+                <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                    <tr>
+                        <td class="lblcolor">Weight (kg)</td>
+                        <td><obs conceptId="5089" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Height (cm)</td>
+                        <td><obs conceptId="5090" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature</td>
+                        <td><obs conceptId="5088" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory rate</td>
+                        <td><obs conceptId="5242" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">BP ( mm/hg)</td>
+                        <td><obs conceptId="105590" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">O2 saturation</td>
+                        <td><obs conceptId="106208" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Mental status</td>
+                        <td><obs conceptId="106209" style="text" size="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">External exam</td>
+                        <td><obs conceptId="106210" style="text" size="30"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="A. Head to toe examination of GB victim ( adults)">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Inspect both sides of both hands for injuries</td>
+                        <td><obs conceptId="106211" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">specify if abnormal</td>
+                        <td><obs conceptId="106212" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Examine the wrists for signs of ligature marks.</td>
+                        <td><obs conceptId="106213" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">specify if abnormal</td>
+                        <td><obs conceptId="106214" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Inspect the forearms for defence related injuries</td>
+                        <td><obs conceptId="106215" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">specify if abnormal</td>
+                        <td><obs conceptId="106216" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+                <td><b>Defensive injuries include</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106650" answerConceptIds="1115,106191,106192,106193,106194" answerCodes=" Normal,bruising,abrasions,lacerations,incised wounds" style="radio" /></td>
+                    </tr>
+                </table>
+                <td><b>Inner surfaces of the upper arms</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106651" answerConceptIds="1115,106225,106224,106220,106221" answerCodes=" Normal,Armpit,Axilla for signs of bruising,Face and the eyes,Ears including the area behind the ears " style="radio" /></td>
+                    </tr>
+                </table>
+                <td><b>Gentle palpation of scalp</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106651" answerConceptIds="1115,106222,106224,106223" answerCodes="Normal,Tenderness,Swelling,Suggestive of haematomas" style="radio" /></td>
+                    </tr>
+                </table>
+                <td><b>Neck area</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106653" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Breasts</td>
+                        <td><obs conceptId="11304" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Trunk </td>
+                        <td><obs conceptId="106218" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="G. Abdominal examination">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Any internal trauma </td>
+                        <td><obs conceptId="106219" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pregnancy</td>
+                        <td><obs conceptId="44" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+                <td><b>Legs</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106653" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                </table>
+                <td><b>Buttocks</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106645" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Genito-anal Examination for Adult victims">
+                <td><b>External areas of the genital region</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">anus </td>
+                        <td><obs conceptId="11312" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">specify if abnormal </td>
+                        <td><obs conceptId="106190" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Thighs</b></td>
+                        <td><obs conceptId="106645" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Buttocks</b></td>
+                        <td><obs conceptId="106645" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Genital examination">
+                <td><b>Posterior Fourchette area</b></td>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106655" answerConceptIds="1115,106191,106192,106193,106194" answerCodes="Normal,bruising,abrasions,lacerations,incised wounds " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check for bright blood </td>
+                        <td><obs conceptId="106195" answerCodes="Yes,No" style="radio" /></td><br/>
+                        <td><b>Origin if Yes</b></td>
+                        <td><obs conceptId="106655" answerConceptIds="106196,106197" answerCodes="vulval,vaginal " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal walls </td>
+                        <td><obs conceptId="106655" answerConceptIds="106198,106199,106191" answerCodes="signs of injury,tears,bruising" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">foreign bodies and hairs ?</td>
+                        <td><obs conceptId="106200" answerCodes="Yes,No" style="radio" /></td>
+                        <td class="lblcolor">Specify if yes</td>
+                        <td><obs conceptId="106201" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Other Gynecological exam">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td>Inspection </td>
+                        <td><obs conceptId="106226" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>Speculum </td>
+                        <td><obs conceptId="11606" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>TV Vaginal toucher </td>
+                        <td><obs conceptId="106228" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>TR Rectal toucher </td>
+                        <td><obs conceptId="106229" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Paraclinical ( complementary exam and results)">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td>HIV test </td>
+                        <td><obs conceptId="3387" answerCodes="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td>Pregnancy test </td>
+                        <td><obs conceptId="2473" answerCodes="Negative,Positive,Indeterminate,No reagent,No Material" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td>RPR/VDRL/TPHA </td>
+                        <td><obs conceptId="1478" answerCodes="Negative,Positive,Unknown" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td>Urine exam:bacteriuria, leucocytes and nitrites </td>
+                        <td><obs conceptId="105523" answerCodes="Negative,Positive" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td>NFS/FBC</td>
+                        <td><obs conceptId="10775" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>Créatinine </td>
+                        <td><obs conceptId="2555" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>(ALAT, ASAT)   </td>
+                        <td><obs conceptId="10402" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td>Other complementary exams </td>
+                        <td><obs conceptId="106227" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page3id">INVESTIGATION</h3></div>
+        <div id="page3" class="pages">
+            <section headerCode="A. Investigations: ">
+
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Any biological evidence </td>
+                        <td><obs conceptId="106182" answerCodes="Yes,No" style="radio" /></td>
+                    </tr> <tr>
+                    <td class="lblcolor">which moistened swabs :  </td>
+                    <td><obs conceptId="8159" answerConceptIds="1065,1066,1066" answerCodes="semen,saliva,blood " style="radio" /></td>
+                </tr>
+                    <tr>
+                        <td class="lblcolor">which tweezers :  </td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="hair,fibres,grass soil" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urinalysis – microscopy+ Chlamydia  </td>
+                        <td><obs conceptId="106183" answerCodes="Positive,Negative" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pregnancy test </td>
+                        <td><obs conceptId="2473" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">HIV Test </td>
+                        <td><obs conceptId="3387" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">FBC </td>
+                        <td><obs conceptId="7836" answerCodes="Positive,Negative" style="radio" /></td>	</tr>
+                    <tr>
+                        <td class="lblcolor">Hepatitis B and C studies
+                        </td>
+                        <td><obs conceptId="106184" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Liver Function Tests </td>
+                        <td><obs conceptId="953" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">VDRL </td>
+                        <td><obs conceptId="299" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vaginal/urethral swabs if discharge</td>
+                        <td><obs conceptId="106185" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">X-rays of specific areas for physical assault</td>
+                        <td><obs conceptId="106186" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Investigations Carried Out for Evidence Purposes">
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Urine analysis for epithelial cells </td>
+                        <td><obs conceptId="106187" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">High vaginal /Rectal swab for evidence of spermatozoa</td>
+                        <td><obs conceptId="106188" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="D. Diagnostic and Conclusion">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Type of violence based on gender and child abuse</td>
+                        <td><obs conceptId="106737" answerConceptIds="106733,106734,106735,106736" answerCodes="Physique,Sexuelle,Psychologique,Autres" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sexual</td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Vaginale,Anal,Other orifices" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of findings and action taken</td>
+                        <td><obs conceptId="106189" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page4id">TREATMENT </h3></div>
+        <div id="page4" class="pages">
+            <section headerCode="A. Curative treatment: ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106645" answerConceptIds="106161,106162,106163,106164,106165" answerCodes="Treatment of injuries wounds, Treatment of STI by syndromic approach,Support for HIV/AIDS patients following the national protocol in force,Analgesics,Anxiolytics" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Prophylactic treatment: ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106642" answerConceptIds="106166,106167,106168,106169,106170,106171,106172" answerCodes="Post exposure Prophylaxis for HIV/AIDS (PEP),Emergency Contraception,PPE,Prophylactic treatment of STIs,Offer Family Planning,Forensic sample collection,Advice on further support (psychological, legal, social support)" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="C. Other Management">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106643" answerConceptIds="106173,106174,106175" answerCodes="Contact GBV Police officer for the area (or RIB staff) 3512,Refer to Psychologist, legal or social support,Admit the case if needed" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="D. Important phone numbers: ">
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Hotline for legal assistance in case of GBV: 3677 </td>
+                        <td><obs conceptId="106176" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Free hotline for reporting GBV cases to the police: 3512 </td>
+                        <td><obs conceptId="106177" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="E. Reference  ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">referencies done</td>
+                        <td><obs conceptId="106178" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify to where if Yes</td>
+                        <td><obs conceptId="106179" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Counter reference</td>
+                        <td><obs conceptId="106180" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify from where  if Yes</td>
+                        <td><obs conceptId="106181" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+
+</htmlform>

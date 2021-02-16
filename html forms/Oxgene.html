@@ -1,0 +1,364 @@
+<htmlform>
+
+    <macros>
+        paperFormId = Flow-DM-RW.V2.0.akb.15May09
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+
+        @Motivation_Of_Drug_Prescription@ = 4ac07e09-570c-497b-8b9a-639cdedbe2df
+        @RWANDA_INSURANCE_NUMBER@ = 5775fd72-b120-40e1-84a4-a2554a781bb2
+        @RWANDA_INSURANCE_TYPE@ = 8da67e73-776c-43f6-9758-79d1f6786db3
+        @Insurance_Beneficiary_Names@ = b2783c61-6ff2-4964-bbb8-3440b30ed954
+        @BENEFICIALY_INSURANCE_NUMBER@ = b4bf4d52-ae92-4d8f-b7f0-3c99c521a568
+        @GENERAL_DRUG_FREQUENCY@ = 5e152a81-8635-41d6-aef2-2527a5f584f3
+        @Other_Drugs@ = aaa7aeff-c1cc-4c34-befc-0821c7f5e2e0
+        @Date_of_Ordonance@ = 65ef339a-801c-4f43-ad3e-ef4913d23e70
+
+    </macros>
+    <style>
+        th.tableHeader {
+        background-color: #009d8e;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-align: left;
+        }
+        .sectionHeader { background-color: #009d8e;
+        color: white; display: block; padding: 2px; font-weight:bold; }
+        ul {
+        list-style-type: square;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        }
+
+        tr.spaceUnder>td {
+        padding-bottom: 1em;
+        }
+
+        td {
+        font-size: 15px;
+        }
+
+        #container {
+        position: relative;
+        margin: auto;
+        width: 1400px;
+        height: auto;
+        }
+
+        @media print {
+        #container {
+        display: none;
+        }
+
+        #printArea {
+        display: block;
+        }
+
+        #userBar {
+        display: none;
+        }
+
+        #banner {
+        display: none;
+        }
+
+        #footer {
+        display: none;
+        }
+
+        #htmlFormEntryBanner {
+        display: none;
+        }
+
+        .error {
+        display: none;
+        }
+
+        .lables {
+        width: 200px;
+        }
+
+        table {
+        width: 100%;
+        }
+
+        table,td,th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th {
+        text-align: left;
+        background-color: #D9D9D9;
+        font-size: 10px;
+        }
+
+        td {
+        font-size: 10px;
+        }
+
+        .selectedCancerStagingKeys {
+        page-break-before: always;
+        border: 0px;
+        }
+
+        table.selectedCancerStagingKeys td {
+        border: 0px;
+        }
+
+        #signature {
+        border: none;
+        }
+        #signature td {
+        border: none;
+        }
+        }
+
+        @media screen {
+        table {
+        border: 1px solid #DFDFDF;
+        width: 100%;
+        border-color: #009d8e;
+        }
+
+        #container {
+        display: block;
+        }
+
+        #printArea {
+        display: none;
+        }
+        }
+
+    </style>
+
+    <section headerLabel="Identification">
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    <b><u>Patient:</u></b><lookup expression="patient.personName"/><br/>
+                    <b>Id Number:</b><lookup expression="patient.patientIdentifier.identifier"/><br/>
+                    {
+                    <b>Sex:</b><font color="blue"><lookup expression="patient.gender"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Age:</b><font color="blue"><lookup expression="patient.age"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Education Level:</b><font color="blue"><lookup expression="personAttributes.get('Education Level')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Religion:</b><font color="blue"><lookup expression="personAttributes.get('Religion')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Profession:</b><font color="blue"><lookup expression="personAttributes.get('Profession')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Phone number:</b><font color="blue"><lookup expression="personAttributes.get('Phone number')"/></font>
+                    }
+                </td>
+            </tr>
+        </table>
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    Date:
+                    <encounterDate default="today" />
+                </td>
+                <td>
+                    Health Facility:
+                    <encounterLocation id="location" default="GlobalProperty:encounter.defaultLocation" />
+
+                </td>
+                <td>
+                    Provider:
+                    <encounterProvider role="Provider"  default="currentUser"/>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section headerLabel="Patient Information">
+        <table cellspacing="0" cellpadding="6" width="100%" style="background-color:AliceBlue">
+            <tr>
+                <td class="lblcolor">Dernier Detail de Treatment </td>
+                <td><font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font></td>
+                <td><font color="red"><lookup expression="fn.latestObs(3974).getValueDate()"/></font></td>
+            </tr>
+        </table>
+    </section>
+    <section headerLabel="Vital Signs">
+    <table>
+        <tr>
+            <td class="lblcolor">Temperature</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5088).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">Weight:</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5089).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">Height:</td>
+            <td>   <font color="red"><lookup expression="fn.latestObs(5090).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">SBP:</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5085).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">DBP:</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5086).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">Pulse:</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5087).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">O2 Saturator:</td>
+            <td>  <font color="red"><lookup expression="fn.latestObs(5092).getValueNumeric()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">CLINICAL IMPRESSION COMMENTS:</td>
+            <td> <font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font>
+            </td>
+        </tr>
+        <tr>
+            <td class="lblcolor">RECOMMENDATIONS:</td>
+            <td> <font color="red"><lookup expression="fn.latestObs(1391).getValueText()"/></font>
+            </td>
+        </tr>
+    </table>
+    </section>
+
+    <section headerLabel="Oxygen Sheet">
+        <table cellspacing="0" cellpadding="6" width="100%" style="background-color:AliceBlue">
+            <tr class="strong">
+                <td><b>Starting Hour</b></td>
+                <td><b>Ending Hour</b></td>
+                <td><b>Total Hour per Day</b></td>
+                <td><b>Comments</b></td>
+            </tr>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                      <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                    <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                        <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                        <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                        <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                        <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                        <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                        <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                        <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                        <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+            <obsgroup groupingConceptId="f81b74ec-760f-4958-a178-275d7972c904">
+                <tr>
+                    <td>
+                        <!--<td>Starting Hour</td>-->
+                        <obs conceptId="3b79d86a-1158-48f6-9e5c-cc06b7a47aa0" showTime="true"  allowTime="true" default="now" />
+                    </td>
+                    <td>
+                        <!--<td>Ending Hour</td>-->
+                        <obs conceptId="22136e40-ce85-45b7-ab36-b62dc7fac055" showTime="true"  allowTime="true" default="now"/>
+                    </td>
+                    <td>
+                        <!--<td>Total Hour per Day</td>-->
+                        <obs conceptId="9a5c0d9b-a542-4e9f-9b1d-96de46552317" />
+                    </td>
+                    <td>
+                        <!--<td>Comments</td>-->
+                        <obs conceptId="85f364f7-8deb-4d81-ad56-44b4e15542a2" style="textarea" rows="2" cols="20"/>
+                    </td>
+                </tr>
+            </obsgroup>
+        </table>
+    </section>
+
+    <center>
+        <submit/>
+    </center>
+</htmlform>

@@ -1,0 +1,157 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Treatment of the GBV victim</h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    <td> Current ANC visit : <lookup expression="fn.latestEncounter(a703372d-28b7-4831-9817-ee385c8c47d8)"/></td>
+                </tr>
+            </table>
+        </section>
+            <section headerCode="A. Curative treatment: ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106645" answerConceptIds="106161,106162,106163,106164,106165" answerCodes="Treatment of injuries wounds, Treatment of STI by syndromic approach,Support for HIV/AIDS patients following the national protocol in force,Analgesics,Anxiolytics" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Prophylactic treatment: ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106642" answerConceptIds="106166,106167,106168,106169,106170,106171,106172" answerCodes="Post exposure Prophylaxis for HIV/AIDS (PEP),Emergency Contraception,PPE,Prophylactic treatment of STIs,Offer Family Planning,Forensic sample collection,Advice on further support (psychological, legal, social support)
+" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="C. Other Management">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106643" answerConceptIds="106173,106174,106175" answerCodes="Contact GBV Police officer for the area (or RIB staff) 3512,Refer to Psychologist, legal or social support,Admit the case if needed" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="D. Important phone numbers: ">
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Hotline for legal assistance in case of GBV: 3677 </td>
+                        <td><obs conceptId="106176" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Free hotline for reporting GBV cases to the police: 3512 </td>
+                        <td><obs conceptId="106177" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="E. Reference  ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">referencies done</td>
+                        <td><obs conceptId="106178" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify to where if Yes</td>
+                        <td><obs conceptId="106179" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Counter reference</td>
+                        <td><obs conceptId="106180" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify from where  if Yes</td>
+                        <td><obs conceptId="106181" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

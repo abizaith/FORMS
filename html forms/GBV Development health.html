@@ -1,0 +1,351 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Assessment of development and health </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table class="baseline-aligned">
+                <tr>
+                    <td><strong>Location ( where come from ) of the victim</strong></td>
+                    <td><obs conceptId="106656" answerConceptId="106230" style="checkbox" /></td>
+                    <td><obs conceptId="106656" answerConceptId="106231" style="checkbox" /></td>
+                    <td><obs conceptId="106656" answerConceptId="106232" style="checkbox" /></td>
+                    <td><obs conceptId="106656" answerConceptId="106233" style="checkbox" /></td>
+                    <td><obs conceptId="106656" answerConceptId="106234" style="checkbox" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+            <section headerCode="Anamnesis and history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">When do you say this happened?</td>
+                        <td><obs conceptId="106235"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">When is the first time you remember this happening?</td>
+                        <td><obs conceptId="106236" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Threats that were made?</td>
+                        <td><obs conceptId="106237" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What area of your body did you say was touched or hurt?</td>
+                        <td><obs conceptId="106238" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have any pain in your bottom or genital area?</td>
+                        <td><obs conceptId="106239" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Is there any blood in your panties or in the toilet?</td>
+                        <td><obs conceptId="106240" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any difficulty or pain with voiding or defecating?</td>
+                        <td><obs conceptId="106241" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Relationship with the perpetrator</td>
+                        <td><obs conceptId="106242" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date</td>
+                        <td><obs conceptId="106217"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Time of the violence</td>
+                        <td><obs conceptId="106243"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Venue of the violence </td>
+                        <td><obs conceptId="106244" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number of persons who did violence</td>
+                        <td><obs conceptId="106245"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Instrument used</td>
+                        <td><obs conceptId="106246" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">History of washing/bathing since assault</td>
+                        <td><obs conceptId="106247" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="General history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Tell me about your general health</td>
+                        <td><obs conceptId="106248" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you seen a nurse or a doctor lately?</td>
+                        <td><obs conceptId="106249" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106250" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you been diagnosed with any illnesses? </td>
+                        <td><obs conceptId="106251" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106252" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had any operations?</td>
+                        <td><obs conceptId="106253" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106254" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you suffer from any infectious diseases?</td>
+                        <td><obs conceptId="106255" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106256" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have any allergies? </td>
+                        <td><obs conceptId="106257" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106258" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Are you currently taking any or medicine? </td>
+                        <td><obs conceptId="106259" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106260" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Gynaecological history ( >20 years )">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">When was your last menstrual period?</td>
+                        <td><obs conceptId="968"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Duration of the menstrual period</td>
+                        <td><obs conceptId="106261" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><strong>Sexual activity:</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you currently have a sexual partner? </td>
+                        <td><obs conceptId="106262" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">When did you have the last consented sexual intercourse?</td>
+                        <td><obs conceptId="106263"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sex for the partner(s) ( in life) </td>
+                        <td><obs conceptId="106264" answerCodes="Man,Female" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Related to STI</td>
+                        <td><obs conceptId="106265"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Related to violence based on gender and child abuse </td>
+                        <td><obs conceptId="106266" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106267" style="checkbox" /></td> <td><obs conceptId="106268" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106269" style="checkbox" /></td> <td><obs conceptId="106270" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="9978" style="checkbox" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Had you had any sexual intercourse prior to this incident?  </td>
+                        <td><obs conceptId="106271" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106272" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had any pregnancies?   </td>
+                        <td><obs conceptId="106273" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="106274" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Use of contraception</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you use contraception?  </td>
+                        <td><obs conceptId="106275" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes What type </td>
+                        <td><obs conceptId="8159" answerConceptIds="1065,1066,1065,1066,1065,1066,1065" answerCodes="G,P,EV,EM,AV,AD,AP" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Others</td>
+                        <td><obs conceptId="105486" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="History Taking for Children victims of sexual violence">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">What grade are you in at school?</td>
+                        <td><obs conceptId="106276" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How many brothers and sisters do you have?</td>
+                        <td><obs conceptId="106277" style="text" size="25"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Other Past history">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Medical</td>
+                        <td><obs conceptId="106278" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Surgical</td>
+                        <td><obs conceptId="13391" rows="1" cols="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Psychiatric</td>
+                        <td><obs conceptId="106279" rows="1" cols="30"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Allergy  </td>
+                        <td><obs conceptId="106877" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

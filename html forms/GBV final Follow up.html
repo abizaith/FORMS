@@ -1,0 +1,253 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $j(document).ready(function(){
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+
+       $('#page1id').click(function() {
+            $('#page1').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page2id').click(function() {
+            $('#page2').toggle();
+            $('#page1').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page3id').click(function() {
+            $('#page3').toggle();
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page4id').click(function() {
+            $('#page4').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page1').hide();
+       });
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+    });    
+</script>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                   <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page1id">CLINICAL FOLLOWUP</h3></div>
+        <div id="page1" class="pages">
+            <section>
+                <section headerCode="A. Clinical follow up">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Date</td>
+                            <td><obs conceptId="106879" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Time ( Hours)</td>
+                            <td><obs conceptId="106154" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Observation</td>
+                            <td><obs conceptId="12933" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Procedure done</td>
+                            <td><obs conceptId="106159" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Next follow up and motivation</td>
+                            <td><obs conceptId="106160" rows="1" cols="30"/></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page2id">PSYCHOLOGICAL CONSULTATION</h3></div>
+        <div id="page2" class="pages">
+            <section>
+                <section headerCode="A. Anamnesis of the family">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Socio-economic and familial status</td>
+                            <td><obs conceptId="106145" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Past family history</td>
+                            <td><obs conceptId="106146" style="text" size="25"/></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B. Personnal anamnesis and context of violence">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">chief complaint</td>
+                            <td><obs conceptId="106881" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Anamnesis : Birth history, childhood, adolescent, school age, professional age, adult age, event period</td>
+                            <td><obs conceptId="106147" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor"> Personnal history: Madical, psychiatrics, judiciaire</td>
+                            <td><obs conceptId="106148" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Physical appearance</td>
+                            <td><obs conceptId="106149" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Evaluation of the mental status ( memory, thinking, humor, judgment, consciencness, orientation, language, comportmental, intelligency) </td>
+                            <td><obs conceptId="106150" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Hypothesis</td>
+                            <td><obs conceptId="106151" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Impression Diagnosis</td>
+                            <td><obs conceptId="106152" style="text" size="25"/></td>
+                        </tr>
+                    </table>
+
+                </section>
+                <section headerCode="C. Psychosocial follow up">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Date</td>
+                            <td><obs conceptId="106153" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Time ( Hours)</td>
+                            <td><obs conceptId="106154" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">How was the session</td>
+                            <td><obs conceptId="106155" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Current status + Prognosis</td>
+                            <td><obs conceptId="106156" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Intervention ( Management, treatment, home visit)</td>
+                            <td><obs conceptId="106157" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Current status and appointment</td>
+                            <td><obs conceptId="106158" style="text" size="25"/></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

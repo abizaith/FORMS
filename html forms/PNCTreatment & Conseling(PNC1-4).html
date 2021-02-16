@@ -1,0 +1,121 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+	.lblcolormatrix{background: #e2e3f2;width: 150px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <!--<td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    <td> Current ANC visit : <lookup expression="fn.latestEncounter(a703372d-28b7-4831-9817-ee385c8c47d8)"/></td>-->
+                </tr>
+            </table>
+        </section>
+        <section>
+
+            <section headerCode="A. Preventative treatment given">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106594" answerConceptIds="4063,9407,9213" answerCodes="Vitamin A capsule, Vitamin B, Iron" style="radio" /></td>
+                        </tr>
+                    </table>
+            </section>
+
+            <section headerCode="B. Give Counselling">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106595" answerConceptIds="1180,5483,105811,105812,105813,105815,105818,105819" answerCodes="Postpartum,Family planning,Encourage urination,Hand washing, general hygiene, and cord care,Healthy eating for the mother and iron supplementation,Danger signs for baby and mother (see above),Sleeping under a long-lasting insecticide-treated net,Exclusive breastfeeding for first 6 months;avoid prelacteal feeds
+" style="radio" /></td>
+                        </tr>
+                    </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td >This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

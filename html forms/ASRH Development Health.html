@@ -1,0 +1,446 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Development and health History</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+
+                </tr>
+            </table>
+        </section>
+
+        <section >
+            <section headerCode="A. Home">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Where s/he lives</td>
+                        <td><obs conceptId="106090" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">With whom</td>
+                        <td><obs conceptId="106091" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any changes in home situation</td>
+                        <td><obs conceptId="106092" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How s/he perceives the home situations</td>
+                        <td><obs conceptId="106093" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="B. Education/Employment">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Whether she/he studies/works</td>
+                        <td><obs conceptId="1688" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How she/he perceives what she/he is doing </td>
+                        <td><obs conceptId="1304" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How she/he perceives the relation with the teachers and fellow students/employers </td>
+                        <td><obs conceptId="106096" answerCodes="," style="text" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether there have been any recent changes in the situation</td>
+                        <td><obs conceptId="106097" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What she/he does during their breaks/ type of games/sports/intertainement specify</td>
+                        <td><obs conceptId="106098" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Suicide/ Depression">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Whether his/her sleep is adequate  </td>
+                        <td><obs conceptId="106099" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she feels unduly tired  </td>
+                        <td><obs conceptId="106100" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she eats well </td>
+                        <td><obs conceptId="106101" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How he/she feels emotionally </td>
+                        <td><obs conceptId="106102" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she has had any mental health problems (especially depression) </td>
+                        <td><obs conceptId="106103" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If so, whether he/she has received any treatment for this</td>
+                        <td><obs conceptId="106104" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she has had suicidal thoughts</td>
+                        <td><obs conceptId="106105" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she has attempted suicide</td>
+                        <td><obs conceptId="106106" answerCodes="Yes,No" style="radio"/>
+                           <!-- &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            If any is YES then refer <obs conceptId="12614" rows="3" cols="30" />--></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Eating">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">How many meals he/she has on a normal day </td>
+                        <td><obs conceptId="106107" rows="3" cols="30"  /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What he/she eats at each meal </td>
+                        <td><obs conceptId="106108" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What he/she thinks and feel about their bodies</td>
+                        <td><obs conceptId="106109" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="E. Activity">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Activities outside study/work </td>
+                        <td><obs conceptId="106110" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What he/she does in their free time </td>
+                        <td><obs conceptId="106111" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Whether he/she spends some time with family members and friends</td>
+                        <td><obs conceptId="f2d1317d-3f64-41f5-8dc8-7c14ac34e94b" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="F. Drugs">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Whether he/she uses tobacco, alcohol, or other substances  </td>
+                        <td><obs conceptId="106113" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Whether he/she injects any substances</td>
+                        <td><obs conceptId="106114" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">If he/she uses any substances, how much do they use; when, where and with whom do they use them </td>
+                        <td><obs conceptId="106115" rows="3" cols="30"></obs> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="G. History of Sexuality">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Menstrual history</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have your periods started yet?  </td>
+                        <td><obs conceptId="106116" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If so, how old were you when your periods started?</td>
+                        <td><obs conceptId="106117" style="text" /></td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Pain during the periods</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have pain with your periods?</td>
+                        <td><obs conceptId="106118" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Does the pain prevent you from carrying out your daily activities?</td>
+                        <td><obs conceptId="106119" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">What do you do to ease the pain? </td>
+                        <td><obs conceptId="106120" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Excessive bleeding during the periods</b></td>
+                     </tr>
+                   <!-- <tr>
+                        <td class="lblcolor">Do you feel you have heavy periods</td>
+                        <td><obs conceptId="106822" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>-->
+                    <tr>
+                        <td class="lblcolor">How many days do your periods last when they come?</td>
+                        <td><obs conceptId="106121" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">How many pads (or equivalent) do you use a day?</td>
+                        <td><obs conceptId="106122" style="text" /></td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Regularity of the periods</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Are your periods regular? </td>
+                        <td><obs conceptId="106123" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do your periods come at the same time every month?</td>
+                        <td><obs conceptId="106124" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">How many days are there normally between your periods?  </td>
+                        <td><obs conceptId="106125" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Is your period delayed? </td>
+                        <td><obs conceptId="106126" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Knowledge about sexuality</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you learned about sexuality at school, at home or elsewhere?</td>
+                        <td><obs conceptId="106127" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Note: Probe to find out whether the adolescent is knowledgeable about basic anatomy and functioning, menstruation, pregnancy and contraception, and sexually transmitted infections. </td>
+                        <td><obs conceptId="106128" rows="2" cols="30" /> </td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Sexual activity</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Has a boyfriends/girlfriend.</td>
+                        <td><obs conceptId="106129" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Has had sex</td>
+                        <td><obs conceptId="106130" rows="3" cols="30" /> </td>
+                    </tr>
+                <!--    <tr>
+                        <td class="lblcolor">How old were you when you had sex for the first time</td>
+                        <td><obs conceptId="106823" rows="3" cols="30" /> </td>
+                    </tr>-->
+                    <tr>
+                        <td class="lblcolor">Do you have access to condoms</td>
+                        <td><obs conceptId="106131" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>Pregnancy and contraception</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you know how one could get pregnant? </td>
+                        <td><obs conceptId="106132" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you know how one could avoid getting pregnant? </td>
+                        <td><obs conceptId="106133" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Are you currently trying to get pregnant? </td>
+                        <td><obs conceptId="106134" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Are you currently trying to avoid getting pregnant?  </td>
+                        <td><obs conceptId="106135" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If so, what do you do to avoid getting pregnant?</td>
+                        <td><obs conceptId="106136" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you know about contraceptive methods?</td>
+                        <td><obs conceptId="106137" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If so, do you use any contraceptive method?</td>
+                        <td><obs conceptId="106138" rows="3" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had sex in the last month? </td>
+                        <td><obs conceptId="106139" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Did you use condom the last time you had sex? </td>
+                        <td><obs conceptId="106824" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you use condom every time you have sex?</td>
+                        <td><obs conceptId="106825" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you ever used emergency contraception? </td>
+                        <td><obs conceptId="106826" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you had sex in the last month? </td>Specify if Yes<td><obs conceptId="106827" rows="3" cols="30"  /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you missed a period?</td>
+                        <td><obs conceptId="106140" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Do you have any of the following symptoms of pregnancy: nausea or vomiting in the morning, and swollen and sore breasts?</td>
+                        <td><obs conceptId="106141" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">When was the last time you had sex?</td>
+                        <td><obs conceptId="106142"  /> </td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>About STIs</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you ever had a genital sore, ulcer, swelling or discharge? </td>
+                        <td><obs conceptId="106143" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">If so, have you received any treatment for this?</td>
+                        <td><obs conceptId="106144" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <!--<tr>
+                        <td class="lblcolor">Do you have any of the following symptons: genital sore, ulcers, swelling or  discharge, bad smeeling discharge, painful urination)?</td>
+                        <td><obs conceptId="106828" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Have you ever tested for HIV in a health facility?</td>
+                        <td><obs conceptId="106829" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>-->
+
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

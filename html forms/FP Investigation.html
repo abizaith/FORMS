@@ -1,0 +1,176 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>INVESTIGATION</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <section headerCode="A. INVESTIGATION">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">FBC</td>
+                        <td><obs conceptId="106865" answerCodes="No anemia,Moderate anemia,Severe anemia" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">HIV </td>
+                        <td><obs conceptId="3753" answerCodes="Negative,Positive,Unknown,Indeterminate " style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pregnancy test </td>
+                        <td><obs conceptId="2473" answerCodes="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <td><b>Lipid profile</b></td>
+                    <tr>
+                        <td class="lblcolor">Blood sugar </td>
+                        <td><obs conceptId="887" answerCodes="Negative,Positive" style="radio" /> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="78832823-7bba-45a8-8492-32040f6eb9bb" rows="3" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"></td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">cervical cytology </td>
+                        <td><obs conceptId="106048" answerCodes="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">LFTs </td>
+                        <td><obs conceptId="106866" answerCodes="Negative,Positive" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">STIs screening</td>
+                        <td><obs conceptId="106049" answerCodes="Negative,Positive" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sumary of findings </td>
+                        <td><obs conceptId="106050" rows="3" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. CONCLUSION">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Choosen method by the client </td>
+                        <td><obs conceptId="106051"/> </td>
+                        <td><obs conceptId="13544" labelText="Modern"/></td>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <td><obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Methods for which the client is eligible</td>
+                        <td><obs conceptId="106052"/> </td>
+                        <td><obs conceptId="13544" labelText="Modern"/></td>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <td><obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Method offered</td>
+                        <td><obs conceptId="106053"/> </td>
+                        <td><obs conceptId="13544" labelText="Modern"/></td>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <td><obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+</htmlform>

@@ -1,0 +1,168 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+        <macros>
+            headerColor =#009d8e
+            fontOnHeaderColor = white
+        </macros>
+        <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+   .lblcolor{background: #e2e3f2;width: 450px;}
+</style>
+
+        <translations defaultLocale="en">
+            <code name="Temp">
+
+                <variant locale="en" value="Temp  (celcius)"/>
+            </code>
+
+
+            <code name="hd_currentprobl">
+                <variant locale="en" value="CURRENT PROBLEMS"/>
+                <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+            </code>
+            <code name="urinary_infection">
+                <variant locale="en" value="Signs suggestive of urinary infections"/>
+                <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+            </code>
+
+        </translations>
+        <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+        <h2>COUNSELING FORM </h2>
+
+        <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+        <includeIf velocityTest="$patient.gender == 'F' ">
+            <section headerCode="Question / Instructions">
+                <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                    <tr>
+                        <td>
+                            Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                        </td>
+                        <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                        </td>
+                        <td>
+                            Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate />
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider role="Provider"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+
+                        <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                    </tr>
+                </table>
+            </section>
+            Counseling about HIV  and STI prevention
+            Elaboration of the delivery plan
+            Messages on health and advice
+            Family planning methods and Compliance to medications
+
+            <section >
+                <section headerCode="Counseling Given to the Mother">
+                    <obsgroup groupingConceptId="106680">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor">Counseling about HIV and STI prevention</td>
+                                <td><obs conceptId="105533" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Elaboration of the delivery plan</td>
+                                <td><obs conceptId="105534" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Messages on health and advice</td>
+                                <td><obs conceptId="105535" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Family planning methods </td>
+                                <td><obs conceptId="105536" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Compliance to medications</td>
+                                <td><obs conceptId="105536" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <!--<tr>
+                                <td class="lblcolor">NutritionCounseling Given to the Mother</td>
+                                <td><obs conceptId="106806" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Hygiene counseling Given to the Mother</td>
+                                <td><obs conceptId="106807" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Danger signs and when to attend health facility</td>
+                                <td><obs conceptId="106808" style="textarea" rows="3" cols="30"/></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Delivery preparation and what to bring in labour</td>
+                                <td><obs conceptId="106809" style="textarea" rows="3" cols="30"/></td>
+                            </tr>-->
+
+                        </table>
+                    </obsgroup>
+                </section>
+            </section>
+            <submit />
+        </includeIf>
+        <includeIf velocityTest="$patient.gender == 'M' ">
+            <section headerLabel="Invalid Patient Message">
+                <table border="0" width="100%">
+                    <tr><td>This Form Is Only Filled For Female Patients:</td>
+                    </tr>
+                </table>
+            </section>
+        </includeIf>
+    </htmlform>

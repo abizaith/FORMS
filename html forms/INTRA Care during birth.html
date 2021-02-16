@@ -1,0 +1,288 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Care during birth and immediate care of newborn </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+        <section >
+            <section headerCode="A. Preparation for birth">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">All delivery equipment including newborn resuscitation equipment are available </td>
+                        <td><obs conceptId="105622" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Place of delivery is clean and warm </td>
+                        <td><obs conceptId="105623" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Continuous supportive care during labour">
+                <obsgroup groupingConceptId="106613">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106613" answerConceptId="105624" style="checkbox" /></td>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <td><obs conceptId="106613" answerConceptId="105625" style="checkbox" /></td>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <td><obs conceptId="106613" answerConceptId="105626" style="checkbox" /></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+            <section headerCode="C. Birth of the head">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Birth of the head</td>
+                        <td><obs conceptId="105627" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Anticipate the need for resuscitation">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Prolonged second stage</td>
+                        <td><obs conceptId="38790" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Specify if Yes</td>
+                        <td><obs conceptId="105628" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Meconium stained liquor</td>
+                        <td><obs conceptId="105629" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Tight cord around the neck</td>
+                        <td><obs conceptId="105630" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Signs of fetal distress </td>
+                        <td><obs conceptId="105631" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Face is clear of mucus and membranes </td>
+                        <td><obs conceptId="105632" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Prepare; Ambu bag, Suction apparatus, Adrenaline and  Naloxone</td>
+                        <td><obs conceptId="105633" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="E. Active management of third stage of  labour">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Give Oxytocin 10 IU IM after birth of baby </td>
+                        <td><obs conceptId="105634" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Deliver placenta by controlled cord tract on a contraction</td>
+                        <td><obs conceptId="105635" answerCodes="Yes,No" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check the placenta and membranes are complete</td>
+                        <td><obs conceptId="105636" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Monitor the mother every 5 minutes and baby every 15 minutes </td>
+                        <td><obs conceptId="105638" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="F. Assessment of the mother  (for the first two hours)">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td></td>
+                        <td class="lblcolor">1Hour</td>
+                        <td class="lblcolor">2Hours</td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature: within the first hour</td>
+                        <td><obs conceptId="105639" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td><obs conceptId="105639" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pulse, RR, BP: after birth of the placenta</td>
+                        <td ><obs conceptId="105640" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105640" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fundus and lochia: after birth of the placenta, then every 15?30 minutes</td>
+                        <td ><obs conceptId="105641" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105641" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Perineum: with first maternal observations</td>
+                        <td ><obs conceptId="105642" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105642" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pain and discomfort (analgesics)</td>
+                        <td ><obs conceptId="105643" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105643" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Urine output: monitor voiding postpartum</td>
+                        <td ><obs conceptId="105644" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105644" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Examine placenta, membranes and cord </td>
+                        <td ><obs conceptId="105645" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        <td ><obs conceptId="105645" answerCodes="Normal,Abnormal" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="H. Immediate care if the baby is stable">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Prevention of Hypothermia (KMC)</td>
+                        <td><obs conceptId="105646" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Assessment of need for resuscitation ( use HBB protocol)</td>
+                        <td><obs conceptId="105647" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Early breastfeeding ( First 1 h after birth)</td>
+                        <td><obs conceptId="105648" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Umbilical cord care ( tying 2 – 3 cm from abdomen, apply chlorexhidine  Dicluconate 7.1% )</td>
+                        <td><obs conceptId="105649" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Eye care ( Antibiotic ointment)</td>
+                        <td><obs conceptId="105650" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Administer Vit K1 intra muscular ( 0.5 mg if &#60; 1.5 kg or 1 mg if &#62; 1.5 kg  ) or 2 mg orally</td>
+                        <td><obs conceptId="105651" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="I. Danger signs ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106614" answerConceptId="105652" style="checkbox" /></td>
+                        <td><obs conceptId="106614" answerConceptId="8506" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106614" answerConceptId="105653" style="checkbox" /></td>
+                        <td><obs conceptId="106614" answerConceptId="105654" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106614" answerConceptId="105655" style="checkbox" /></td>
+                        <td><obs conceptId="106614" answerConceptId="105656" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106614" answerConceptId="105657" style="checkbox" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                        <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

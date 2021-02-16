@@ -1,0 +1,342 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   .lblcolor{background: #e2e3f2;width: 500px;}
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $j(document).ready(function(){
+            $('#page1').hide();
+            $('#page2').hide();
+
+       $('#page1id').click(function() {
+            $('#page1').toggle();
+            $('#page2').hide();
+       });
+       
+       $('#page2id').click(function() {
+            $('#page2').toggle();
+            $('#page1').hide();
+       });
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+    });    
+</script>
+
+    <translations defaultLocale="en">
+        <code name="Temp">
+
+            <variant locale="en" value="Temp  (celcius)"/>
+        </code>
+
+
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+
+    </translations>
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                   <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page2id">EXAMS FOLLOWUP</h3></div>
+        <div id="page2" class="pages">
+            <section headerCode="A. Counseling given on different methods">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Breastfeeding status</td>
+                        <td ><obs conceptId="106007" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Specify if normal</td>
+                        <td><obs conceptId="106008" style="textarea" rows="3" cols="30" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerLabel="SUMMARY OF VISITS">
+                <table border="1" width="100%" class="rdv">
+                    <tr class="strong">
+                        <td colspan="1"></td>
+                        <td colspan="1"></td>
+                        <th colspan="5" align="center">General Exam</th>
+                        <th colspan="4" align="center">Gynecological examination (if indicated)</th>
+                        <td colspan="1"></td>
+                        <td colspan="1"></td>
+                    </tr>
+
+                    <tr class="strong">
+                        <th>Date of the visit</th>
+                        <th>Complained</th>
+                        <td>Weight</td>
+                        <td>Blood pressure</td>
+                        <td>Liver</td>
+                        <td>breast</td>
+                        <td>legs</td>
+                        <td>Vulva</td>
+                        <td>Collar</td>
+                        <td>Uterus</td>
+                        <td>Annex</td>
+                        <th>Observation and Treatments</th>
+                        <th>Next appointment</th>
+                    </tr>
+                    <obsgroup groupingConceptId="76cb28ac-3eaf-4c8e-a15c-de5a59d2346e">
+                        <tr>
+                            <td>
+                                <encounterDate />
+                            </td>
+
+                            <td>
+                                <!-- Plaints -->
+                                <obs conceptId="3ce2b170-26fe-102b-80cb-0017a47871b2" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Poids -->
+                                <obs conceptId="3ce93b62-26fe-102b-80cb-0017a47871b2"/>
+                            </td>
+                            <td>
+                                <!-- TA -->
+                                <obs conceptId="6d4b1720-f45c-4069-98d9-e7e865105a7a"/>
+                            </td>
+                            <td>
+                                <!-- Foie -->
+                                <obs conceptId="b6cf70b6-f1c7-45af-b1a3-7443f64238c8"/>
+                            </td>
+                            <td>
+                                <!-- Sein -->
+                                <obs conceptId="abbbc8a7-d9d0-45a1-bef8-62b7ffee48f1" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Jambes -->
+                                <obs conceptId="2a46d793-f500-4eac-aeda-b5ea5f02e764" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Vulve -->
+                                <obs conceptId="d1642f47-e2c9-4014-850a-2559548f9016" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Col -->
+                                <obs conceptId="4a4ba2b9-8872-40e2-b0b8-6bf18923b011" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Uterus -->
+                                <obs conceptId="a735a77f-71ae-4724-bd7c-7b6d4a989a8f" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Annex -->
+                                <obs conceptId="90584f2b-5f26-40b3-a73f-def23e78bcf5" style="textarea" rows="3" cols="13"/>
+                            </td>
+                            <td>
+                                <!-- Observation et Traitements -->
+                                <obs conceptId="42c0164c-1e73-43e7-bc44-9099a41762fa" style="textarea" rows="3" cols="18"/>
+                            </td>
+                            <td>
+                                <!-- Prochain RDV -->
+                                <obs conceptId="3ce94df0-26fe-102b-80cb-0017a47871b2" />
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </table>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page1id">MONITORING SHEET</h3></div>
+        <div id="page1" class="pages">
+            <section>
+                <section headerCode="A. USED METHOD">
+                    <!-- <table border="1" width="100%" style="background-color:lightgrey">
+                        <tr>
+                            <td>
+                                Legende
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                P=pilule(PP=Pilule progestative only <br/>
+                                PC=Pilule combined) S=DIU   <br/>
+                                I=injectables CM= condom masculin<br/>
+                                CF=condom feminin B= Autre Barrieres <br/>
+                                A=Auto observation <br/>
+                                LAM=Lactation <br/>
+                                Amenorrhea <br/>
+                                CL= Collier <br/>
+                                M=Implants (MJ and MI) <br/>
+                                T= Ligature des trompes<br/>
+                                V=Vasectomie <br/>
+                                X=Perdu de vue <br/>
+                                SRV:  Neg ou Pos
+                            </td>
+                        </tr>
+                    </table> -->
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Previous FP Method Date</td>
+                            <td ><obs conceptId="107010"/></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerLabel="ANAMNESE">
+                    <obsgroup groupingConceptId="13578">
+                        <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                            <tr class="strong">
+                                <!-- <th>Month</th> -->
+                                <th> Stoped PF Method</th>
+                                <th>SRV </th>
+                            </tr><tr><td>
+                            <!-- <tr> <td><obs conceptId="106876" style=""/></td> -->
+                              <table>  <tr><td><obs conceptId="13544" answerConceptId="9412" style="checkbox" /></td></tr>
+                                    <tr><td><obs conceptId="13544" answerConceptId="1721" style="checkbox" /></td></tr>
+                                        <tr><td><obs conceptId="13544" answerConceptId="1719" style="checkbox" /></td></tr>
+                                            <tr><td><obs conceptId="13544" answerConceptId="106997" style="checkbox" /></td></tr>
+                                                <tr><td><obs conceptId="13544" answerConceptId="106996" style="checkbox" /></td></tr>
+                                                    <tr><td><obs conceptId="13544" answerConceptId="190" style="checkbox" /></td></tr>
+                                                        <tr><td><obs conceptId="13544" answerConceptId="5275" style="checkbox" /></td></tr>
+                                                            <tr><td><obs conceptId="13544" answerConceptId="13538" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106784" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106783" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106998" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106781" style="checkbox" /></td></tr>
+                                                          
+                                    <!-- <br/><obs conceptId="13568" answerConceptId="" style="checkbox" /></td>
+                                <td><obs conceptId="7251" /></td> -->
+                            </table></td><td><obs conceptId="7251" answerCodes="Positive,Negative" answerConceptIds="664,703" style="radio"/></td></tr>
+
+                        </table>
+                    </obsgroup>
+                </section>
+
+                <section headerLabel="ANAMNESE">
+                    <obsgroup groupingConceptId="13578">
+                        <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                            <tr class="strong">
+                                <!-- <th>Month</th> -->
+                                <th> New PF Method</th>
+                                <th>SRV </th>
+                            </tr><tr><td>
+                            <!-- <tr> <td><obs conceptId="106876" style=""/></td> -->
+                              <table>  <tr><td><obs conceptId="13544" answerConceptId="9412" style="checkbox" /></td></tr>
+                                    <tr><td><obs conceptId="13544" answerConceptId="1721" style="checkbox" /></td></tr>
+                                        <tr><td><obs conceptId="13544" answerConceptId="1719" style="checkbox" /></td></tr>
+                                            <tr><td><obs conceptId="13544" answerConceptId="106997" style="checkbox" /></td></tr>
+                                                <tr><td><obs conceptId="13544" answerConceptId="106996" style="checkbox" /></td></tr>
+                                                    <tr><td><obs conceptId="13544" answerConceptId="190" style="checkbox" /></td></tr>
+                                                        <tr><td><obs conceptId="13544" answerConceptId="5275" style="checkbox" /></td></tr>
+                                                            <tr><td><obs conceptId="13544" answerConceptId="13538" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106784" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106783" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106998" style="checkbox" /></td></tr>
+                                                                <tr><td><obs conceptId="13544" answerConceptId="106781" style="checkbox" /></td></tr>
+                                                          
+                                    <!-- <br/><obs conceptId="13568" answerConceptId="" style="checkbox" /></td>
+                                <td><obs conceptId="7251" /></td> -->
+                            </table></td><td><obs conceptId="7251" answerCodes="Positive,Negative" answerConceptIds="664,703" style="radio"/></td></tr>
+
+                        </table>
+                    </obsgroup>
+                </section>
+            </section>
+        </div>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

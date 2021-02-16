@@ -1,0 +1,510 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+.pages:hover {
+  color:blue;
+  background-color: gold;
+}
+.pages{
+    background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+}
+</style>
+
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+
+        $j('.pages').click(function() {
+            var ttleId = $j(this).attr('id');
+            var subTtleId = ttleId.substring(4,);
+            $j('#tb'+subTtleId).toggle();
+        });
+
+         $j('#weightunder').click(function() {
+            var valChecked = $j('#weightunder input[value="106461"]').attr('checked')?true:false;
+       if(valChecked==true){
+                $j('#weightunderid input[value="106464"]').attr("checked",true);
+            }else {
+                $j('#weightunderid input[value="106464"]').attr("checked",false);
+            }
+		 });
+         $j('#weightmed').click(function() {
+            var valChecked = $j('#weightmed input[value="106462"]').attr('checked')?true:false;
+       if(valChecked==true){
+                $j('#weightumedid input[value="106466"]').attr("checked",true);
+            }else {
+                $j('#weightumedid input[value="106466"]').attr("checked",false);
+            }
+		 });
+
+         $j('#weightup').click(function() {
+            var valChecked = $j('#weightup input[value="106463"]').attr('checked')?true:false;
+       if(valChecked==true){
+                $j('#weightupid input[value="106465"]').attr("checked",true);
+            }else {
+                $j('#weightupid input[value="106465"]').attr("checked",false);
+            }
+		 });
+
+
+            // ============ visit date =========
+            var newDate = new Date(today.setMonth(today.getMonth()+1));
+            var dt = newDate.getFullYear()+'-'+newDate.getMonth()+'-'+(newDate.getDate()+5);
+            setValue('nextvisitid.value',dt);	
+            // ===================
+	});
+</script>
+    <h2>0-7 days Examination</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                    <tr>
+                        <td>
+                            Date:
+                            <encounterDate id="encdateId" labelCode="Visit Date"/>
+                        </td>
+                        <td>
+                            Health Facility:
+                            <encounterLocation default="UserProperty:defaultLocation"/>
+                        </td>
+                        <td>
+                            Provider:
+                            <encounterProvider default="currentUser"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            Coming From: <obs conceptId="bf03ebfd-8e57-4c9d-a946-6c5d4e43cdaf" />
+                        </td>
+                    </tr>
+                       <tr>
+                        <td colspan="3" id="message"></td>
+                    </tr>
+                </table>
+        </section>
+        <section>
+                <div id="page1" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">A. Current Complaints</a></li> </div> 
+                        <table id="tb1" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Complaint?</td>
+                    <td><obs conceptId="3ce2b170-26fe-102b-80cb-0017a47871b2" style="textarea" rows="3" cols="30"/></td>
+                </tr>
+            </table>
+         </section>
+        <section>
+                <div id="page2" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">B. Check for severe illness or severe bacterial infection and moderate hypothermia and a local bacterial infection</a></li> </div> 
+          <table  id="tb2" class="baseline-aligned"  style="display:none"><tr><td>
+                        <obsgroup groupingConceptId="ad1b6d16-1836-4e64-b58f-babd122204de">
+                    <table id="tb2" class="baseline-aligned">
+                <tr><td><obs conceptId="106708" answerConceptId="206" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106429" style="radio" /></td></tr>
+                
+                <!-- <tr><td><obs conceptId="106708" answerConceptId="106984" style="radio" /></td></tr> -->
+                <tr><td><obs conceptId="106708" answerConceptId="801" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106308" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106309" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="105980" style="radio" /></td></tr>
+                <!-- <tr><td><obs conceptId="106708" answerConceptId="106280" style="radio" /></td></tr> -->
+                <tr><td><obs conceptId="106708" answerConceptId="106310" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106311" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106312" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106313" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106708" answerConceptId="106315" style="radio" /></td></tr>                
+            </table> </obsgroup>
+            <section headerCode="Classification " id="classillnessid">
+
+                <table class="baseline-aligned">
+                 <tr>
+                        <td><obs conceptId="ad1b6d16-1836-4e64-b58f-babd122204de" answerConceptId="50f1c445-1873-4164-96e3-8187fd88d04f" style="checkbox" /></td>
+                        <td><obs conceptId="ad1b6d16-1836-4e64-b58f-babd122204de" answerConceptId="7c1392a8-adf8-4c71-92b1-fd1ce7df0f5c" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="ad1b6d16-1836-4e64-b58f-babd122204de" answerConceptId="6ae0756a-6f6f-47ba-a4ca-1d56e881e0f4" style="checkbox" /></td>
+                        <td><obs conceptId="ad1b6d16-1836-4e64-b58f-babd122204de" answerConceptId="a5fe1261-26bb-49c4-abf3-c0d2e6cbe24a" style="checkbox" /></td>
+                    </tr>
+                    <!-- <tr>
+                        <td><obs conceptId="ad1b6d16-1836-4e64-b58f-babd122204de" answerConceptId="5de1c39b-084f-4204-9d3a-dde5385d587d" style="checkbox" /></td>
+                        <td></td>
+                    </tr> -->
+                </table>
+
+            </section>
+        </td></tr> </table>
+        </section>
+
+        <section>
+                <div id="page3" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">C.Check for low birth weight</a></li> </div> 
+                        <table id="tb3" class="baseline-aligned"  style="display:none">
+            <!-- <table class="baseline-aligned"> -->
+                    <tr>
+                            <td class="lblcolor">Current weight</td>
+                    </tr>
+                    <tr><td><obs id="weightunder" conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="4f9a2948-3b8d-4807-b18f-c35ce285d25f" style="radio" /></td></tr>
+                    <tr><td><obs id="weightmed" conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="7d557cee-690b-4a2d-a41d-cce2bcf4f72e" style="radio" /></td></tr>
+                    <tr><td><obs id="weightup" conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="24997052-654e-46bc-8d98-e0b17c02a33b" style="radio" /></td></tr>
+
+            <tr><td>
+            <section headerCode="Classification " id="classweightid">
+
+                    <table class="baseline-aligned">
+                     <tr>
+                            <td><obs id="weightunderid"  conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="1995696f-3204-4278-8384-95e8f1a0d6ac" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                                <td><obs id="weightupid"  conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="30368b4a-496b-41ad-b94e-1b60082fb85b" style="checkbox" /></td>
+                                <td></td>
+                            </tr>
+                        <tr>
+                            <td><obs id="weightumedid"  conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="48f63879-c261-431f-b93e-160701069d82" style="checkbox" /></td>
+                            <td></td>
+                        </tr>                       
+                         
+                    </table>
+    
+                </section></td></tr>
+                </table>
+        </section>
+
+        <section>
+                <div id="page4" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">D.Check for eye infection</a></li> </div> 
+                        <table id="tb4" class="baseline-aligned"  style="display:none">
+                <!-- <table class="baseline-aligned"> -->
+                
+                    <tr><td><obs conceptId="106724" answerConceptId="106467" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106724" answerConceptId="106468" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106724" answerConceptId="106469" style="radio" /></td></tr>
+                    <!-- <tr><td><obs conceptId="106724" answerConceptId="106470" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106724" answerConceptId="10905" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106724" answerConceptId="106471" style="radio" /></td></tr> -->
+                
+            <tr><td>
+            <section headerCode="Classification " id="classeyeid">
+
+                    <table class="baseline-aligned">
+                     <tr>
+                            <td><obs conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="106470" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="10905" style="checkbox" /></td>
+                            <td></td>
+                        </tr>                       
+                         <tr>
+                                <td><obs conceptId="c13688c2-beef-4e1f-90b9-dbbe7abcf59a" answerConceptId="106471" style="checkbox" /></td>
+                                <td></td>
+                            </tr>
+                    </table>
+    
+                </section>
+            </td></tr> </table>
+        </section>
+
+        <section>
+                <div id="page5" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">E.Check for neonatal jaundice</a></li> </div> 
+                        <table id="tb5" class="baseline-aligned"  style="display:none">
+            <!-- <table class="baseline-aligned"> -->
+                    <tr>
+                            <td class="lblcolor">When did jaundice appear?</td>
+                    </tr>
+                    <tr><td><obs conceptId="106709" answerConceptId="106472" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106709" answerConceptId="106473" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106709" answerConceptId="106439" style="radio" /></td></tr>
+                   
+            <tr><td>
+            <section headerCode="Classification " id="classjaundiceid">
+            <table class="baseline-aligned">
+                    <tr><td><obs conceptId="106709" answerConceptId="106440" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106709" answerConceptId="215" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106709" answerConceptId="106441" style="radio" /></td></tr>
+                
+                   </table>
+
+                </section> </td></tr></table>
+        </section>
+    
+        <section>
+            <div id="page6" class="pages">
+                    <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">F.HIV/AIDS</a></li> </div> 
+                    <table id="tb6" class="baseline-aligned"  style="display:none">
+                
+                     <!-- tr><td><obs conceptId="106713" answerConceptId="13202" style="radio" /></td></tr-->
+                    <tr><td><obs conceptId="106713" answerConceptId="106454" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106713" answerConceptId="106455" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106713" answerConceptId="106456" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106713" answerConceptId="107013" style="radio" /></td></tr>
+            <tr><td>
+            <section headerCode="Classification " id="classhiveid">
+            <table class="baseline-aligned">
+                    <tr><td><obs conceptId="106713" answerConceptId="107014" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106713" answerConceptId="106458" style="radio" /></td></tr>
+                    <tr><td><obs conceptId="106713" answerConceptId="106459" style="radio" /></td></tr>
+                
+            </table>
+            </section> </td></tr></table>
+        </section>
+
+        <section>
+                <div id="page7" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">G.Feeding Difficulties</a></li> </div> 
+                        <table id="tb7" class="baseline-aligned"  style="display:none"> 
+                
+                   <tr><td><obs conceptId="106711" answerConceptId="106429" style="radio" /></td></tr>
+                   <tr><td><obs conceptId="106711" answerConceptId="106446" style="radio" /></td></tr>
+                   <tr><td><obs conceptId="106711" answerConceptId="106447" style="radio" /></td></tr>
+                   <tr><td><obs conceptId="106711" answerConceptId="106448" style="radio" /></td></tr>
+                   <tr><td><obs conceptId="106711" answerConceptId="106450" style="radio" /><obs conceptId="106450" style="text" /></td></tr>
+                   <!-- <tr><td>Number of feeds within 24h : <obs conceptId="106450" style="text" /></td></tr> -->
+                   <tr><td><obs conceptId="106711" answerConceptId="106449" style="radio" /></td></tr>
+                   <tr>
+                        <td>
+                            <section headerCode="Observe in the mouth">
+                                <table class="baseline-aligned">
+                                    <tr><td><obs  conceptId="106711" answerConceptId="5334" style="radio" /></td></tr>
+                                    <tr><td><obs conceptId="106711" answerConceptId="106451" style="radio" /></td></tr>
+                                </table>
+                            </section>                    
+                        </td>
+                    </tr>
+            <tr><td>
+            <section headerCode="Classification " id="classbreastid">
+            <table class="baseline-aligned">
+                   <tr><td><obs conceptId="106711" answerConceptId="105910" style="radio" /></td></tr>
+                   <tr><td><obs conceptId="106711" answerConceptId="106292" style="radio" /></td></tr>
+                  <tr><td><obs  conceptId="106711" answerConceptId="105898" style="radio" /></td></tr>                
+            </table></section> </td></tr></table>
+        </section>
+
+        <section>
+                <div id="page8" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">H.Evaluation of breastfeeding</a></li> </div> 
+                        <table id="tb8" class="baseline-aligned"  style="display:none"> 
+                <tr>
+                    <td class="lblcolor">chin touching the breast </td>
+                    <td><obs conceptId="106452" style="radio"  answers="Yes,No" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Mouth wide  open </td>
+                    <td><obs conceptId="105945" answerConceptIds="1065,1066" style="radio"  answerCodes="Yes,No" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Lower lips inversed </td>
+                    <td><obs conceptId="106453" style="radio"  answers="Yes,No" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Areola more visible above than below</td>
+                    <td><obs conceptId="105947" answerConceptIds="1065,1066" style="radio"  answerCodes="Yes,No" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <section headerCode="Classification " id="classbreastid">
+                            <table class="baseline-aligned">
+                                <tr><td class="lblcolor">Attachement to the breast</td></tr>
+                                <tr><td><obs  conceptId="dc2615e7-95e5-4f7d-9ddd-d86cf06e5d5a" answerConceptIds="1897,106766,1905" answerCodes="Good,Bad,Not at All" style="radio" /></td>                   
+                                </tr><tr><td class="lblcolor">Sucking</td></tr>
+                                <tr><td><obs  conceptId="dc2615e7-95e5-4f7d-9ddd-d86cf06e5d5a" answerConceptIds="106764,106765,1905" answerCodes="Good,Bad,Not at All" style="radio" /></td></tr>
+                            </table>
+                        </section>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Other problems</td>
+                    <td><obs conceptId="106460" style="textarea" rows="3" cols="30" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor"> Summary of finding and observations</td>
+                    <td><obs conceptId="106050" style="textarea" rows="3" cols="30" /></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div id="page15" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">I. Immunization Status</a></li> 
+            </div> 
+            <table id="tb15" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="106907" answerConceptId="106831" answerCode="BCG" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106907" answerConceptId="106835" answerCode="Polio 0" style="radio" /></td></tr>
+                <tr>
+                    <td>
+                        <section headerCode="Classification " id="classVaccid">
+                            <table class="baseline-aligned">
+                                <tr><td><obs  conceptId="106907" answerConceptId="106994" answerCodes="Immunization not up-to-date" style="radio" /></td></tr>
+                            </table>
+                        </section>
+                    </td>
+                </tr>
+                <!-- <tr><td>Other problems: <obs conceptId="106460" style="textarea" rows="3" cols="30" /></td></tr> -->
+            </table>
+        </section>
+
+         <section>
+            <div id="page16" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">J. Other problems</a></li> 
+            </div> 
+            <table id="tb16" class="baseline-aligned"  style="display:none"> 
+                    <tr><td>Other problems: <obs conceptId="106460" style="textarea" rows="3" cols="30" /></td></tr>
+            </table>
+        </section>
+        <section>
+            <div id="page9" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">K. Treatment</a></li> 
+            </div> 
+            <table id="tb9" class="baseline-aligned"  style="display:none"> 
+                <tr>
+                    <td class="lblcolor">Medical Prescription</td><td><obs conceptId="6953" style="textarea" rows="3" cols="30" /></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div id="page10" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">L. Counsel the next of Kin</a></li> 
+            </div> 
+            <table id="tb10" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="106987" answerConceptId="106300" answerCode="Breast feeding" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106987" answerConceptId="105814" answerCode="How to keep the newborn warm" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106987" answerConceptId="1618" answerCode="Family Planning" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106987" answerConceptId="106988" answerCode="Newborn care at home" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106987" answerConceptId="106989" answerCode="When to return back" style="radio" /></td></tr>
+            </table>
+        </section>
+        
+        <section>
+            <div id="page11" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">M. Transfer To</a></li> 
+            </div> 
+            <table id="tb11" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="8514" style="textarea" rows="3" cols="30" /></td></tr>
+            </table>
+        </section>
+        
+        <!-- <section>
+            <div id="page12" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">N. When to return back immediately</a></li> 
+            </div> 
+            <table id="tb12" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="8514" style="textarea" rows="3" cols="30" /></td></tr>
+            </table>
+        </section> -->
+        
+        <section>
+            <div id="page12" class="pages">
+                    <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">N. When to return back immediately</a></li> </div> 
+                    <table id="tb12" class="baseline-aligned"  style="display:none">
+                    <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="d1b48ece-1d4d-4de1-9e37-86431b0e4bd3" style="checkbox" /></td></tr>
+                        <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="083e5869-74c3-4a54-8a56-eff00d4c6078" style="checkbox" /></td></tr>
+                            <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="83dda584-fae8-41b6-a411-05ce3550737a" style="checkbox" /></td></tr>
+                                <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="5f231a6e-6ba1-4325-bc75-8b2961754999" style="checkbox" /></td></tr>
+                                                                         <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="abb82886-53b9-43fd-878b-f9fa0bafcbeb" style="checkbox" /></td></tr> 
+   <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="592a7b04-750f-4da5-ba81-ad9c766f3630" style="checkbox" /></td></tr>
+   <tr><td><obs conceptId="8a2f8626-db86-46cd-bf0f-ec547a8622c6" answerConceptId="65478f78-1737-4f76-bec5-40c52451e5e4" style="checkbox" /></td></tr>        
+</table>
+
+        </section>
+        <section>
+                <div id="page13" class="pages">
+                        <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">O. Appointment for follow-up visit</a></li> 
+                    </div> 
+                    <table id="tb13" class="baseline-aligned"  style="display:none"> <tr>  <td>
+            <obs conceptId="5096" id="nextvisitid" allowFutureDates="true" labelCode="Next Visit Date:"/></td></tr>  </table>
+        </section>
+        <section>
+            <div id="page14" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">P. Follow-up visit done</a></li> 
+            </div> 
+            <table id="tb14" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="106993" /></td></tr>
+                <tr><td><obs conceptId="106721" answerConceptId="13660" answerCode="Improved" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106721" answerConceptId="106295" answerCode="Deteriorated" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106721" answerConceptId="106296" answerCode="Same Status" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106721" answerConceptId="106297" answerCode="Continued documentation" style="radio" /></td></tr>
+                <tr><td><obs conceptId="106721" answerConceptId="159" answerCode="Died" style="radio" /></td></tr>
+            </table>
+        </section>
+        
+        <section>
+            <div id="page18" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">Q. Observations</a></li> 
+            </div> 
+            <table id="tb18" class="baseline-aligned"  style="display:none"> 
+                <tr><td><obs conceptId="12933" style="textarea" rows="3" cols="30" /></td></tr>
+            </table>
+        </section>
+
+        
+        <submit/>
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

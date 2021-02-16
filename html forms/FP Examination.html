@@ -1,0 +1,565 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Physical Examination 0-2 months</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerLabel="ANAMNESE">
+            <obsgroup groupingConceptId="13578">
+                <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                    <tr class="strong">
+                        <th>Items</th>
+                        <th>YES/NO</th>
+                        <th>PC</th>
+                        <th>PP</th>
+                        <th>INJECT.</th>
+                        <th>IMPLANTS</th>
+                        <th>DIU</th>
+                        <th>MAO</th>
+                        <th>COLLIER</th>
+                        <th>BARRIERS</th>
+                        <th>CCV</th>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13551" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13559" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13555" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13558" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13556" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13549" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13554" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13550" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13552" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13557" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13553" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13561" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13563" answerConceptId="13562" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                </table>
+            </obsgroup>
+        </section>
+
+
+        <section headerLabel="ANTECEDENTS">
+            <obsgroup groupingConceptId="13578">
+                <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                    <tr class="strong">
+                        <th>Items</th>
+                        <th>YES/NO</th>
+                        <th>PC</th>
+                        <th>PP</th>
+                        <th>INJECT.</th>
+                        <th>IMPLANTS</th>
+                        <th>DIU</th>
+                        <th>MAO</th>
+                        <th>COLLIER</th>
+                        <th>BARRIERS</th>
+                        <th>CCV</th>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13577" answerConceptId="13573" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13577" answerConceptId="13574" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13577" answerConceptId="13575" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13577" answerConceptId="13576" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                </table>
+            </obsgroup>
+        </section>
+
+        <section headerLabel="EXAMEN GENERAL GYNECOLOGIQUE">
+            <obsgroup groupingConceptId="13578">
+                <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                    <tr class="strong">
+                        <th>Items</th>
+                        <th>YES/NO</th>
+                        <th>PC</th>
+                        <th>PP</th>
+                        <th>INJECT.</th>
+                        <th>IMPLANTS</th>
+                        <th>DIU</th>
+                        <th>MAO</th>
+                        <th>COLLIER</th>
+                        <th>BARRIERS</th>
+                        <th>CCV</th>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13589" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13580" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13585" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13583" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13584" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13586" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13588" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13581" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13575" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13582" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="13590" answerConceptId="13587" style="checkbox" /></td>
+                        <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                        <td><obs conceptId="13548" answerConceptIds="13431,13432,13433,13434" answerLabels="+,(-),-,N/A" style="radio" /></td>
+                    </tr>
+
+                </table>
+                <table border="1" width="100%" style="background-color:lightgrey">
+                    <tr>
+                        <td>
+                            Legende
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            += Eligible (categorie 1 de l' OMS)
+                            <br />
+                            <br />
+                            (-)= Eligiblite relative (categorie 2 de l' OMS)
+                            <br />
+                            -= Non Eligible (categorie 3 et 4 de l' OMS)
+                            <br />
+                            <br />
+                            SO: sans objet
+                        </td>
+                    </tr>
+                </table>
+            </obsgroup>
+        </section>
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

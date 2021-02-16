@@ -1,0 +1,578 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+	  border-left: 1px solid #000;
+   }
+   .lblcolor{background: #e2e3f2;width: 500px;}
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+</style>
+    <script type="text/javascript">
+$j(function() {
+	getField('lmp.value').change(function() {
+		var mp = getValue('lmp.value');
+        //alert(mp);
+		var d = new Date(mp);
+		d.setFullYear (d.getFullYear() + 1);
+		d.setMonth(d.getMonth() - 3);
+		d.setDate(d.getDate() + 7);
+		var curr_date = d.getDate();
+		var curr_month = d.getMonth();
+		curr_month++;
+		var curr_year = d.getFullYear();
+		var duedate = curr_year + "-" + curr_month + "-" + curr_date;
+		setValue('dd.value',duedate);
+	});
+
+});
+</script>
+<script type="text/javascript">
+
+var $ = jQuery.noConflict();
+$(document).ready(function() {
+	var group1 = $j("#ageOne");
+	var group2 = $j("#ageTwo");
+	var group3 = $j("#parity")
+
+	var patAge = $("#age").text();
+	var testAge = 17;
+	var testAge1 = 38;
+
+	if(patAge &lt; 18 ||patAge &gt; 35)
+	{
+		group1.find("input[type$='checkbox']").attr("checked",true);
+	}
+	$("#height").change(function() {
+		var txt = $("#height input").val();
+		var group = $j("#heightOK");
+		//alert(txt);
+
+		if(txt == null || txt == ''){
+			group.find("input[type$='checkbox']").attr("checked",false);
+		}
+		else if(txt &gt; 149) {
+			group.find("input[type$='checkbox']").attr("checked",false);
+		}
+
+		else {
+
+			group.find("input[type$='checkbox']").attr("checked",true);
+		}
+
+	});
+
+	$("#nop").change(function() {
+		var txt = $("#nop input").val();
+		if(txt == 1 &amp;&amp; patAge &gt; 30 ){
+
+			group2.find("input[type$='checkbox']").attr("checked",true);
+		}
+		else{
+			group2.find("input[type$='checkbox']").attr("checked",false);
+		}
+
+		if(txt == null || txt == ''){
+			group2.find("input[type$='checkbox']").attr("checked",false);
+			group3.find("input[type$='checkbox']").attr("checked",false);
+		}
+		else if(txt &gt; 5){
+			group3.find("input[type$='checkbox']").attr("checked",true);
+		}
+		else{
+			group3.find("input[type$='checkbox']").attr("checked",false);
+		}
+	});
+});
+
+</script> <script type="text/javascript">
+$j(function() {
+	getField('lmp.value').change(function() {
+		var mp = getValue('lmp.value');
+        //alert(mp);
+		var d = new Date(mp);
+
+		d.setFullYear (d.getFullYear() + 1);
+		d.setMonth(d.getMonth() - 3);
+
+		d.setDate(d.getDate() + 7);
+
+		var curr_date = d.getDate();
+
+		var curr_month = d.getMonth();
+		curr_month++;
+
+		var curr_year = d.getFullYear();
+
+		var duedate = curr_year + "-" + curr_month + "-" + curr_date;
+
+
+		setValue('dd.value',duedate);
+
+
+	});
+
+});
+</script>
+    <script type="text/javascript">
+var $ = jQuery.noConflict();
+$j(document).ready(function(){
+   // $("#location select").attr("disabled",true);
+
+
+});
+</script>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <!--
+    <script type="text/javascript">
+function calc()
+{
+var day = document.first.len11.value;
+var mon = document.first.len12.value;
+var year = document.first.len13.value;
+var ylen = year.length;
+var d = new Array("SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY");
+var m = new Array("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER","DECEMBER");
+var curd = new Date(year,mon-1,day);
+var res2 = curd.getMonth();
+var res = new Date();
+var diff =
+Date.UTC(res.getFullYear(),res.getMonth()-1,res.getDay(),0,0,0)
+- Date.UTC(curd.getFullYear(),curd.getMonth()-1,curd.getDay(),0,0,0);
+var secleft = diff/1000/60;
+var hrsleft = secleft/60;
+var daysleft = hrsleft/24;
+//if(res2 == (mon-1) && daysleft < 300 && year!="")
+if (year!="" && ylen>3)
+{
+var fd1 = new Date(year, mon-1, parseInt(day)+10);
+document.first.fd1.value = d[fd1.getDay()]+", "+m[fd1.getMonth()]+" "+fd1.getDate()+", "+fd1.getFullYear();
+var fd2 = new Date(year, mon-1, parseInt(day)+20);
+document.first.fd2.value = d[fd2.getDay()]+", "+m[fd2.getMonth()]+" "+fd2.getDate()+", "+fd2.getFullYear();
+var cd = new Date(year, mon-1, parseInt(day)+14);
+document.first.cd.value = d[cd.getDay()]+", "+m[cd.getMonth()]+" "+cd.getDate()+", "+cd.getFullYear();
+var fte = new Date(year, mon-1, parseInt(day)+84);
+document.first.fte.value = d[fte.getDay()]+", "+m[fte.getMonth()]+" "+fte.getDate()+", "+fte.getFullYear();
+var ste = new Date(year, mon-1, parseInt(day)+189);
+document.first.ste.value = d[ste.getDay()]+", "+m[ste.getMonth()]+" "+ste.getDate()+", "+ste.getFullYear();
+var dd = new Date(year, mon-1, parseInt(day)+280);
+document.first.dd.value = d[dd.getDay()]+", "+m[dd.getMonth()]+" "+dd.getDate()+", "+dd.getFullYear();
+}
+else{
+alert("Invalid Date");
+}
+}
+function isNumber(evt) {evt = (evt) ? evt : window.event;var charCode = (evt.which) ? evt.which : evt.keyCode;if (charCode > 31 && (charCode < 48 || charCode > 57)) {return false;}return true;
+}
+function chk(){
+var sds = document.getElementById('dum');
+if(sds == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");
+document.getElementById("tab").style.visibility="hidden";
+}
+var sdss = document.getElementById("dumdiv");
+if(sdss == null){alert("You are using a free package.\n You are not allowed to remove the tag.\n");}
+}
+window.onload=chk;
+</script>
+    -->
+    <translations defaultLocale="en">
+
+        <code name="duration_week">
+
+            <variant locale="en" value="Duration of pregnancy (week)"/>
+        </code>
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+        <code name="abdominal_pains">
+            <variant locale="en" value="Abdominal pains"/>
+            <variant locale="fr" value="Douleurs abdominales"/>
+        </code>
+        <code name="fever_history">
+            <variant locale="en" value="Fever"/>
+            <variant locale="fr" value="Fièvre"/>
+        </code>
+        <code name="cough_hystory">
+            <variant locale="en" value="Cough"/>
+            <variant locale="fr" value="La toux"/>
+        </code>
+        <code name="pv_bleeding">
+            <variant locale="en" value="PV Bleeding"/>
+            <variant locale="fr" value="Saignement PV"/>
+        </code>
+        <code name="pv_discharge">
+            <variant locale="en" value="PV Discharge"/>
+            <variant locale="fr" value="Décharge PV"/>
+        </code>
+        <code name="baby_mooving">
+            <variant locale="en" value="Baby moving (after 4 months)"/>
+            <variant locale="fr" value="Bébé bouge (après 4 mois)"/>
+        </code>
+        <code name="tetanus_vaccine">
+            <variant locale="en" value="Tetanus vaccine"/>
+            <variant locale="fr" value="Vaccin contre le tétanos"/>
+        </code>
+        <code name="tobaco_alcohol_drug">
+            <variant locale="en" value="Tobacco Alcohol and Drug Abuse"/>
+            <variant locale="fr" value="Abus de tabac et d'alcool"/>
+        </code>
+
+
+        <code name="hd_preg_history">
+            <variant locale="en" value="PREGNANCY HISTORY"/>
+            <variant locale="fr" value="HISTORIQUE DE LA GROSSESSE"/>
+        </code>
+        <code name="recurrent_abortions">
+            <variant locale="en" value="Recurrent abortions"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="premature_deliveries">
+            <variant locale="en" value="Premature deliveries "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="still_births">
+            <variant locale="en" value="Still births/death immediately after birth "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="postpartum_haemorrhage">
+            <variant locale="en" value="Postpartum haemorrhage in the past"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="previous_retained">
+            <variant locale="en" value="Previous retained placenta"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="C/sections">
+            <variant locale="en" value="C/sections"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="ruptured_uterus">
+            <variant locale="en" value="Ruptured uterus"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="pre/eclampsia">
+            <variant locale="en" value="Pre/Eclampsia"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="Multipara_pregnancy">
+            <variant locale="en" value="Multipara pregnancy (> 6 pregnancies) "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+
+
+        <code name="hd_health_history">
+            <variant locale="en" value="HEALTH HISTORY"/>
+            <variant locale="fr" value="HISTORIQUE DE LA SANTÉ"/>
+        </code>
+
+        <code name="myomectomy">
+            <variant locale="en" value="Previous operations like myomectomy "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+
+        <code name="DIABETES_MELLITUS">
+            <variant locale="en" value="Diabetes Mellitus  ( DM) "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="ASTHMA">
+            <variant locale="en" value="Still births/death immediately after birth "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="HEART_DISEASE">
+            <variant locale="en" value="Heart diseases"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="RENAL_DISEASE">
+            <variant locale="en" value="Renal diseases "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="Cancer">
+            <variant locale="en" value="Cancer patient"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="TUBERCULOSIS">
+            <variant locale="en" value="TB (If taking anti-tuberculosis drugs)"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="HIV_INFECTED">
+            <variant locale="en" value="HIV (if under HIV treatement)"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="SEXUALLY_TRANSMITTED_INFECTION">
+            <variant locale="en" value="STI ( if as other STI diagnosed)"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="hd_family_planing">
+            <variant locale="en" value="FAMILY PLANING NETHOD USED BEFORE ( ANC1,2,3,4)"/>
+            <variant locale="fr" value="METHODE DE PLANIFICATION FAMILIALE UTILISEE AVANT"/>
+        </code>
+        <code name="Birthdate">
+            <variant locale="en" value="Birthdate"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="Which_methods">
+            <variant locale="en" value="Which methods"/>
+            <variant locale="fr" value="fr"/>
+        </code>
+
+        <code name="Methods_do_you_plan">
+            <variant locale="en" value="What do you plan to use "/>
+            <variant locale="fr" value="fr"/>
+        </code>
+        <code name="itbn">
+            <variant locale="en" value="ITBN  ( insecticide Treated Bed Net)  "/>
+            <variant locale="fr" value="ITBN  ( insecticide Treated Bed Net)  "/>
+        </code>
+    </translations>
+
+    <h2>ANC Pregancy and Delivery History</h2>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" />cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate default="today"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Marital status: <lookup expression="fn.latestObs(1054).valueText"/>
+                    <!--<lookup complexExpression="#set($t = $fn.latestObs(1054)) $t.valueCoded"/>-->
+                    </td><td><obs conceptId="1054" labelCode="Marital status:"/></td>
+
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+
+
+                </tr>
+            </table>
+        </section>
+            <section headerCode="Medical Date">
+                <table class="baseline-aligned">
+                    <tr><td class="lblcolor">Last Menstrual period LMP</td>
+                        <td><obs conceptId="968" id="lmp" labelCode=""/></td>
+                    </tr>
+                    <tr><td class="lblcolor">Expected Date of Delivery EDD</td>
+                        <td><obs conceptId="6188" id="dd" allowFutureDates="true" labelCode=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Accompanied by partner</td>
+                        <td><obs conceptId="6547" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Duration of pregnancy (week) </td>
+                        <td><obs conceptId="105483" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="B. OBSTETRIC HISTORY">
+                <table class="baseline-aligned risks">
+                    <tr>
+                        <td class="lblcolor">Marital status</td>
+                        <td><obs conceptId="105559" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Gravidity</td>
+                        <td><obs conceptId="5624" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Parity</td>
+                        <td><obs conceptId="1053" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number Of Abortions/Miscarriages</td>
+                        <td><obs conceptId="8157" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number of children alive</td>
+                        <td><obs conceptId="105560" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number Of Children Who died After Birth</td>
+                        <td><obs conceptId="8158" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number of Caesarian sections</td>
+                        <td><obs conceptId="8143" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date of Birth for last born </td>
+                        <td><obs conceptId="8404" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Last born status</td>
+                        <td><obs conceptId="106868" answerConceptIds="2895,106867" answerCodes="Alive,Dead" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. OBSTETRIC HISTORY">
+                <table class="baseline-aligned risks">
+                    <tr>
+                        <td><obs conceptId="106687" answerConceptId="105490"  style="checkbox" /> </td>
+                        <td><obs conceptId="106687" answerConceptId="105470"  style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105471" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105463" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105472" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="1171" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105473" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="10801" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105474" style="checkbox" /></td>
+                        <td><obs conceptId="106687" answerConceptId="105494" style="checkbox" /></td>
+                        <td></td>
+                        <td> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Medical History">
+                <table class="baseline-aligned risks">
+                    <tr>
+                        <td><obs conceptId="106688" answerConceptId="106863" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="175" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="5" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="3305" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="6033" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="6864" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="58" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="2388" style="checkbox" /></td>
+                        <td><obs conceptId="106688" answerConceptId="13362" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106688" answerConceptId="105469" style="checkbox" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </section>
+
+
+            <section headerCode="E. PREVENTIVE OF INFECTIONS">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Tetanus vaccine</td>
+                        <td><obs conceptId="11045" answerCodes="TETANUS BOOSTER 1,TETANUS BOOSTER 2, TETANUS BOOSTER 3, TETANUS BOOSTER 4, TETANUS BOOSTER 5" style="radio"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT1</td>
+                        <td><obs conceptId="54" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT2</td>
+                        <td><obs conceptId="11041" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT3</td>
+                        <td><obs conceptId="11042" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT4</td>
+                        <td><obs conceptId="11043" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date TT5</td>
+                        <td><obs conceptId="11044" style="text" size="10"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">ITBN</td>
+                        <td><obs conceptId="105493" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+        <section headerLabel="Contraceptive Methods">
+            <obsgroup groupingConceptId="13578">
+                <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+
+                    <tr>
+                        <td><obs conceptId="13603" answerConceptId="13602" style="checkbox" /></td>
+                        <td><obs conceptId="13544" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="105480" answerConceptId="105480" style="checkbox" /></td>
+                        <td><obs conceptId="13544" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                </table>
+            </obsgroup>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td>This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

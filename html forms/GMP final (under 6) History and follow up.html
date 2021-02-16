@@ -1,0 +1,1211 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $j(document).ready(function(){
+
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+            $('#defecttr').hide();
+            $('#siblingstr').hide();
+
+        var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+
+       $('#page1id').click(function() {
+            $('#page1').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page2id').click(function() {
+            $('#page2').toggle();
+            $('#page1').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page3id').click(function() {
+            $('#page3').toggle();
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page4id').click(function() {
+            $('#page4').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page1').hide();
+       });
+
+       $j("#defectid").change(function() {
+		var isCheckedYes = $j('#defectid input[value="1066"]').attr('checked')?true:false;
+		var isCheckedNo = $j('#defectid input[value="1065"]').attr('checked')?true:false;
+        
+		if(isCheckedYes==true){
+        $j('#defecttr').show();
+       
+		}else{
+        $j('#defecttr').hide();
+		}
+  });
+  $("#siblingsid").change(function() {
+		var isCheckedYes = $j('#siblingsid input[value="1066"]').attr('checked')?true:false;
+		var isCheckedNo = $j('#siblingsid input[value="1065"]').attr('checked')?true:false;
+        
+		if(isCheckedYes==true){
+        $j('#siblingstr').show();
+       
+		}else{
+        $j('#siblingstr').hide();
+		}
+  });
+
+  $j('#breastmsgid').click(function() {
+    
+    var isCheckedYes = $j('#breastmsgid input[value="1066"]').attr('checked')?true:false;
+	var isCheckedNo = $j('#breastmsgid input[value="1065"]').attr('checked')?true:false;
+        
+       if(isCheckedYes==true){
+        $j('#message').html('If the newborn was not breastfed during the previous hour, ask the mother to put the baby in the breast. Observe breastfeeding for 4 minutes.').css('color','red').css("font-weight","Bold");
+		//  $j('#dangertd').css('background-color','red'); 
+        // $j('#cldenger input[value="1066"]').attr("checked",true);
+            }else {
+                $j('#message').html('If the newborn was breastfed during the previous hour, ask the mother if she can wait and tell you when the baby will be breastfeeding again, then observe her breastfeeding.').css('color','red').css("font-weight","Bold");
+		  }
+		 });
+  
+         $j('#ref').click(function() {
+    
+    var isCheckedYes = $j('#ref input[value="1066"]').attr('checked')?true:false;
+	var isCheckedNo = $j('#ref input[value="1065"]').attr('checked')?true:false;
+        
+       if(isCheckedYes==true){
+        $j('#message').html(' If yes, ask the mother if she can wait and tell you when the baby will be breastfeeding again. However, if this is the second time, transfer baby to the hospital for difficulty breastfeeding.').css('color','red').css("font-weight","Bold");
+		//  $j('#dangertd').css('background-color','red'); 
+        // $j('#cldenger input[value="1066"]').attr("checked",true);
+            }else {
+                $j('#message').html(' ').css('color','red').css("font-weight","Bold");
+		  }
+		 });
+  
+    });   
+</script>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+                <table border="2" cellspacing="0" cellpadding="6" width="100%"> 
+                     <tr>
+                            <td>
+                                Date:
+                                <encounterDate id="encdateId" labelCode="Visit Date"/>
+                            </td>
+                            <td>
+                                Health Facility:
+                                <encounterLocation default="UserProperty:defaultLocation"/>
+                            </td>
+                            <td>
+                                Provider:
+                                <encounterProvider default="currentUser"/>
+                            </td>
+                        </tr>
+                           <tr>
+                            <td colspan="3" id="message"></td>
+                        </tr>
+                    </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page1id">HISTORY NUTRITION</h3></div>
+        <div id="page1" class="pages">
+            <section>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Birth Weight (kg) </td>
+                        <td><obs conceptId="5916" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Twin babies</td>
+                        <td><obs conceptId="105719" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Birth Defect</td>
+                        <td><obs id="defectid" conceptId="6801" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr id="defecttr">
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="105720" rows="1" cols="30" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Malnutrition in siblings</td>
+                        <td><obs id="siblingsid" conceptId="105721" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr id="siblingstr">
+                        <td class="lblcolor">if yes Specify</td>
+                        <td><obs conceptId="105722" rows="1" cols="30" /></td>
+                    </tr>
+                </table>
+
+                <section headerCode="A. breastfeeding assessment">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Are you breastfeeding the child? </td>
+                            <td><obs conceptId="105723" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If yes, how many times during the day?  </td>
+                            <td><obs conceptId="105935" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If yes, do you breastfeed during the night too? </td>
+                            <td><obs conceptId="105908" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If yes, does the child consume other foods or liquids?  </td>
+                            <td><obs conceptId="105936" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If yes, which foods or liquids?  </td>
+                            <td><obs conceptId="105925" rows="2" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If no, not breastfeeding the child, is the child receiving an appropriate local alternative?</td>
+                            <td><obs conceptId="105937" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If no, not breastfeeding the child, is the preparation of the alternative hygienic? </td>
+                            <td><obs conceptId="105938" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If no, not breastfeeding the child, is the alternative milk prepared properly (correct water to powder ratio)? </td>
+                            <td><obs conceptId="105939" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If no, not breastfeeding the child, is the alternative milk provided during the day and night? </td>
+                            <td><obs conceptId="105940" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">During this illness, did the infant's feeding habits change?  </td>
+                            <td><obs conceptId="105931" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Does the infant have difficulty breastfeeding?  </td>
+                            <td><obs conceptId="105941" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+
+                            <td class="lblcolor">If yes, was the newborn breastfed during the previous hour?  </td>
+                            <td><obs id="breastmsgid" conceptId="105942" answerCodes="Yes,No" style="radio"/></td>
+                        </tr>
+                    </table>
+                    <!-- <table class="baseline-aligned">
+                        <tr>
+                            <td>
+                                If the newborn was not breastfed during the previous hour, ask the mother to put the baby in the breast. Observe breastfeeding for 4 minutes.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                If the newborn was breastfed during the previous hour, ask the mother if she can wait and tell you when the baby will be breastfeeding again, then observe her breastfeeding.
+                            </td>
+                        </tr>
+                    </table> -->
+                </section>
+                <section headerCode="B. Observation of breastfeeding">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Observe: is the infant refusing to breastfeed?  </td>
+                            <td><obs id="ref" conceptId="105943" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                If yes, ask the mother if she can wait and tell you when the baby will be breastfeeding again. However, if this is the second time, transfer baby to the hospital for difficulty breastfeeding.
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Observe: is the chin touching the breast? </td>
+                            <td><obs conceptId="105944" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Observe: is the  mouth wide open? </td>
+                            <td><obs conceptId="105945" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Observe: is the lower lip turned outward?  </td>
+                            <td><obs conceptId="105946" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Observe: Is there more areola visible above then below the mouth?  </td>
+                            <td><obs conceptId="105947" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Observe and listen: Does the newborn suck effectively (ie, slow, deep sucks with breaks)?
+                            </td>
+                            <td><obs conceptId="105948" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Are all of these signs present?   </td>
+                            <td><obs conceptId="105949" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td>
+                            If yes, the baby is breastfeeding well. If no, the baby is not breastfeeding well
+                        </td>
+                        <tr>
+                            <td class="lblcolor">If yes, the baby is breastfeeding well.   </td>
+                            <td><obs conceptId="105950" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If no, the baby is not breastfeeding well </td>
+                            <td><obs conceptId="105951" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If the baby is still not breastfeeding well, is the baby already receiving an appropriate milk alternative at home?</td>
+                            <td><obs conceptId="105952" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If the baby is still not breastfeeding well, after counseling, and is not receiving an appropriate milk alternative at home, transfer to the district hospital?</td>
+                            <td><obs conceptId="105953" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page2id">EXAMINATION</h3></div>
+        <div id="page2" class="pages">
+            <section headerCode="A. General examinations">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Weight (kg) </td>
+                        <td><obs conceptId="5089" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Height</td>
+                        <td><obs conceptId="5090" style="text" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Bilateral pitting oedema </td>
+                        <td><obs conceptId="105860" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. Feeding assessment findings">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106624" answerConceptId="105910" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105911" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105912" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105913" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105914" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105915" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105916" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105917" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105918" style="radio" /></td>
+
+                        <td><obs conceptId="106624" answerConceptId="105898" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. Anthropometric assessment">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Weight-for-length z-score </td>
+                        <td><obs conceptId="106900" answerConceptId="106897" style="radio" /></td>
+                        <td><obs conceptId="106900" answerConceptId="106896" style="radio" /></td>
+                        <td><obs conceptId="106900" answerConceptId="106898" style="radio" /></td>
+                        <td><obs conceptId="106900" answerConceptId="106899" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Weight-for-age z-score </td>
+                        <td><obs conceptId="106902" answerConceptId="106897" style="radio" /></td>
+                        <td><obs conceptId="106902" answerConceptId="106896" style="radio" /></td>
+                        <td><obs conceptId="106902" answerConceptId="106898" style="radio" /></td>
+                        <td><obs conceptId="106902" answerConceptId="106899" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Length-for-age z-score </td>
+                        <td><obs conceptId="106901" answerConceptId="106897" style="radio" /></td>
+                        <td><obs conceptId="106901" answerConceptId="106896" style="radio" /></td>
+                        <td><obs conceptId="106901" answerConceptId="106898" style="radio" /></td>
+                        <td><obs conceptId="106901" answerConceptId="106899" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. Nutritional status assessment ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106625" answerConceptId="105899" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105900" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105866" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105902" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105903" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105905" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105906" style="radio" /></td>
+                        <td><obs conceptId="106625" answerConceptId="105919" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="E. Counseling Nutritional">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106626" answerConceptId="105920" style="radio" /></td>
+                        <td><obs conceptId="106626" answerConceptId="105921" style="radio" /></td>
+                        <td><obs conceptId="106626" answerConceptId="105922" style="radio" /></td>
+                        <td><obs conceptId="106626" answerConceptId="105923" style="radio" /></td>
+                        <td><obs conceptId="106626" answerConceptId="105924" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page3id">TREATMENT</h3></div>
+        <div id="page3" class="pages">
+            <section>
+                <section headerCode="A. PHYSICAL ASSESSMENT ON ADMISSION ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Child unconscious or lethargic </td>
+                            <td><obs conceptId="106337" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Child’s hands are cold </td>
+                            <td><obs conceptId="106511" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">No Slow capillary refill &#62;3sec OR weak/fast pulse</td>
+                            <td><obs conceptId="106512" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Temperature</td>
+                            <td><obs conceptId="5088" style="text" size="25"/></td>
+                        </tr>
+                        <tr>Axillary
+                            <td class="lblcolor">Axillary</td>
+                            <td><obs conceptId="5112" style="checkbox" /></td>
+
+                        </tr><tr>
+                                <td class="lblcolor">Rectal</td>
+                            <td><obs conceptId="106513" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Dehydration present:</td>
+                            <td><obs conceptId="106514" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Tolerating oral fluids</td>
+                            <td><obs conceptId="106515" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(4) Skin</td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B.  LABS and SCREENING ON ADMISSION">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">(5) Blood sugar ordered?</td>
+                            <td><obs conceptId="106516" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Result:</td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td >Unable to test</td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Treatment for hypoglycemia indicated</td>
+                            <td><obs conceptId="106517" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(6) Hemoglobin ordered?</td>
+                            <td><obs conceptId="106519" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Hemoglobin result: </td>
+                            <td><obs conceptId="106520" rows="3" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Transfusion indicated</td>
+                            <td><obs conceptId="106521" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If YES, transfusion ordered</td>
+                            <td><obs conceptId="106527" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(7) TB symptom screen </td>
+                            <td><obs conceptId="106522" answerCodes="Negative,Positive" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Symptoms:</td>
+                            <td><obs conceptId="106523" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(8) HIV test done</td>
+                            <td><obs conceptId="1621" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="C. MEDICATIONS/VITAMIN/MINERAL TREATMENTS  ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">(9) Vitamin A assessment Does the child have Bitot’s spots, corneal clouding, corneal ulceration?</td>
+                            <td><obs conceptId="106524" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Has the child had measles &#60;3 months?</td>
+                            <td><obs conceptId="106525" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(IF YES to either, vitamin A ordered </td>
+                            <td><obs conceptId="106526" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(10)  Antibiotics:  Appropriate malnutrition antibiotics started
+                            </td>
+                            <td><obs conceptId="106528" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">(11) Other vitamin/mineral supplements?</td>
+                            <td><obs conceptId="106529" rows="1" cols="30" /></td>
+                        </tr>
+
+                    </table>
+                </section>
+                <section headerCode="D. FEEDING DAYS 1-7  ">
+                    <table class="baseline-aligned" border="1">
+
+                       <!-- <tr>
+                            <td></td>
+                            <td>Day 1</td>
+                            <<td>Day 2</td>
+                            <td>Day 3</td>
+                            <td>Day 4</td>
+                            <td>Day 5</td>
+                            <td>Day 6</td>
+                            <td>Day 7</td> 
+                        </tr>-->
+                        <tr>
+                            <td class="lblcolor">Date  </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Weight (kg)      </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Height (cm)  </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">MUAC (mm)</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">WFH/L (weight-for-height)</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Estimated amount vomited        </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Pitting oedema (0, 1+, 2+, 3+)</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Formula/RUTF   </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Route of feeding</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">ml/kg or kcal/kg provided        </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                        </tr> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Total daily volume (ml)/amount </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Volume (ml)/amount per feed         </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Frequency</td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Antibiotics: ? if ordered </td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <!-- <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Vitamin A *only if criteria met (Dose given)       </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Provider’s initials         </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Ideal Weight for Discharge* (&#62;-2 SD weight-for-height):</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                    </table>
+
+                </section>
+                <section headerCode="E. FEEDING DAYS 8-21">
+                    <table class="baseline-aligned" border="1">
+
+                        <tr>
+                            <td></td>
+                            <td>Day 8</td>
+                            <!-- <td>Day 9</td>
+                            <td>Day 10</td>
+                            <td>Day 11</td>
+                            <td>Day 12</td>
+                            <td>Day 13</td>
+                            <td>Day 14</td>
+                            <td>Day 15</td>
+                            <td>Day 16</td>
+                            <td>Day 17</td>
+                            <td>Day 18</td>
+                            <td>Day 19</td>
+                            <td>Day 20</td>
+                            <td>Day 21</td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Date  </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Weight (kg)      </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Is MUAC &#62;115mm?</td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Is WFH/L &#62;-2 SD? </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Estimated amount vomited        </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Pitting oedema (0, 1+, 2+, 3+)</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Formula/RUTF   </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Route of feeding</td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">ml/kg or kcal/kg provided        </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Total daily volume (ml)/amount </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Volume (ml)/amount per feed         </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Frequency</td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <!-- <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td>
+                            <td><obs conceptId="8510" rows="3" cols="30" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Vitamin A started      </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Mebendazole given                        </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Ferrous when given Sulfate                                    </td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <!-- <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td>
+                            <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" /></td> -->
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Provider’s initials  </td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <!-- <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td>
+                            <td><obs conceptId="105486" style="text" size="25"/></td> -->
+                        </tr>
+                    </table>
+
+                </section>
+
+                <section headerCode="F. MEBENDAZOLE:">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Received in the last 6 months?</td>
+                            <td><obs conceptId="106321" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If NO, Mebendazole given? </td>
+                            <td><obs conceptId="106546" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="G. VITAMIN A Dosing:">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106637" answerConceptId="106547" style="checkbox" /></td>
+                            <td><obs conceptId="106637" answerConceptId="106548" style="checkbox" /></td>
+
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106637" answerConceptId="106549" style="checkbox" /></td>
+                            <td><obs conceptId="106637" answerConceptId="106550" style="checkbox" /></td>
+
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Vit A oral </td>
+                            <td><obs conceptId="106551" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Vit A IM</td>
+                            <td><obs conceptId="106552" rows="1" cols="30" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">ReSoMal dosing  loose stools:? Y/N</td>
+                            <td><obs conceptId="106553" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Volume given</td>
+                            <td><obs conceptId="106554" style="text" size="25"/></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="H. FERROUS SULFATE">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106638" answerConceptId="106555" style="checkbox" /></td>
+                            <td><obs conceptId="106638" answerConceptId="106556" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106638" answerConceptId="106557" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Weight</td>
+                            <td><obs conceptId="5089" style="text" size="25"/></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Tablet</td>
+                            <td><obs conceptId="4020" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Syrup</td>
+                            <td><obs conceptId="4026" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Dose</td>
+                            <td><obs conceptId="106558" rows="1" cols="30" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="I. RECOMMENDED ANTIBIOTIC ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106639" answerConceptId="106559" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106639" answerConceptId="106560" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106639" answerConceptId="106561" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">No improvement after 48 hours </td>
+                            <td><obs conceptId="106562" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><obs conceptId="106639" answerConceptId="106563" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106639" answerConceptId="106564" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="J. All patients ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Does the child have a good appetite?</td>
+                            <td><obs conceptId="106565" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Are all medical complications and oedema resolved?</td>
+                            <td><obs conceptId="106566" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If outpatient rehabilitation    </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Did child consume 2 full meals of RUTF? </td>
+                            <td><obs conceptId="106567" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">If inpatient rehabilitation    </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Is the MUAC &#62;115 mm?</td>
+                            <td><obs conceptId="106542" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Is the WFH/L &#62;-2 SD x 2 consecutive days? </td>
+                            <td><obs conceptId="106568" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Is child at their ideal weight? </td>
+                            <td><obs conceptId="106569" answerCodes="Yes,No" style="radio" /></td>
+                        </tr></table>
+                </section>
+
+                <section headerCode="H. DISCHARGE EDUCATION:">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106640" answerConceptId="106570" style="checkbox" /></td>
+                            <td><obs conceptId="106640" answerConceptId="106571" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106640" answerConceptId="106572" style="checkbox" /></td>
+                            <td><obs conceptId="106640" answerConceptId="106573" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Ideal Weight for Discharge* (&#62;-2 SD weight-for-height):</td>
+                            <td><obs conceptId="106574" rows="1" cols="30" /></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <submit/>
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

@@ -1,0 +1,212 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>History for FP methods</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;NID number&quot;)" />
+                    </td>
+                    <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                    </td>
+                    <td>
+                        Age: <lookup expression="patient.age" class="value"/>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <obs conceptId="3ce93cf2-26fe-102b-80cb-0017a47871b2" labelText="Taille:" /> cm
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr>
+            </table>
+        </section>
+        <section >
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Date of Consultation</td>
+                    <td><obs conceptId="106864" style="text" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Tel of the client or partner</td>
+                    <td><obs conceptId="1426" style="text" /></td>
+                </tr>
+            </table>
+            <section headerCode="A. Birth History">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Children in life</td>
+                        <td><obs conceptId="106054" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Desired number of children</td>
+                        <td><obs conceptId="106055" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date of last delivery</td>
+                        <td><obs conceptId="106056" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date of last abortion</td>
+                        <td><obs conceptId="106057" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Number of children died</td>
+                        <td><obs conceptId="106058" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">PP FP before discharge </td>
+                        <td><obs conceptId="106059" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Acceptors accompaigned by partner </td>
+                        <td><obs conceptId="106060" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="B. FP method previously">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Previous utilization of contraception </td>
+                        <td><obs conceptId="106061" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Which methods did you used in the past</td>
+                        <td><obs conceptId="106062" answerConceptId="13602" style="checkbox" /></td>
+                        <td><obs conceptId="13544" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any complications</td>
+                        <td><obs conceptId="106063" rows="1" cols="30" /> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Duraton of utilization</td>
+                        <td><obs conceptId="106064" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Reason to stop</td>
+                        <td><obs conceptId="106065" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. FP Method Desired">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Desired method</td>
+                        <td><obs conceptId="105480" answerConceptId="105480" style="checkbox" /></td>
+                        <td><obs conceptId="13544" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<obs conceptId="13568" labelText="Natural"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Last Menstrual period LMP</td>
+                        <td><obs conceptId="968" id="lmp" labelCode=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Birth spacing</td>
+                        <td><obs conceptId="106067" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Birth limitation</td>
+                        <td><obs conceptId="106068" style="checkbox" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. HIV Status">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Status at registration</td>
+                        <td><obs conceptId="106069" answerCodes="Negative,Positive,Unknown" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Date of last HIV test</td>
+                        <td><obs conceptId="1837" style="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Counselled for HIV  </td>
+                        <td><obs conceptId="105533" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Referred for HIV test </td>
+                        <td><obs conceptId="106070" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

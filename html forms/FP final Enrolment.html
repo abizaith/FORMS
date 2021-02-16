@@ -1,0 +1,1077 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+.pages {
+    display:none;
+}
+
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+
+    
+
+    $j(document).ready(function(){
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+
+
+            $j('#aoneid').click(function() {
+                $j('.green').css("background-color", "green");
+                $j('.yellow').css("background-color", "yellow");
+                $j('.red').css("background-color", "red");
+            })
+
+            $('#spacingtr').hide();
+            $('.hivtr').hide();
+       $('#page1id').click(function() {
+            $('#page1').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page2id').click(function() {
+            $('#page2').toggle();
+            $('#page1').hide();
+            $('#page3').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page3id').click(function() {
+            $('#page3').toggle();
+            $('#page1').hide();
+            $('#page2').hide();
+            $('#page4').hide();
+       });
+       
+       $('#page4id').click(function() {
+            $('#page4').toggle();
+            $('#page2').hide();
+            $('#page3').hide();
+            $('#page1').hide();
+       });
+
+       $j('.nofpmethod').hide();
+
+       $j('#contraceptionId input[value="1065"').change(function() {
+            $j('.nofpmethod').hide();
+       });
+       $j('#contraceptionId input[value="1066"').change(function() {
+            $j('.nofpmethod').show();
+       });
+
+       $j('#modernId select').change(function() {
+           if($j('#modernId select').val() != "") {
+                $j('#naturalId').hide();
+           } else {
+               $j('#naturalId').show();
+           }
+       });
+
+        $j('#naturalId select').change(function() {
+            if($j('#naturalId select').val() != "") {                
+                $j('#modernId').hide();
+            } else {
+                $j('#modernId').show();
+            }
+        });
+
+   
+$("#spacingid").change(function() {
+		var isCheckedYes = $j('#spacingid input[value="106067"]').attr('checked')?true:false;
+	  
+		if(isCheckedYes==true){
+        $('#spacingtr').show();
+       
+		}else{
+        $('#spacingtr').hide();
+		}
+  });
+  $("#hivid").change(function() {
+		var isCheckedYes = $j('#hivid input[value="1067"]').attr('checked')?true:false;
+	  
+		if(isCheckedYes==true){
+        $('.hivtr').hide();
+       
+		}else{
+        $('.hivtr').show();
+		}
+  });
+  
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+    });    
+</script>
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                   <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page1id">HISTORY</h3></div>
+        <div id="page1" class="pages">
+            <section >
+                <table class="baseline-aligned">
+                    <!--tr>
+                        <td class="lblcolor">Date of Consultation</td>
+                        <td><obs conceptId="106864" style="text" /></td>
+                    </tr-->
+                    <tr>
+                        <td class="lblcolor">Tel of the client or partner</td>
+                        <td><obs conceptId="1426" style="text" /></td>
+                    </tr>
+                </table>
+                <section headerCode="A. Birth History">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Children in life</td>
+                            <td><obs conceptId="106054" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Desired number of children</td>
+                            <td><obs conceptId="106055" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Date of last delivery</td>
+                            <td><obs conceptId="106056" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Date of last abortion</td>
+                            <td><obs conceptId="106057" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Number of children died</td>
+                            <td><obs conceptId="106058" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">PP FP before discharge </td>
+                            <td><obs conceptId="106059" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Acceptors accompaigned by partner </td>
+                            <td><obs conceptId="106060" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B. FP method previously USED">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Previous utilization of contraception </td>
+                            <td id="contraceptionId"><obs conceptId="106061" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+
+                        <tr class="nofpmethod">
+                            <td class="lblcolor">Which methods did you used in the past</td>
+                            <!--td><obs conceptId="106062" answerConceptId="13602" style="checkbox" /></td-->
+                            <td id="fptypeId">
+                                <obs conceptId="13544" labelText="Modern"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs conceptId="13568" labelText="Natural"/>
+                            </td>
+                        </tr>
+                        <tr class="nofpmethod">
+                            <td class="lblcolor">Any complications</td>
+                            <td><obs conceptId="107003" /> </td>
+                        </tr>
+                    <tr class="nofpmethod">
+                            <td class="lblcolor">Others (specify)</td>
+                            <td><obs conceptId="106759" /> </td>
+                        </tr>
+                        <tr class="nofpmethod">
+                            <td class="lblcolor">Duraton of utilization</td>
+                            <td>Years:</td>
+                            <td><obs conceptId="2287" style="text" /></td>
+                            <td>Months:</td>
+                            <td><obs conceptId="1074" style="text" /></td>
+                            <td>Days:</td>
+                            <td><obs conceptId="1072" style="text" /></td>
+                        </tr>
+                        <tr class="nofpmethod">
+                            <td class="lblcolor">Reason to stop</td>
+                            <td><obs conceptId="107006" /> </td>
+                        </tr>
+                        <tr class="nofpmethod">
+                            <td class="lblcolor">Others (specify)</td>
+                            <td><obs conceptId="106759" /> </td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="C. FP Method Desired">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Desired method</td>
+                            <td>
+                                <span id="modernId"><obs conceptId="13544" labelText="Modern"/></span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <span id="naturalId"><obs conceptId="13568" labelText="Natural"/></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Last Menstrual period LMP</td>
+                            <td><obs conceptId="968" id="lmp" labelCode=""/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Reason for FP:</td>
+                            <td><obs id="spacingid" conceptId="107008" style="radio" /></td>
+                        </tr>
+                        <tr id="spacingtr">
+                            <td class="lblcolor">Duration of Spacing:</td>
+                            <td><obs conceptId="107009" style="text" /></td>
+                        </tr>
+                        <!-- <tr>
+                            <td class="lblcolor">Birth limitation</td>
+                            <td><obs conceptId="106068" style="checkbox" /></td>
+                        </tr> -->
+                    </table>
+                </section>
+
+                <section headerCode="C. HIV Status">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Status at registration</td>
+                            <td><obs id="hivid" conceptId="106069" answerCodes="Negative,Positive,Unknown" style="radio" /></td>
+                        </tr>
+                        <tr class="hivtr">
+                            <td class="lblcolor">Date of last HIV test</td>
+                            <td><obs conceptId="1837" style="text" /></td>
+                        </tr>
+                        <tr class="hivtr">
+                            <td class="lblcolor">Counselled for HIV  </td>
+                            <td><obs conceptId="105533" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr class="hivtr">
+                            <td class="lblcolor">Referred for HIV test </td>
+                            <td><obs conceptId="106070" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page2id">EXAMINATION</h3></div>
+        <div id="page2" class="pages">
+            <section headerLabel="ANAMNESE">
+                <obsgroup groupingConceptId="13578">
+                    <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                        <tr class="strong">
+                            <th>Items</th>
+                            <th>YES/NO</th>
+                            <th>PC</th>
+                            <th>PP</th>
+                            <th>INJECT.</th>
+                            <th>IMPLANTS</th>
+                            <th>DIU</th>
+                            <th>MAO</th>
+                            <th>COLLIER</th>
+                            <th>BARRIERS</th>
+                            <th>CCV</th>
+                        </tr>
+
+                        <tr id="aoneId">
+                            <td>Nulligeste</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="yellow"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="green"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td class="red"><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="atwoId">
+                            <td>Post partum et allaitement:&gt;48heures</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="athreeId">
+                            <td>Post partum sans allaitement:&gt;48heures</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="afourId">
+                            <td>Post partum et allaitement:&gt;48hrs,&lt;4 semaines</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="afiveId">
+                            <td>Post partum et allaitement:&gt;4 semaines,&lt;6 semaines</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="asixId">
+                            <td>Post partum sans allaitement:&gt;4 semaines,&lt;6 semaines</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="asevenId">
+                            <td>Post partum et allaitement:&gt;6 semaines,&lt;6mois</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="aeightId">
+                            <td>Post abortum &gt;6 semaines</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="anineId">
+                            <td>Diabete non surveille</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="atenId">
+                            <td>Deux signes parmi(Age&gt;35,Tabagisme important,Obesite)</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="aelevenId">
+                            <td>Deux sisges parmi(Age&gt;35,Tabagisme important,Obesite)</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="atwelveId">
+                            <td>Metrorragies</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="athirteenId">
+                            <td>traitement pouvant interferer avec les contraceptifs hormonaux</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+
+
+            <section headerLabel="ANTECEDENTS">
+                <obsgroup groupingConceptId="13578">
+                    <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                        <tr class="strong">
+                            <th>Items</th>
+                            <th>YES/NO</th>
+                            <th>PC</th>
+                            <th>PP</th>
+                            <th>INJECT.</th>
+                            <th>IMPLANTS</th>
+                            <th>DIU</th>
+                            <th>MAO</th>
+                            <th>COLLIER</th>
+                            <th>BARRIERS</th>
+                            <th>CCV</th>
+                        </tr>
+                        <tr id="boneId">
+                            <td>Phlebite, Thrombose arterielle, Embolie comme antecendent PF</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="btwoid">
+                            <td>Grossesse Extra Uterine</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="bthreeid">
+                            <td>Infection Genitale</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="bfourid">
+                            <td>Maladie recente du Foie</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+
+            <section headerLabel="EXAMEN GENERAL GYNECOLOGIQUE">
+                <obsgroup groupingConceptId="13578">
+                    <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                        <tr class="strong">
+                            <th>Items</th>
+                            <th>YES/NO</th>
+                            <th>PC</th>
+                            <th>PP</th>
+                            <th>INJECT.</th>
+                            <th>IMPLANTS</th>
+                            <th>DIU</th>
+                            <th>MAO</th>
+                            <th>COLLIER</th>
+                            <th>BARRIERS</th>
+                            <th>CCV</th>
+                        </tr>
+                        <tr id="coneid">
+                            <td>Conjonctives Jaunes (maladie du foie)</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="ctwoid">
+                            <td>Pathologie cardiovasculaire</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                        <tr id="cthreeid">
+                            <td>Obesite(BMI&gt;30)</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="cfourid">
+                            <td><obs conceptId="13590" answerConceptId="13583" style="checkbox" /></td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="cfiveid">
+                            <td>Tumeur Mammaire</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="csixid">
+                            <td>Phlebites,varices importantes,profondes</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="csevenid">
+                            <td>Tumeur pelvienne non diagnostiquee</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="ceightid">
+                            <td>Maladie inflammatoire du pelvis</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="cnineid">
+                            <td>Maladie inflammatoire du pelvis</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="ctenid">
+                            <td>VIH+ ( Virus de l Immunodeficience Humaine) resultat Positive</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+                        <tr id="celevenid">
+                            <td>Traitement aux ARV</td>
+                            <td><obs conceptId="13604" style="yes_no" labelCode=""/></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                            <td><obs conceptId="13548" answerConceptIds="13431,13432,13433" answerLabels="+,(-),-" style="radio" /></td>
+                        </tr>
+
+                    </table>
+                    <table border="1" width="100%" style="background-color:lightgrey">
+                        <tr>
+                            <td>
+                                Legende
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                += Eligible (categorie 1 de l' OMS)
+                                <br />
+                                <br />
+                                (-)= Eligiblite relative (categorie 2 de l' OMS)
+                                <br />
+                                -= Non Eligible (categorie 3 et 4 de l' OMS)
+                                <br />
+                                <br />
+                                SO: sans objet
+                            </td>
+                        </tr>
+                    </table>
+                </obsgroup>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page3id">INVESTIGATION</h3></div>
+        <div id="page3" class="pages">
+            <section>
+                <section headerCode="A. INVESTIGATION">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">FBC</td>
+                            <td><obs conceptId="7836"  style="text" /><obs conceptId="106865" answerCodes="No anemia,Moderate anemia,Severe anemia" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">HIV </td>
+                            <td><obs conceptId="3753" answerCodes="Negative,Positive,Unknown,Indeterminate " style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Pregnancy test </td>
+                            <td><obs conceptId="2473" answerConceptIds="1138,664" answerCodes="Negative,Positive" style="radio" /></td>
+                        </tr>
+                        <!-- <td><b>Lipid profile</b></td> -->
+                        <tr>
+                            <td class="lblcolor">Blood sugar </td>
+                            <td><obs conceptId="887" answerCodes="Negative,Positive" style="radio" /> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specify if Abnormal<obs conceptId="78832823-7bba-45a8-8492-32040f6eb9bb" rows="3" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor"></td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">cervical cytology </td>
+                            <td><obs conceptId="106048" answerCodes="Negative,Positive,Not done" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">LFTs </td>
+                            <td><obs conceptId="106866" answerCodes="Negative,Positive" style="radio" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">STIs screening</td>
+                            <td><obs conceptId="106049" answerCodes="Negative,Positive" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Sumary of findings </td>
+                            <td><obs conceptId="106050" rows="3" cols="30" /> </td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="C. CONCLUSION">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Choosen method by the client </td>
+                            <!-- <td><obs conceptId="106051"/> </td> -->
+                            <td><obs conceptId="13544" labelText="Modern"/></td>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <td><obs conceptId="13568" labelText="Natural"/></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Methods for which the client is eligible</td>
+                            <!-- <td><obs conceptId="106052"/> </td> -->
+                            <td><obs conceptId="13544" labelText="Modern"/></td>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <td><obs conceptId="13568" labelText="Natural"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Method offered</td>
+                            <!-- <td><obs conceptId="106053"/> </td> -->
+                            <td><obs conceptId="13544" labelText="Modern"/></td>
+                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            <td><obs conceptId="13568" labelText="Natural"/></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page4id">COUNSELING</h3></div>
+        <div id="page4" class="pages">
+            <section headerCode="A. Client tyoe">
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106676" answerConceptId="106018" style="checkbox" /></td>
+                        <td><obs conceptId="106676" answerConceptId="106019" style="checkbox" /></td>
+                        <td><obs conceptId="106676" answerConceptId="106020" style="checkbox" /></td>
+                        <td><obs conceptId="106676" answerConceptId="106021" style="checkbox" /></td>
+
+                    </tr>
+                </table>
+
+            </section>
+            <section headerCode="A. Counseling given on different methods">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">A. Modern method </td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106666" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106666" answerConceptId="106028" style="checkbox" /></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <!-- <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">B. Intrauterine ( IUD)</td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106667" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106667" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table> -->
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">B. Natural method</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106668" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106668" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table>
+
+                <!-- <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">D. Surgical method</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106669" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106669" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table> -->
+            </section>
+            <section headerCode="Hormonal methods :include oral contraceptives pills injectables and implants">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">E. Combined oral contraceptives (COCs).  </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106670" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106670" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">F. Progestin-only pills (POPs)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106671" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106671" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table>
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">G. Emergency contraception called “morning after pill”</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106672" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106672" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                </table>
+
+
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">H. Injectable contraceptives </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="106673" answerConceptId="106022" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106023" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106024" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106025" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106026" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106027" style="checkbox" /></td>
+                        <td><obs conceptId="106673" answerConceptId="106028" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Client is helped to choose the most suitable method and documented </td>
+                        <td><obs conceptId="106029" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+
+                        <td class="lblcolor">Choosing method ( New client)</td>
+                        <td><obs conceptId="106030"/>  </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Dual protection ( need STI protection)</td>
+                        <td><obs conceptId="106031" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Client with special needs">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106674" answerConceptId="106032" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106033" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106034" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="1180" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106035" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106036" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106037" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106038" style="checkbox" /></td>
+                        <td><obs conceptId="106674" answerConceptId="106039" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Returning client</td>
+                        <td><obs conceptId="106040" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="Need for Emergency contraception (Most efficient before 72h)">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><obs conceptId="106675" answerConceptId="106041" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106042" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106043" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106044" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106045" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106046" style="checkbox" /></td>
+                        <td><obs conceptId="106675" answerConceptId="106047" style="checkbox" /></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <submit/>
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>
